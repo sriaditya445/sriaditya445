@@ -1,0 +1,563 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2050" width="100%" height="100%">
+  <defs>
+    <!-- Light Mode Color Gradients -->
+    <linearGradient id="bg-grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="50%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+
+    <linearGradient id="accent-grad-light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6D28D9"/>
+      <stop offset="50%" stop-color="#0891B2"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="text-grad-light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="50%" stop-color="#0369A1"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <linearGradient id="card-grad-light" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+
+    <linearGradient id="pill-grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+
+    <linearGradient id="border-grad-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6D28D9" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#0891B2" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.4"/>
+    </linearGradient>
+
+    <!-- Ambient Light Orbs -->
+    <radialGradient id="glow-purple-light" cx="20%" cy="10%" r="40%">
+      <stop offset="0%" stop-color="#6D28D9" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#6D28D9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-cyan-light" cx="80%" cy="30%" r="40%">
+      <stop offset="0%" stop-color="#0891B2" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#0891B2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-emerald-light" cx="50%" cy="85%" r="45%">
+      <stop offset="0%" stop-color="#059669" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Light Grid Pattern -->
+    <pattern id="grid-pattern-light" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#E2E8F0" stroke-width="0.7" stroke-opacity="0.7"/>
+    </pattern>
+  </defs>
+
+  <style>
+    @keyframes blink-light {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    @keyframes pulse-glow-light {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+    @keyframes node-pulse-light {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+    
+    .font-mono { font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace; }
+    .font-sans { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    
+    .cursor-light { animation: blink-light 1s infinite; fill: #0891B2; }
+    .glow-pulse-light { animation: pulse-glow-light 3s infinite ease-in-out; }
+    .node-anim-light { transform-origin: center; animation: node-pulse-light 4s infinite ease-in-out; }
+  </style>
+
+  <!-- Canvas Background -->
+  <rect width="1000" height="2050" fill="url(#bg-grad-light)" rx="16"/>
+  <rect width="1000" height="2050" fill="url(#grid-pattern-light)" rx="16"/>
+
+  <!-- Ambient Light Orbs -->
+  <circle cx="200" cy="200" r="350" fill="url(#glow-purple-light)"/>
+  <circle cx="800" cy="600" r="350" fill="url(#glow-cyan-light)"/>
+  <circle cx="500" cy="1700" r="400" fill="url(#glow-emerald-light)"/>
+
+  <!-- Outer Frame -->
+  <rect x="15" y="15" width="970" height="2020" rx="14" fill="none" stroke="url(#border-grad-light)" stroke-width="1.5"/>
+
+  <!-- TOP TERMINAL HEADER BAR -->
+  <g transform="translate(30, 30)">
+    <rect width="940" height="42" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- Window Controls -->
+    <circle cx="24" cy="21" r="6" fill="#EF4444"/>
+    <circle cx="44" cy="21" r="6" fill="#F59E0B"/>
+    <circle cx="64" cy="21" r="6" fill="#10B981"/>
+    <!-- Title -->
+    <text x="470" y="26" text-anchor="middle" fill="#475569" class="font-mono" font-size="12" letter-spacing="1">sriaditya445@dev-dashboard ~ v2.5.0 [QA-AUTOMATION &amp; FRONTEND]</text>
+    <!-- Status -->
+    <g transform="translate(850, 13)">
+      <rect width="76" height="16" rx="8" fill="#10B981" fill-opacity="0.12" stroke="#10B981" stroke-width="0.8"/>
+      <circle cx="12" cy="8" r="3.5" fill="#059669" class="glow-pulse-light"/>
+      <text x="22" y="11.5" fill="#047857" class="font-mono" font-size="9" font-weight="bold">ONLINE</text>
+    </g>
+  </g>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <g transform="translate(30, 90)">
+    <!-- Hero Container Card -->
+    <rect width="940" height="340" rx="12" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+    
+    <!-- LEFT VISUAL: AUTOMATION & DEVELOPER TERMINAL ART -->
+    <g transform="translate(20, 20)">
+      <rect width="360" height="300" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+      
+      <!-- Terminal Visual Top bar -->
+      <path d="M 0 10 Q 0 0 10 0 L 350 0 Q 360 0 360 10 L 360 30 L 0 30 Z" fill="#E2E8F0"/>
+      <text x="15" y="20" fill="#475569" class="font-mono" font-size="10">AUTOMATION_ENGINE ENGINE_V4.2</text>
+      
+      <!-- Test Execution Nodes Diagram -->
+      <!-- Node 1: Playwright Test Core -->
+      <g transform="translate(30, 50)">
+        <rect width="130" height="55" rx="6" fill="#FFFFFF" stroke="#6D28D9" stroke-width="1.2"/>
+        <text x="10" y="20" fill="#6D28D9" class="font-mono" font-size="10" font-weight="bold">⚡ PLAYWRIGHT</text>
+        <text x="10" y="35" fill="#475569" class="font-mono" font-size="8">E2E Test Runner</text>
+        <text x="10" y="46" fill="#047857" class="font-mono" font-size="8">Status: 42/42 PASSED</text>
+      </g>
+      
+      <!-- Node 2: Selenium Webdriver -->
+      <g transform="translate(200, 50)">
+        <rect width="130" height="55" rx="6" fill="#FFFFFF" stroke="#0891B2" stroke-width="1.2"/>
+        <text x="10" y="20" fill="#0369A1" class="font-mono" font-size="10" font-weight="bold">🧪 SELENIUM</text>
+        <text x="10" y="35" fill="#475569" class="font-mono" font-size="8">TestNG + BDD Suite</text>
+        <text x="10" y="46" fill="#047857" class="font-mono" font-size="8">Status: VERIFIED</text>
+      </g>
+      
+      <!-- Connection Lines -->
+      <path d="M 95 105 L 95 130 L 180 130 L 180 150" stroke="#6D28D9" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+      <path d="M 265 105 L 265 130 L 180 130" stroke="#0891B2" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+
+      <!-- Node 3: AI Test Generator Agent -->
+      <g transform="translate(115, 150)">
+        <rect width="130" height="55" rx="6" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" class="node-anim-light"/>
+        <text x="10" y="20" fill="#047857" class="font-mono" font-size="10" font-weight="bold">🤖 AI AGENT CORE</text>
+        <text x="10" y="35" fill="#475569" class="font-mono" font-size="8">Qase API Integration</text>
+        <text x="10" y="46" fill="#0369A1" class="font-mono" font-size="8">Auto-Generating...</text>
+      </g>
+
+      <!-- Connection Lines to Frontend -->
+      <path d="M 180 205 L 180 230" stroke="#059669" stroke-width="1.5" fill="none"/>
+
+      <!-- Node 4: React Frontend App -->
+      <g transform="translate(60, 230)">
+        <rect width="240" height="50" rx="6" fill="#FFFFFF" stroke="#0284C7" stroke-width="1"/>
+        <text x="12" y="20" fill="#0284C7" class="font-mono" font-size="10" font-weight="bold">⚛️ REACT.JS FRONTEND ARCHITECTURE</text>
+        <text x="12" y="37" fill="#475569" class="font-mono" font-size="8">High Precision UI • Modern State Management</text>
+      </g>
+    </g>
+
+    <!-- RIGHT VISUAL: TEXT & BRAND HERO -->
+    <g transform="translate(410, 25)">
+      <!-- Command prompt -->
+      <text x="0" y="25" fill="#0284C7" class="font-mono" font-size="14" font-weight="bold" letter-spacing="1">> HELLO_WORLD 👋</text>
+      
+      <!-- Name -->
+      <text x="0" y="65" fill="url(#text-grad-light)" class="font-sans" font-size="30" font-weight="800" letter-spacing="-0.5">SRI ADITYA DURGA RAM</text>
+      
+      <!-- Primary Role Title -->
+      <text x="0" y="92" fill="#475569" class="font-mono" font-size="14" font-weight="700" letter-spacing="2">SOFTWARE ENGINEER</text>
+
+      <!-- Animated Roles Bar -->
+      <g transform="translate(0, 110)">
+        <rect width="500" height="36" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="12" y="23" fill="#6D28D9" class="font-mono" font-size="11" font-weight="bold">> ROLE:</text>
+        <text x="75" y="23" fill="#0F172A" class="font-mono" font-size="11" font-weight="600">QA Automation | Playwright | React.js | AI Specialist</text>
+        <rect x="440" y="10" width="8" height="16" fill="#0891B2" class="cursor-light"/>
+      </g>
+
+      <!-- Brand Quote Box -->
+      <g transform="translate(0, 160)">
+        <rect width="500" height="75" rx="8" fill="#F1F5F9" stroke="url(#border-grad-light)" stroke-width="1"/>
+        <text x="15" y="24" fill="#0284C7" class="font-sans" font-size="11" font-weight="bold" font-style="italic">BRAND MISSION:</text>
+        <text x="15" y="44" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">"Building reliable applications through Quality Engineering,</text>
+        <text x="15" y="62" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">Automation and Modern Frontend Development."</text>
+      </g>
+
+      <!-- Brand Pillars Badges -->
+      <g transform="translate(0, 250)">
+        <g transform="translate(0, 0)">
+          <rect width="118" height="22" rx="11" fill="#6D28D9" fill-opacity="0.1" stroke="#6D28D9" stroke-width="0.8"/>
+          <text x="59" y="14.5" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8.5" font-weight="600">Quality Engineering</text>
+        </g>
+        <g transform="translate(124, 0)">
+          <rect width="124" height="22" rx="11" fill="#0891B2" fill-opacity="0.1" stroke="#0891B2" stroke-width="0.8"/>
+          <text x="62" y="14.5" text-anchor="middle" fill="#0369A1" class="font-mono" font-size="8.5" font-weight="600">Modern Frontend</text>
+        </g>
+        <g transform="translate(254, 0)">
+          <rect width="124" height="22" rx="11" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
+          <text x="62" y="14.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5" font-weight="600">Automation Eng.</text>
+        </g>
+        <g transform="translate(384, 0)">
+          <rect width="116" height="22" rx="11" fill="#D97706" fill-opacity="0.1" stroke="#D97706" stroke-width="0.8"/>
+          <text x="58" y="14.5" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8.5" font-weight="600">AI-Assisted Dev</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== SYSTEM_INFO SECTION ==================== -->
+  <g transform="translate(30, 450)">
+    <!-- Container Card -->
+    <rect width="940" height="230" rx="12" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+
+    <!-- Section Header -->
+    <path d="M 0 12 Q 0 0 12 0 L 928 0 Q 940 0 940 12 L 940 36 L 0 36 Z" fill="#F1F5F9"/>
+    <text x="20" y="24" fill="#0284C7" class="font-mono" font-size="12" font-weight="bold" letter-spacing="1.5">💻 SYSTEM_INFO // SPECIFICATION_LOG</text>
+    <line x1="0" y1="36" x2="940" y2="36" stroke="#CBD5E1" stroke-width="1"/>
+
+    <!-- Key-Value Metadata Grid (2 Columns) -->
+    <!-- Column 1 -->
+    <g transform="translate(30, 55)">
+      <g transform="translate(0, 0)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Name</text>
+        <text x="110" y="14" fill="#0F172A" class="font-sans" font-size="12" font-weight="600">Sri Aditya Durga Ram</text>
+      </g>
+      <g transform="translate(0, 32)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Role</text>
+        <text x="110" y="14" fill="#0284C7" class="font-sans" font-size="12" font-weight="600">Software Engineer</text>
+      </g>
+      <g transform="translate(0, 64)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Location</text>
+        <text x="110" y="14" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">Rajahmundry, Andhra Pradesh, India 🇮🇳</text>
+      </g>
+      <g transform="translate(0, 96)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Focus</text>
+        <text x="110" y="14" fill="#6D28D9" class="font-sans" font-size="12" font-weight="600">QA Automation + Frontend Development</text>
+      </g>
+      <g transform="translate(0, 128)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Status</text>
+        <text x="110" y="14" fill="#047857" class="font-sans" font-size="12" font-weight="600">Building &amp; Learning 🚀</text>
+      </g>
+    </g>
+
+    <!-- Column 2 -->
+    <g transform="translate(490, 55)">
+      <g transform="translate(0, 0)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Testing</text>
+        <text x="100" y="14" fill="#0F172A" class="font-mono" font-size="11" font-weight="500">Playwright | Selenium | TestNG</text>
+      </g>
+      <g transform="translate(0, 32)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Frontend</text>
+        <text x="100" y="14" fill="#0F172A" class="font-mono" font-size="11" font-weight="500">React.js | JavaScript | TypeScript</text>
+      </g>
+      <g transform="translate(0, 64)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">API</text>
+        <text x="100" y="14" fill="#0F172A" class="font-mono" font-size="11" font-weight="500">REST APIs | Postman</text>
+      </g>
+      <g transform="translate(0, 96)">
+        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">AI Focus</text>
+        <text x="100" y="14" fill="#B45309" class="font-mono" font-size="11" font-weight="500">AI-Assisted Development | AI Agents</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== CURRENT_FOCUS SECTION ==================== -->
+  <g transform="translate(30, 700)">
+    <!-- Section Title Banner -->
+    <text x="0" y="20" fill="#0284C7" class="font-mono" font-size="14" font-weight="bold" letter-spacing="1.5">🎯 CURRENT_FOCUS // ACTIVE INITIATIVES</text>
+    
+    <!-- 6 Grid Cards (2 columns x 3 rows) -->
+    <!-- Row 1 -->
+    <g transform="translate(0, 35)">
+      <!-- Card 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="455" height="60" rx="8" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="15" y="35" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">🤖 Building AI-powered test automation workflows</text>
+      </g>
+      <!-- Card 2 -->
+      <g transform="translate(485, 0)">
+        <rect width="455" height="60" rx="8" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="15" y="35" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">🧪 Strengthening Playwright &amp; Selenium frameworks</text>
+      </g>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 110)">
+      <!-- Card 3 -->
+      <g transform="translate(0, 0)">
+        <rect width="455" height="60" rx="8" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="15" y="35" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">⚛️ Developing modern applications with React.js</text>
+      </g>
+      <!-- Card 4 -->
+      <g transform="translate(485, 0)">
+        <rect width="455" height="60" rx="8" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="15" y="35" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">🔌 Working with REST APIs and API testing</text>
+      </g>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0, 185)">
+      <!-- Card 5 -->
+      <g transform="translate(0, 0)">
+        <rect width="455" height="60" rx="8" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="15" y="35" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">📊 Integrating automated testing workflows with Qase</text>
+      </g>
+      <!-- Card 6 -->
+      <g transform="translate(485, 0)">
+        <rect width="455" height="60" rx="8" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="15" y="35" fill="#0F172A" class="font-sans" font-size="12" font-weight="500">🚀 Exploring AI agents and AI-assisted development</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== TECHNICAL SKILLS SECTION ==================== -->
+  <g transform="translate(30, 980)">
+    <!-- Container Card -->
+    <rect width="940" height="390" rx="12" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+
+    <!-- Section Header -->
+    <path d="M 0 12 Q 0 0 12 0 L 928 0 Q 940 0 940 12 L 940 36 L 0 36 Z" fill="#F1F5F9"/>
+    <text x="20" y="24" fill="#6D28D9" class="font-mono" font-size="12" font-weight="bold" letter-spacing="1.5">⚡ TECHNICAL_SKILLS // CORE_COMPETENCIES</text>
+    <line x1="0" y1="36" x2="940" y2="36" stroke="#CBD5E1" stroke-width="1"/>
+
+    <!-- Category 1: QA AUTOMATION -->
+    <g transform="translate(25, 55)">
+      <text x="0" y="14" fill="#6D28D9" class="font-mono" font-size="11" font-weight="bold" letter-spacing="1">QA AUTOMATION</text>
+      <g transform="translate(0, 25)">
+        <g transform="translate(0, 0)">
+          <rect width="90" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#6D28D9" stroke-width="1"/>
+          <text x="45" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">Playwright</text>
+        </g>
+        <g transform="translate(98, 0)">
+          <rect width="140" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#6D28D9" stroke-width="1"/>
+          <text x="70" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">Selenium WebDriver</text>
+        </g>
+        <g transform="translate(246, 0)">
+          <rect width="68" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#6D28D9" stroke-width="1"/>
+          <text x="34" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">TestNG</text>
+        </g>
+        <g transform="translate(322, 0)">
+          <rect width="112" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#6D28D9" stroke-width="1"/>
+          <text x="56" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">Cucumber BDD</text>
+        </g>
+        <g transform="translate(442, 0)">
+          <rect width="112" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="56" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Manual Testing</text>
+        </g>
+        <g transform="translate(562, 0)">
+          <rect width="128" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="64" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Functional Testing</text>
+        </g>
+        <g transform="translate(698, 0)">
+          <rect width="134" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="67" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Regression Testing</text>
+        </g>
+
+        <!-- Line 2 for QA -->
+        <g transform="translate(0, 34)">
+          <g transform="translate(0, 0)">
+            <rect width="110" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+            <text x="55" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Smoke Testing</text>
+          </g>
+          <g transform="translate(118, 0)">
+            <rect width="92" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#6D28D9" stroke-width="1"/>
+            <text x="46" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">API Testing</text>
+          </g>
+          <g transform="translate(218, 0)">
+            <rect width="60" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#6D28D9" stroke-width="1"/>
+            <text x="30" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">Qase</text>
+          </g>
+          <g transform="translate(286, 0)">
+            <rect width="78" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+            <text x="39" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Bugasura</text>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <!-- Category 2: DEVELOPMENT -->
+    <g transform="translate(25, 150)">
+      <text x="0" y="14" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold" letter-spacing="1">DEVELOPMENT</text>
+      <g transform="translate(0, 25)">
+        <g transform="translate(0, 0)">
+          <rect width="55" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#0891B2" stroke-width="1"/>
+          <text x="27.5" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">Java</text>
+        </g>
+        <g transform="translate(63, 0)">
+          <rect width="90" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#0891B2" stroke-width="1"/>
+          <text x="45" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">JavaScript</text>
+        </g>
+        <g transform="translate(161, 0)">
+          <rect width="92" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#0891B2" stroke-width="1"/>
+          <text x="46" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">TypeScript</text>
+        </g>
+        <g transform="translate(261, 0)">
+          <rect width="78" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#0891B2" stroke-width="1"/>
+          <text x="39" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">React.js</text>
+        </g>
+        <g transform="translate(347, 0)">
+          <rect width="64" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="32" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">HTML5</text>
+        </g>
+        <g transform="translate(419, 0)">
+          <rect width="55" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="27.5" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">CSS3</text>
+        </g>
+        <g transform="translate(482, 0)">
+          <rect width="102" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#0891B2" stroke-width="1"/>
+          <text x="51" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">Tailwind CSS</text>
+        </g>
+        <g transform="translate(592, 0)">
+          <rect width="96" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="48" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Material UI</text>
+        </g>
+        <g transform="translate(696, 0)">
+          <rect width="80" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="40" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Bootstrap</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Category 3: TOOLS -->
+    <g transform="translate(25, 230)">
+      <text x="0" y="14" fill="#059669" class="font-mono" font-size="11" font-weight="bold" letter-spacing="1">TOOLS &amp; INFRASTRUCTURE</text>
+      <g transform="translate(0, 25)">
+        <g transform="translate(0, 0)">
+          <rect width="76" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#059669" stroke-width="1"/>
+          <text x="38" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">Postman</text>
+        </g>
+        <g transform="translate(84, 0)">
+          <rect width="88" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#059669" stroke-width="1"/>
+          <text x="44" y="17" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="600">REST APIs</text>
+        </g>
+        <g transform="translate(180, 0)">
+          <rect width="48" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="24" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Git</text>
+        </g>
+        <g transform="translate(236, 0)">
+          <rect width="64" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="32" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">GitHub</text>
+        </g>
+        <g transform="translate(308, 0)">
+          <rect width="52" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="26" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Jira</text>
+        </g>
+        <g transform="translate(368, 0)">
+          <rect width="62" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="31" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">Maven</text>
+        </g>
+        <g transform="translate(438, 0)">
+          <rect width="66" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+          <text x="33" y="17" text-anchor="middle" fill="#475569" class="font-mono" font-size="10" font-weight="500">MySQL</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Category 4: AI & AUTOMATION AGENTS -->
+    <g transform="translate(25, 305)">
+      <text x="0" y="14" fill="#B45309" class="font-mono" font-size="11" font-weight="bold" letter-spacing="1">AI &amp; INTELLIGENT AUTOMATION</text>
+      <g transform="translate(0, 25)">
+        <g transform="translate(0, 0)">
+          <rect width="84" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#D97706" stroke-width="1"/>
+          <text x="42" y="17" text-anchor="middle" fill="#B45309" class="font-mono" font-size="10" font-weight="600">AI Agents</text>
+        </g>
+        <g transform="translate(92, 0)">
+          <rect width="144" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#D97706" stroke-width="1"/>
+          <text x="72" y="17" text-anchor="middle" fill="#B45309" class="font-mono" font-size="10" font-weight="600">Prompt Engineering</text>
+        </g>
+        <g transform="translate(244, 0)">
+          <rect width="176" height="26" rx="6" fill="url(#pill-grad-light)" stroke="#D97706" stroke-width="1"/>
+          <text x="88" y="17" text-anchor="middle" fill="#B45309" class="font-mono" font-size="10" font-weight="600">AI-Assisted Development</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== FEATURED PROJECTS SECTION ==================== -->
+  <g transform="translate(30, 1400)">
+    <text x="0" y="20" fill="#059669" class="font-mono" font-size="14" font-weight="bold" letter-spacing="1.5">🚀 FEATURED_PROJECTS // PRODUCTION_SUITE</text>
+
+    <!-- Project 1 & Project 2 (Row 1) -->
+    <g transform="translate(0, 35)">
+      <!-- Project 01 -->
+      <g transform="translate(0, 0)">
+        <rect width="455" height="175" rx="10" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <rect x="15" y="15" width="85" height="20" rx="4" fill="#6D28D9" fill-opacity="0.1" stroke="#6D28D9" stroke-width="0.8"/>
+        <text x="57.5" y="28.5" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="9" font-weight="bold">PROJECT 01</text>
+        <text x="15" y="58" fill="#0F172A" class="font-sans" font-size="14" font-weight="700">AI Test Case Generator</text>
+        <text x="15" y="78" fill="#475569" class="font-sans" font-size="11">AI-powered system generating structured software test cases</text>
+        <text x="15" y="93" fill="#475569" class="font-sans" font-size="11">with Qase integration and automated Playwright workflows.</text>
+        <g transform="translate(15, 135)">
+          <rect width="425" height="26" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
+          <text x="10" y="17" fill="#0284C7" class="font-mono" font-size="9.5" font-weight="600">Tech: Node.js | AI | Qase API | Playwright | TypeScript</text>
+        </g>
+      </g>
+
+      <!-- Project 02 -->
+      <g transform="translate(485, 0)">
+        <rect width="455" height="175" rx="10" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <rect x="15" y="15" width="85" height="20" rx="4" fill="#0891B2" fill-opacity="0.1" stroke="#0891B2" stroke-width="0.8"/>
+        <text x="57.5" y="28.5" text-anchor="middle" fill="#0369A1" class="font-mono" font-size="9" font-weight="bold">PROJECT 02</text>
+        <text x="15" y="58" fill="#0F172A" class="font-sans" font-size="14" font-weight="700">Automation Testing Framework</text>
+        <text x="15" y="78" fill="#475569" class="font-sans" font-size="11">Modular enterprise framework for testing web applications</text>
+        <text x="15" y="93" fill="#475569" class="font-sans" font-size="11">leveraging modern Selenium, BDD, and API automation practices.</text>
+        <g transform="translate(15, 135)">
+          <rect width="425" height="26" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
+          <text x="10" y="17" fill="#047857" class="font-mono" font-size="9.5" font-weight="600">Tech: Selenium | Java | TestNG | Cucumber | REST APIs</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Project 3 & Project 4 (Row 2) -->
+    <g transform="translate(0, 225)">
+      <!-- Project 03 -->
+      <g transform="translate(0, 0)">
+        <rect width="455" height="175" rx="10" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <rect x="15" y="15" width="85" height="20" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
+        <text x="57.5" y="28.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="9" font-weight="bold">PROJECT 03</text>
+        <text x="15" y="58" fill="#0F172A" class="font-sans" font-size="14" font-weight="700">Network Config Auditing Platform</text>
+        <text x="15" y="78" fill="#475569" class="font-sans" font-size="11">Frontend modules and analytics dashboards for network audit</text>
+        <text x="15" y="93" fill="#475569" class="font-sans" font-size="11">workflows featuring reports, filters, and API data visualization.</text>
+        <g transform="translate(15, 135)">
+          <rect width="425" height="26" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
+          <text x="10" y="17" fill="#0284C7" class="font-mono" font-size="9.5" font-weight="600">Tech: React.js | Material UI | REST APIs</text>
+        </g>
+      </g>
+
+      <!-- Project 04 -->
+      <g transform="translate(485, 0)">
+        <rect width="455" height="175" rx="10" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <rect x="15" y="15" width="85" height="20" rx="4" fill="#D97706" fill-opacity="0.1" stroke="#D97706" stroke-width="0.8"/>
+        <text x="57.5" y="28.5" text-anchor="middle" fill="#B45309" class="font-mono" font-size="9" font-weight="bold">PROJECT 04</text>
+        <text x="15" y="58" fill="#0F172A" class="font-sans" font-size="14" font-weight="700">Hospital Management System</text>
+        <text x="15" y="78" fill="#475569" class="font-sans" font-size="11">Responsive web application interfaces and backend REST API</text>
+        <text x="15" y="93" fill="#475569" class="font-sans" font-size="11">integrations tailored for complex healthcare management workflows.</text>
+        <g transform="translate(15, 135)">
+          <rect width="425" height="26" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
+          <text x="10" y="17" fill="#B45309" class="font-mono" font-size="9.5" font-weight="600">Tech: React.js | Tailwind CSS | REST APIs</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Project 5 (Row 3 - Full Width or Centered Span) -->
+    <g transform="translate(0, 415)">
+      <rect width="940" height="150" rx="10" fill="url(#card-grad-light)" stroke="#CBD5E1" stroke-width="1"/>
+      <rect x="15" y="15" width="85" height="20" rx="4" fill="#DB2777" fill-opacity="0.1" stroke="#DB2777" stroke-width="0.8"/>
+      <text x="57.5" y="28.5" text-anchor="middle" fill="#BE185D" class="font-mono" font-size="9" font-weight="bold">PROJECT 05</text>
+      <text x="15" y="58" fill="#0F172A" class="font-sans" font-size="14" font-weight="700">Personal Portfolio Website</text>
+      <text x="15" y="78" fill="#475569" class="font-sans" font-size="11">Ultra-responsive personal website showcasing engineering projects, technical skills, and interactive experience.</text>
+      <g transform="translate(15, 105)">
+        <rect width="910" height="28" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
+        <text x="15" y="18" fill="#BE185D" class="font-mono" font-size="10" font-weight="600">Tech Stack: React.js | JavaScript | HTML5 | CSS3</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== FOOTER STATUS BAR ==================== -->
+  <g transform="translate(30, 2005)">
+    <text x="470" y="15" text-anchor="middle" fill="#64748B" class="font-mono" font-size="10" letter-spacing="1">⚡ sriaditya445 // Engineered with Quality, Playwright, React &amp; AI Automation // 2026</text>
+  </g>
+</svg>
