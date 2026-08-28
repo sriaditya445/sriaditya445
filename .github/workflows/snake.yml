@@ -1,0 +1,45 @@
+name: Generate Contribution Snake
+
+on:
+  # Run automatically every 24 hours
+  schedule:
+    - cron: "0 0 * * *"
+  
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+  # Run on every push to main branch
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Generate Contribution Snake SVGs
+      - name: Generate Contribution Snake SVGs
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-contribution-grid-snake-custom.svg?color_snake=#06B6D4&color_dots=#161B22,#0E4429,#006D32,#26A641,#39D353
+
+      # Step 3: Deploy SVGs to 'output' branch for GitHub README embedding
+      - name: Push Snake SVGs to Output Branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

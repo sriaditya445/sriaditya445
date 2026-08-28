@@ -1,288 +1,272 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1620" width="100%" height="100%">
   <defs>
     <!-- Background & Theme Gradients -->
     <linearGradient id="bg-dark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#050811"/>
-      <stop offset="50%" stop-color="#090D16"/>
-      <stop offset="100%" stop-color="#050811"/>
+      <stop offset="0%" stop-color="#030712"/>
+      <stop offset="50%" stop-color="#0B0F19"/>
+      <stop offset="100%" stop-color="#030712"/>
     </linearGradient>
 
     <linearGradient id="card-dark" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#0F172A" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#0B132B" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#090D16" stop-opacity="0.95"/>
     </linearGradient>
 
     <linearGradient id="header-dark" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="50%" stop-color="#111827"/>
       <stop offset="100%" stop-color="#0F172A"/>
     </linearGradient>
 
+    <linearGradient id="glow-purple-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+
     <radialGradient id="portrait-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.30"/>
-      <stop offset="60%" stop-color="#06B6D4" stop-opacity="0.15"/>
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#06B6D4" stop-opacity="0.18"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
 
     <!-- Grid Pattern -->
-    <pattern id="grid-pattern" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1E293B" stroke-width="0.5" stroke-opacity="0.4"/>
+    <pattern id="grid-pattern" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1E293B" stroke-width="0.5" stroke-opacity="0.35"/>
     </pattern>
   </defs>
 
   <style>
     .font-mono { font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace; }
     .font-sans { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+    /* Typing Animation for Roles */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .cursor { animation: blink 1s infinite; fill: #06B6D4; }
+
+    @keyframes text-slide {
+      0%, 15% { opacity: 1; transform: translateY(0px); }
+      18%, 33% { opacity: 0; transform: translateY(-10px); }
+      36%, 50% { opacity: 1; transform: translateY(0px); }
+    }
   </style>
 
   <!-- Base Canvas Background -->
-  <rect width="1000" height="1480" fill="url(#bg-dark)" rx="16"/>
-  <rect width="1000" height="1480" fill="url(#grid-pattern)" rx="16"/>
+  <rect width="1000" height="1620" fill="url(#bg-dark)" rx="16"/>
+  <rect width="1000" height="1620" fill="url(#grid-pattern)" rx="16"/>
+  <rect x="12" y="12" width="976" height="1596" rx="14" fill="none" stroke="#1E293B" stroke-width="1.5"/>
 
-  <!-- Outer Border -->
-  <rect x="12" y="12" width="976" height="1456" rx="14" fill="none" stroke="#1E293B" stroke-width="1.5"/>
-
-  <!-- ==================== SECTION 1: TOP TERMINAL WINDOW ==================== -->
+  <!-- ==================== HERO TERMINAL BANNER ==================== -->
   <g transform="translate(25, 25)">
-    <!-- Terminal Main Box -->
-    <rect width="950" height="420" rx="10" fill="url(#card-dark)" stroke="#06B6D4" stroke-width="1"/>
-
-    <!-- Window Top Header Bar -->
-    <path d="M 0 10 Q 0 0 10 0 L 940 0 Q 950 0 950 10 L 950 36 L 0 36 Z" fill="url(#header-dark)"/>
-    <line x1="0" y1="36" x2="950" y2="36" stroke="#334155" stroke-width="1"/>
+    <rect width="950" height="490" rx="12" fill="url(#card-dark)" stroke="#06B6D4" stroke-width="1"/>
+    <path d="M 0 12 Q 0 0 12 0 L 938 0 Q 950 0 950 12 L 950 38 L 0 38 Z" fill="url(#header-dark)"/>
+    <line x1="0" y1="38" x2="950" y2="38" stroke="#334155" stroke-width="1"/>
 
     <!-- Window Dots -->
-    <circle cx="20" cy="18" r="5" fill="#EF4444"/>
-    <circle cx="35" cy="18" r="5" fill="#F59E0B"/>
-    <circle cx="50" cy="18" r="5" fill="#10B981"/>
-
-    <!-- Window Title -->
-    <text x="475" y="23" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="11">arifhaxn / README.md - tty</text>
+    <circle cx="20" cy="19" r="5" fill="#EF4444"/>
+    <circle cx="35" cy="19" r="5" fill="#F59E0B"/>
+    <circle cx="50" cy="19" r="5" fill="#10B981"/>
+    <text x="475" y="24" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="11">sriaditya445@terminal ~ zsh - 100x49</text>
     
-    <!-- Live Badge -->
-    <g transform="translate(860, 10)">
-      <rect width="72" height="16" rx="8" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="0.8"/>
-      <circle cx="12" cy="8" r="3" fill="#10B981"/>
-      <text x="22" y="11.5" fill="#34D399" class="font-mono" font-size="8.5" font-weight="bold">+ LIVE</text>
+    <g transform="translate(850, 11)">
+      <rect width="80" height="18" rx="9" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="0.8"/>
+      <circle cx="12" cy="9" r="3.5" fill="#10B981"/>
+      <text x="22" y="12.5" fill="#34D399" class="font-mono" font-size="8.5" font-weight="bold">ONLINE ●</text>
     </g>
 
-    <!-- TERMINAL BODY CONTENT -->
-    <!-- LEFT SIDE: DITHERED DEVELOPER PORTRAIT CARD -->
-    <g transform="translate(20, 50)">
-      <rect width="280" height="350" rx="8" fill="#050811" stroke="#334155" stroke-width="1"/>
-      <circle cx="140" cy="155" r="110" fill="url(#portrait-glow)"/>
+    <!-- TOP HERO TYPING HEADER -->
+    <g transform="translate(25, 52)">
+      <text x="0" y="20" fill="#10B981" class="font-mono" font-size="13" font-weight="bold">HELLO_WORLD 👋</text>
+      <text x="0" y="44" fill="#F8FAFC" class="font-mono" font-size="22" font-weight="900" letter-spacing="1">SRI ADITYA DURGA RAM</text>
+      <rect x="0" y="52" width="310" height="2" fill="url(#glow-purple-cyan)"/>
+      <text x="0" y="70" fill="#38BDF8" class="font-mono" font-size="12" font-weight="bold">&gt; SOFTWARE ENGINEER | QA AUTOMATION | FRONTEND</text>
+    </g>
 
-      <g transform="translate(15, 15)">
+    <!-- LEFT SIDE: DITHERED DEVELOPER PORTRAIT CARD -->
+    <g transform="translate(25, 140)">
+      <rect width="270" height="330" rx="8" fill="#050811" stroke="#334155" stroke-width="1"/>
+      <circle cx="135" cy="145" r="105" fill="url(#portrait-glow)"/>
+
+      <g transform="translate(10, 10)">
         <defs>
           <clipPath id="avatar-clip-dark">
-            <rect width="250" height="240" rx="10" />
+            <rect width="250" height="235" rx="8" />
           </clipPath>
         </defs>
 
-        <!-- Framing Border -->
-        <rect width="250" height="240" rx="10" fill="#0F172A" stroke="#06B6D4" stroke-width="1.5" />
+        <rect width="250" height="235" rx="8" fill="#0F172A" stroke="#06B6D4" stroke-width="1.5" />
+        <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAAEqCAYAAADnHueEAAAYAklEQVR4nO2dP04ky7LG4yA0zjWegXCegYFw8Z+DxAZwmBWAzx56D/gzKwCn7SshsYR2Eca4o/GvEJr7DDqqo6Ij/1VlVmV1fj/pCE5TXVXdk19FZERk5D//+fj8LxXk+vXTfP37z78lLzuIp7uj6GNfro7p+vWz9xOAMfzzf//+z3+JphGHb7DrQY0BDlqjE6MEIgBgev4p7aYCAOKInyQBAIoCMQJQCRAjAJUAMQJQCRAjAJUAMQJQCRAjAJUAMQJQCRAjAJWAurcFcv362aslXq0ven9f3bzR092R9xgiosvnd5Q+VgTK4Srm8f6DiIgefnzrvWYJaygsXCLUJM8NxFgpUnTS0uUUYojVzVvvQQDKAjHOjHQ5pxRaLBDkdECMM3L9+kmb2/O5byMIBDkNiKbOxFKESPRlsXn+CsoByzgxSxKh5s/vX10bFe7MoD8LIrTDwbc2IY/3H7SpcF4Yi7z/E8cxm9tzuoYgBwHLWJjcqYilgHlmOpgzFsTVGa8FVusLOjk9a/o7SAWWMSOcpmjREvqAlYwDYsxAq66oxerm7eun+j7+/P41x+0sCohxJBBin8vn9+53BHHSwLc1guvXz0VHR3OzunmjJ4IIh4IAzgiWmi8sCYQ4HLipAzk5PZv7FqqEi9ohynQgxgFAiGm4gjfYT6UP3NREUKOZzvXr516+8fH+A26+ApYxEVjF4ci6Vf4ekfLYAcuYCOfRQDqb23N6vP+Ad+EAljERWMa8wDLugGVMAEIcDzwLNxBjJCh4zkPKVu2tgW8mEkT+8qC/R8wfd0CMEcAqlsVKfbQIxBgBrOI0tC5KRFMDIGgzDy1GWSFGBxDh/LQmSLipAFQCxGgAq1gHrUVaIUZQLav1RVMBHYjRAFUi9SC3tTt0EMAxgJs6L/wwbK2jHFZ2Klpyi2qFS+YeZr6PqYFlVMAq1sXq5q3rvnfoqQ7MGUHVtFRY3s4njQTBm7rgUsQW/l3gpirgptYL3FQAwCRAjGARtOCmQowCpDXqpYVADuaMAswX66SVIoDDf9yAg+DQhUgEMYIFsFpfNLGCA26qAG5qvRx6WoMIlrEaVjdvvYhhC9HDWFr5LmAZBXNZxjGDjes2ZQ2n/H/9c2m0tMUcxCiYQ4xTPPWlYPVrS6EFNxVi3PJ4/zHpAPWJ8OnuaG9RLefZ+HWddxu6CLd2obaS1iDCesZZsISoBSjF5nrd+nuOe6mJFkTIIIAzI1pYT3dHpthcwtTvc70/5toaHVCai5aqomAZJ8RlEVNwWUb5unRpLZeX/5Zyn6A8mDNuKT1n1AOcRVK65tInyCFMPZ9sIXDDwE2dAJ+lKdn9rITYp3RfW7PQsIxbcqY1YgfR1CsRcgifc5b6tdxcPr83kVuUwDJmJNZqpARaLFIGqStFMpZS7urq5o3+/P7VnBCJYBk7xlrGFJdqrCD0QB0SccxlJbvfM1T4tDQ/tIAYt0wpRkmqMF+ujun69bP7KV9nUsVZQ3CndSESwU3tGFUf6khZWHlE66cFi0uKzHLdXq6Ou9dZhK7jiHbCK+G+Dv0OIcQvIMYtuSo9ZI7PKl2zEvhSGFpY+nX5uzzWspbyeH7dehBkTX0kCrK1iKkPuKmCoa4qryxw5fSGuKIWUnApAQ7r+JAra4nTiqRK+LOnuKuwijtgGUeihUhkl6dJK2gNdMstHXKM731MSMyuYvQQ/B3A2g0DYhTkeEpLoUkBaqFaWAIpVZsZc175WXqRU/G7tXoEghxGe8mcQriCMqEqGNc8ryR6XuqtU1UuZ7fkauuy6hUlLe2nmBvMGRUp80bLRSXaF6B2+0JuYOmEd6wIY3OH1vfA5w69H3PGHbCMisvn926zlRC+FAUPzM3tOX3fDlb5up47ynPoOV1qwMaFtMAuF3QIq/UFrWi/EJ6IiNae98GV7QHLaBBjHVdCYBqOKLpqOPm9m9tz72oO6cKOFaOMxKZGPGO5fH7fe833YGux/tQHAjgD8AmRqD+v6v28eaPL53darS92W52tL3rCkBaLHwpDBiyLWIq5dO9RzBfHATEOwOWWWmkLbYGkpdB9Z7R4taVJCfS48oqlrCLR133vfX6PKwqr2AduqkHITbXcsdyDXA5iKf7UAaytYco9uoTkC+5cPr/vBbBcriqCN31gGQ0ssRHt3ExNCWvDltKyNrFcv34mJ+55Gdjl83tXIsi50Ycf3+jp7ogun9+78+rGy6FaWuAGltGByzpOJUbN0Ga+HLDpzmPcJwvKEq61GkQGlmJK/2AZ48CjayRTCXEIeo4Zqi2NOYd+rYV9E6cCYkxgdfNGT9vf2Tq4hCitjZXkl/nG0u33u+sE5oAaHYHVDY8hxLxAjA7+/P4VnW/sfld5RMZVIues/fRYryEFAK7VJKv1BV0+v9Pl3Ts9XB3T0/bcJ6dntLp5o2v6pO/i2L3oL/lFyff56HnQyO+4dbcVc0YPWoyu/GKovE2LTloWK/FvHSeJFaOr4obPL+e/seVr3fvFhjrWPWpiq5paFiTEGEAKkitGrHI1jWX1dLqCXVRXUEiTKkoZZNHucko1jlUiyJ8l9qHh8zLkuYjaFSTc1IH4ytT0ANeDjYiI1kSb7a/WQA+19I8VIpFttaQQtUvO4uOfm9vzTiB8nPWAcd2D715lkXnrYAYeQA627z//Ri3M7e2ZyO5covvncuvGDFrOE8r7ZJFJ68zXtu5BW/HQZ/N9V5yvhBC/gBgD+AIxRO4SNUuEf37/6rlgljv28ONb97oUg14hwn1vYni5Ou4eJHzep7uj3vV9ogm5jTHWcU/EWLGxB8S4xTW4XavvZVc2pguCGNFDa0D75lF/fv/am4tpCxIbyHm8/+g9SLhS5uT0rPe5rXtkEZ2cntHJ6Zlz7mjdn+seZQUPEVIkDAI4RGYgQw5M3hRHBnBcWK6dHuS+6h4ZWCHy5/asNY++e/N1j+NzENmRVfmAsZZ9xcDfjavcULvOrdG8GOXuUzpCKMvPTk7PvGLUSXzJ6uZtrxWkzypaxdb6OsyQ7uI6Iux7jxWJdd1L6Jr8mV1iZLFCjI0iReGax3A+kAeRaxCHlk+5rsEDOrYfji+94juHXLQs32d9Hlfn8iHI88vvUd8XxNi4GNkyupYsSZctxk2VyPfGbB0uX0uxOJLUNY+u41MfDLHHcZGD6zsmaleMzc+ctfVyteQnSl8SpJcZWe0aZbqBqG+9rCCRvJcxS5RkD1Z5Lp/rqt8z9JqSlMXIh07zlrFLYgvBWE97TnznaqsYCqYQua1cSsLfd/0YfHnVlE7lcu4tsYJBra6DbPNTCzhKaJVy6YFVur+pHoS5eqr6BneoSiamw/kYdPCsVSESwU31wsly/VrK+7ULqFfCh9xR63xD8OVRcwnA9+Dgv/mWcbVO82IM1YCG1gK6sKyc628uXPsvDiGn6EAZmv/Xebk6ppPt77LUzHVsyG3MOeCHnkvfp057lBBlbN7SRcuBG6Z5MRJtB4JjCzSir9UVKYOl1IBPwTfnLXF/oSgsu8kbuKNOmndTidzlXDr3mFKYPTc+617KMo4l14a1SwVipJ14urygsRZxact8fHPWKa4nmXqXraUCMUZQslnUVEwhiCG7IYMdEOMWX/mZrB0F+UHw5guIcUtMcttXgF2aXJatpIUMPax83gXWNCKausfT3RGtyL12z/We0uSoBS0pxKHnRuXNDjyOIrh+/aTVzVu3xMdnCfVWbHMRs4g4xzVi94+0vrPQ1nqtgW9C4BpQenvs0AAqmWcMCUkn+6dwS8dcA0GdHRCjgsVmtld0HG+RWwRSWD6RyXWD/J/udZPznnyC5O8mJLjW84sMHHWFbtzUbc1Gb1+VONvf5dpEV0fxXBaSxbX3uqPzgHVsyoLlmPuxfk+5HiKo+zS/ntEitMGoNddxDb5cYtTXYlz3odtmyF42uSxRqHeOxrW5KoI3X8BNNZCVONJlZeSgkoPOGoA5AjpcwiYtsO4QIO/dN7hLBkysbdQZVz8gCHEHLKMDV9c4xto3IzTQxw680Dwx1CVgqprUkFWU3x3miztgGR08/Pi2bxEd8xwdbXUxxkrK97AF4mvpwM7j/Uf3983tOX3/+be3imPs9eW19D1pfPlapDX64NvwwC6q6WKp10IRw6FpAB70Ulzy+trabW7Pzf0vTk7PenuFxEZXdR7R9z5LXPr7k6KEi9oHYvTwcnXcE+ReIGf7/zFP+JjkuGv9oX5PZ23WF13Lfbm1gHUc//z+828XoNJurbacsX1TrTxsF4V2tKmEe7oP5owB2CpJertMeXqixuBafa9dwNyrRuS9P/z45myC7GtwLO/P2onZCny12hM1BljGSEwXbDvghgjFEp+c87G1ixWiuftxRC5PW9fQ3JBfi8W1fwnYB2IMwK4qP/11qkO7grFoF5BTF3onK995QwI00zKOyiK5iFpWzsR2x4vNKwI3cFMj0Ynz0EBLKYKWe02kWFres8LaRkDOyWQRQ6yV9e1+5foMvmsguR8G304kL1fHdE22e5aztOvp7oho7T9G75BFV9v3vr7Tg+H+vmznhC9Xx0T34ZpbKx0RuyuWvEd5DQgxDCzjCGRhgMRqWe8bzKmW0IUVWOHrW8fpa1tW2bUhkL5G7z1iLm1ZamADMY7EtXeEFU0cI0afEENLvHQtq1Wk4IoQ8+vW9WPnidb+lGAfiHEksdaRcYnAh5y3+YoL9AoSLcxQYULoXqQgUwI2mC/GATGOxCVGxufmxQjSsrSu3CZfI2bBbsg9teAdlUPn1edDSiMOiDEDliBjCgHGJPNltFYm5kPF4tZax5TrheaI+j1EmC/GAjFmQM8bGVeFDotoiDB0yiR1n0UWqGWVfd0NrFUq3d8cDxSIMQ048hmYosmxzvelzsEsIcrz8rl5xy2nwLadDmJ5ujuih6Q7bRdU4GTAevJbVToMiyGUqrh8fv8SRqY8prXPhtU+RGJV9Gh3u/dZ1b0icBMPxFgIXcoWcuWssjUZGdVR2KFrEkPv4+vwg0C/Lu+hu9eIzwnCQIyZ+PP7V5IF47pPtqq+QWyJkihNkDK4o88jr8F/991HLJgrpgExZiRmazm9BpIbJEsLefn8vieYlKJtC3msDN7IiK5rZYqV0pB9gixXGt3f0oFDnxG5CzLjGqSWq2fVguq5nIzAPkZEVnXQZrO+oO+iOzrfk1kyR590ebeb18p70atLNLCK6SC1UQBXqoPIrlsl2q8j1S0XYyt2Ypsvy+Njak5lWZxvzsgg0Z8OxFgAS4ypbtuQap0h6BI3/TCIKQTX9wQhDgNzxgJYwRzfQmEdjeS5nETOIXPNx3zd7vhnqAAA0dN8QIyFiCmPczW48uUfObgTylHuXWsbGOJzWHNX/RCwHhJ7Na0qNQOrOByIsRC+LuTWsa4u5RoZpLl8fu/+81lLuQciC9JKb7jOYUVMrTxq6gMC9MGcsRCuzWokoWCLbn8hV/fLvKEsVPcFWGSxd8zSKmtOqFeOYHVGPpDaKIi3xtNlhTwWbnN7TvT7135ncNGq4+XqmB5/ftDDj2/93jdCiA8/vhFF9MUxV2J4lm+BccAyFsJqaxGLzxppV1DP8dgy6kiotVLEuo62eLFF8FjNPx7MGQvDc61Ua+J6j971arW+2HXw3taz6soaxtWZ3PX/rtese8W+GeOBZSzAyelZVPQ0BpeV5PNZrTB4bslzST4HW82c6QisWcwHHmeZ4YS/q32hD8uKhqKwckcqeezj/cfeLsyxxFry2J6qIA5YxozIyhtfv5gxrTZ09YucC0rLp/9mleENbcHB9yKBZRwPxJgJncqIsiwJ9aMxUVkraONqxTgUV28fLCIeD8SYiaH1qGPnb2bZnaM5VI5ruXr6QIzjgRgz4GtIFctQoVw+v3vTFblxfSa4qePBzHskvuVSKaSmP/hYPe8rJUQk+ssD32IEuYQ4hKlWS/iaTTHoAJcHWMaByFIzF4Pzihk7wo0hxeUd0iAL9IEYBxBq6c+4Io+xzCXKGGso4TznyekZRDkCBHASiVmNIckpplzpiejrOR4m1sJn6zvBhjdpQIwJDJkj+uZZKa0PQ6slfIuZpYitY/fO5UhhhO7Pdz5EW8PATQ1w/fpJJ6dng4M1rkGa2oM0JAy5yNgSnVXMHVqQrI8fWva2Wl/QyelZ1Dy7ZWAZHeSMlIaElGIlQ4LwLRxOtcbyPbqLnSbFbYaltIEYFSXSFb6StVTGFmX7ur3FXDNlk9QQ6AzQB24qjXdFU7H6z1jHTMVcaRS4rn2aD3XNmbj3uX7WazUuVRpd77q+oNUprCRRo5ZxakvoQ7bxt7BcxNJuLt+PdV+lHgjIUTYmxsf7Dzo5PRu1jm8IPuvhau/PWH1sxgrC9/5QoGbMgyDE5va8abf14MXIAjw5Pau6+7W1yY1rD4wxu1H5zp0q8hLfJ6dBWuQgxSjd0JoF6MISpkaKcqh7Jy1tzINgSloM7hyMGKUFnNoNzYkUgeWy5haJ73qaki6qRWvFAovOM6bWic6JzjWmYm0ZJ/El+nPh2odjKg69WGBxYhzTHHhuSnRT81mr3FZ0bjFKDrEIvfpPY4lvM+P9gPmFSPQVeT2hw8pPVilGLcBDE1+JuZ9m7gDMVHDk9RBEWY0YD12ApZgqCjp18CYVFuWS55WzzhmXFIDJxdhAzlyU2sa8FEsU5eSWsUUBLp2lCZFoV/NKtBwXdpJHs0zCty7EJQ1oovrd0xh47NVe+1pMjBAgqI3N7XnVRQRZ54xwQeNZytxxiS5qLLXNK7OMgrlWQyyJGvqgpnLIQiTaldvV4sKOEiOL8FD/sXLj2nexxnlZjfdUkhpc2GQ3Fa7oMHiH4b29MUY2Oi5BTWVvczGHCxv9rw5XdDwvV8e9bb99zGWZIMQv5nBhg2Jc8rrAGtHFzdb32pqLWDtTubCmm7rklRE14+vo7es8PgX6AYB/ez8lVo30xIj54HzMKUYIcTg555ZHRJgP1kAtAqjlPpZCzm4E//zrf/53UYuLDx1tIUtbRgRs8jPUha239KNRSgiCm1dpdxSBojJwwCc1ClvNekaQjxiRYZ5YHu5GEDuvhJtaKSn9clIsnNXQCkKchpAo4aYCMBEc7HG5rxBjpaRYq9j9M8ZeB+TBNaeEGCsn5IJagRkXezsXQ4izoit7MGecCV81jnVc7NwxZY7pu/bq5g1inRhYxgMh1jpCiPUCMc5MrkXHoa3c9HGl7wekAzHORAnLE7M9uQ8IcV4gxpmZ2h10rcZxdSEA0wExzsjcK/otIMT5qG80NEaMa5hTtD6rCCHOC1IbFbG6eesFYlbri6zbyGHBeN3AMlbEan3RJfFZfCyenCssEKipE6zaqIzOcq37r40VEJZL1Q/c1AUh3dhULDHCZa0LuKkLQFrFlFpU81wQYLXAMi4AHe0csk8H1i/WDyzjAuiCOTdve3WjYy0lqAcEcBbA959/6eHHt95W2dpKcgRWr9yAUJcD3NQFILuNWb1tXR3l0OdmWUCMC0H2T4kRZO9vEOEiwJxxIciNWIi+rCWKuw8LiHGBbG7Po+aCEOiygJsKQCXAMi4U1JceHhDjgrl8fo/efBXUD8S4cJBHPByQ9F8g7KJubs9pM/O9gHwggANAJcBNBaASIEYAKgFiBKASIEYAKgFibBBeFwnqAqmNhoAA6wZibATsLFU/cFMBqASI8cBB6/7lADEeKK4gDeaN9QIxLpBYQa3WF3sWERayXiDGAwZWcFlAjAeK1fAY1A1WbQBQCbCMAFQCxAhAJUCMAFQCxAhAJUCMAFQCxAhAJUCMAFQCxAhAJUCMCwLVNIcNKnAWzurmzdypGAXhywMr/ReEZRmtXYohxGUCy7hAsEvxYQLLuECk4DCPPBwQwFk41gJisEwgxgMColw2EOMBAFf1MEAAB4BKgGUEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAqAWIEoBIgRgAq4f8BqSruffkLK9gAAAAASUVORK5CYII=" x="0" y="0" width="250" height="235" preserveAspectRatio="xMidYMin slice" clip-path="url(#avatar-clip-dark)" opacity="0.95"/>
+        <rect width="250" height="235" rx="8" fill="none" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="6,6" stroke-opacity="0.6"/>
 
-        <!-- Dithered Developer Photo matching arifhaxn artwork -->
-        <image href="data:image/png;base64,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" x="0" y="0" width="250" height="240" preserveAspectRatio="xMidYMin slice" clip-path="url(#avatar-clip-dark)" opacity="0.95"/>
-
-        <!-- High-Tech Cyber Frame Overlay -->
-        <rect width="250" height="240" rx="10" fill="none" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="6,6" stroke-opacity="0.6"/>
-
-        <!-- Corner Accents -->
+        <!-- Corners -->
         <path d="M 0 20 L 0 0 L 20 0" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
         <path d="M 230 0 L 250 0 L 250 20" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
-        <path d="M 0 220 L 0 240 L 20 240" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
-        <path d="M 230 240 L 250 240 L 250 220" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
+        <path d="M 0 215 L 0 235 L 20 235" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
+        <path d="M 230 235 L 250 235 L 250 215" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
 
         <!-- Developer Name Card Footer -->
-        <rect x="10" y="258" width="230" height="42" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-        <text x="125" y="276" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">SRI ADITYA DURGA RAM</text>
-        <text x="125" y="291" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="9">SOFTWARE ENGINEER</text>
+        <rect x="5" y="250" width="240" height="50" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="120" y="270" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">SRI ADITYA DURGA RAM</text>
+        <text x="120" y="286" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="9">SOFTWARE ENGINEER</text>
       </g>
     </g>
 
-    <!-- RIGHT SIDE: SYSTEM.INFO TERMINAL TABLE -->
-    <g transform="translate(320, 50)">
-      <rect width="610" height="350" rx="8" fill="#050811" stroke="#1E293B" stroke-width="1"/>
+    <!-- RIGHT SIDE: SYSTEM_INFO TABLE -->
+    <g transform="translate(315, 140)">
+      <rect width="610" height="330" rx="8" fill="#050811" stroke="#1E293B" stroke-width="1"/>
 
-      <!-- Inner Padding Container -->
-      <g transform="translate(20, 20)">
-        <text x="0" y="0" fill="#7C3AED" class="font-mono" font-size="12" font-weight="bold">SYSTEM.INFO</text>
+      <g transform="translate(20, 18)">
+        <text x="0" y="0" fill="#7C3AED" class="font-mono" font-size="12" font-weight="bold">SYSTEM_INFO</text>
+        <text x="530" y="0" text-anchor="end" fill="#06B6D4" class="font-mono" font-size="10">v2.4.0</text>
+        <line x1="0" y1="10" x2="570" y2="10" stroke="#334155" stroke-width="1"/>
 
-        <!-- Command Prompt Line -->
-        <text x="0" y="22" fill="#94A3B8" class="font-mono" font-size="11">sriaditya445@system:~$ cat identity.json</text>
-        <line x1="0" y1="32" x2="570" y2="32" stroke="#334155" stroke-width="1"/>
-
-        <!-- Specifications Table -->
-        <g transform="translate(0, 52)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Subject</text>
-          <text x="150" y="0" fill="#A855F7" class="font-mono" font-size="11" font-weight="bold">Sri Aditya Durga Ram</text>
+        <g transform="translate(0, 30)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Name</text>
+          <text x="120" y="0" fill="#A855F7" class="font-mono" font-size="10.5" font-weight="bold">Sri Aditya Durga Ram</text>
         </g>
-
-        <g transform="translate(0, 74)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Role</text>
-          <text x="150" y="0" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">Software Engineer | QA Automation &amp; Frontend</text>
+        <g transform="translate(0, 50)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Role</text>
+          <text x="120" y="0" fill="#38BDF8" class="font-mono" font-size="10.5" font-weight="bold">Software Engineer</text>
         </g>
-
-        <g transform="translate(0, 96)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Origin</text>
-          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Rajahmundry, AP, India 🇮🇳</text>
+        <g transform="translate(0, 70)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Location</text>
+          <text x="120" y="0" fill="#F8FAFC" class="font-mono" font-size="10.5">Rajahmundry, Andhra Pradesh, India 🇮🇳</text>
         </g>
-
-        <g transform="translate(0, 118)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Status</text>
-          <text x="150" y="0" fill="#34D399" class="font-mono" font-size="11" font-weight="bold">Building + Learning + Shipping 🚀</text>
+        <g transform="translate(0, 90)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Focus</text>
+          <text x="120" y="0" fill="#34D399" class="font-mono" font-size="10.5" font-weight="bold">QA Automation + Frontend Development</text>
         </g>
-
-        <g transform="translate(0, 140)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">ToolChain</text>
-          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">VS Code, Playwright, Selenium, Postman, Git</text>
+        <g transform="translate(0, 110)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Testing</text>
+          <text x="120" y="0" fill="#F8FAFC" class="font-mono" font-size="10.5">Playwright | Selenium | TestNG | Cucumber BDD</text>
         </g>
-
-        <g transform="translate(0, 168)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Lang</text>
-          <text x="150" y="0" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">Java, JavaScript, TypeScript, HTML5, CSS3</text>
+        <g transform="translate(0, 130)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Frontend</text>
+          <text x="120" y="0" fill="#F8FAFC" class="font-mono" font-size="10.5">React.js | JavaScript | TypeScript | Tailwind CSS</text>
         </g>
-
+        <g transform="translate(0, 150)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">API</text>
+          <text x="120" y="0" fill="#F8FAFC" class="font-mono" font-size="10.5">REST APIs | Postman Verification | Endpoint Testing</text>
+        </g>
+        <g transform="translate(0, 170)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">AI Focus</text>
+          <text x="120" y="0" fill="#C084FC" class="font-mono" font-size="10.5" font-weight="bold">AI-Assisted Development | AI Agents | Prompt Eng</text>
+        </g>
         <g transform="translate(0, 190)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Frontend</text>
-          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">React.js, Tailwind CSS, Material UI, Bootstrap</text>
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Status</text>
+          <text x="120" y="0" fill="#10B981" class="font-mono" font-size="10.5" font-weight="bold">Building • Testing • Learning 🚀</text>
         </g>
 
-        <g transform="translate(0, 212)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Backend</text>
-          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Node.js, REST APIs, Express.js</text>
-        </g>
-
-        <g transform="translate(0, 234)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Database</text>
-          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">MySQL, PostgreSQL, MongoDB</text>
-        </g>
-
-        <g transform="translate(0, 256)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Infra</text>
-          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Git, GitHub Actions, Jira, Maven, Qase</text>
-        </g>
-
-        <line x1="0" y1="272" x2="570" y2="272" stroke="#334155" stroke-width="1"/>
-
-        <g transform="translate(0, 288)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Contact</text>
-          <text x="150" y="0" fill="#A855F7" class="font-mono" font-size="11" font-weight="bold">sriaditya445@gmail.com</text>
+        <line x1="0" y1="206" x2="570" y2="206" stroke="#334155" stroke-width="1"/>
+        <g transform="translate(0, 222)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Brand</text>
+          <text x="120" y="0" fill="#94A3B8" class="font-mono" font-size="10">"Building reliable apps through Quality Engineering &amp; Automation."</text>
         </g>
       </g>
     </g>
   </g>
 
-  <!-- ==================== SECTION 2: 3 METRIC STATS COUNTERS ==================== -->
-  <g transform="translate(25, 460)">
-    <!-- Box 1 -->
+  <!-- ==================== DEVELOPER_PLAYGROUND PANELS ==================== -->
+  <g transform="translate(25, 530)">
+    <!-- LEFT PANEL: DEVELOPER_STATUS -->
+    <g transform="translate(0, 0)">
+      <rect width="460" height="200" rx="10" fill="url(#card-dark)" stroke="#8B5CF6" stroke-width="1"/>
+      <path d="M 0 10 Q 0 0 10 0 L 450 0 Q 460 0 460 10 L 460 30 L 0 30 Z" fill="#0F172A"/>
+      <text x="15" y="20" fill="#C084FC" class="font-mono" font-size="11" font-weight="bold">╔═ DEVELOPER_STATUS ════════════════════════════╗</text>
+
+      <g transform="translate(20, 48)">
+        <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">║ Role:</text>
+        <text x="170" y="0" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">Software Engineer</text>
+        <text x="410" y="0" fill="#94A3B8" class="font-mono" font-size="11">║</text>
+
+        <text x="0" y="22" fill="#94A3B8" class="font-mono" font-size="11">║ Speciality:</text>
+        <text x="170" y="22" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">QA Automation</text>
+        <text x="410" y="22" fill="#94A3B8" class="font-mono" font-size="11">║</text>
+
+        <text x="0" y="44" fill="#94A3B8" class="font-mono" font-size="11">║ Primary Weapon:</text>
+        <text x="170" y="44" fill="#34D399" class="font-mono" font-size="11" font-weight="bold">Playwright</text>
+        <text x="410" y="44" fill="#94A3B8" class="font-mono" font-size="11">║</text>
+
+        <text x="0" y="66" fill="#94A3B8" class="font-mono" font-size="11">║ Secondary Weapon:</text>
+        <text x="170" y="66" fill="#67E8F9" class="font-mono" font-size="11" font-weight="bold">React.js</text>
+        <text x="410" y="66" fill="#94A3B8" class="font-mono" font-size="11">║</text>
+
+        <text x="0" y="88" fill="#94A3B8" class="font-mono" font-size="11">║ Current Mission:</text>
+        <text x="170" y="88" fill="#F59E0B" class="font-mono" font-size="11" font-weight="bold">Building &amp; Learning</text>
+        <text x="410" y="88" fill="#94A3B8" class="font-mono" font-size="11">║</text>
+
+        <text x="0" y="110" fill="#94A3B8" class="font-mono" font-size="11">║ Status:</text>
+        <text x="170" y="110" fill="#10B981" class="font-mono" font-size="11" font-weight="bold">ONLINE ●</text>
+        <text x="410" y="110" fill="#94A3B8" class="font-mono" font-size="11">║</text>
+
+        <text x="0" y="130" fill="#C084FC" class="font-mono" font-size="11">╚═══════════════════════════════════════════════╝</text>
+      </g>
+    </g>
+
+    <!-- RIGHT PANEL: TODAY'S_DEV_QUEST -->
+    <g transform="translate(490, 0)">
+      <rect width="460" height="200" rx="10" fill="url(#card-dark)" stroke="#06B6D4" stroke-width="1"/>
+      <path d="M 0 10 Q 0 0 10 0 L 450 0 Q 460 0 460 10 L 460 30 L 0 30 Z" fill="#0F172A"/>
+      <text x="15" y="20" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">🎯 TODAY'S_DEV_QUEST</text>
+
+      <g transform="translate(20, 48)">
+        <g transform="translate(0, 0)">
+          <rect width="18" height="18" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
+          <text x="4.5" y="13" fill="#34D399" class="font-mono" font-size="12">✓</text>
+          <text x="30" y="13" fill="#F8FAFC" class="font-mono" font-size="11.5" font-weight="bold">&gt; Write clean code</text>
+        </g>
+
+        <g transform="translate(0, 32)">
+          <rect width="18" height="18" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
+          <text x="4.5" y="13" fill="#34D399" class="font-mono" font-size="12">✓</text>
+          <text x="30" y="13" fill="#F8FAFC" class="font-mono" font-size="11.5" font-weight="bold">&gt; Automate repetitive tests</text>
+        </g>
+
+        <g transform="translate(0, 64)">
+          <rect width="18" height="18" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
+          <text x="4.5" y="13" fill="#34D399" class="font-mono" font-size="12">✓</text>
+          <text x="30" y="13" fill="#F8FAFC" class="font-mono" font-size="11.5" font-weight="bold">&gt; Learn something new</text>
+        </g>
+
+        <g transform="translate(0, 96)">
+          <rect width="18" height="18" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
+          <text x="4.5" y="13" fill="#34D399" class="font-mono" font-size="12">✓</text>
+          <text x="30" y="13" fill="#F8FAFC" class="font-mono" font-size="11.5" font-weight="bold">&gt; Ship an improvement</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== METRICS & MATRIX ROW ==================== -->
+  <g transform="translate(25, 750)">
+    <!-- 3 COUNTERS -->
     <g transform="translate(0, 0)">
       <rect width="300" height="75" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
       <text x="150" y="36" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="26" font-weight="800">493</text>
       <text x="150" y="56" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="10">Total Contributions</text>
     </g>
 
-    <!-- Box 2 - Streak Gauge Ring matching arifhaxn -->
     <g transform="translate(325, 0)">
       <rect width="300" height="75" rx="8" fill="url(#card-dark)" stroke="#06B6D4" stroke-width="1"/>
-      <!-- Circular Gauge -->
       <circle cx="150" cy="32" r="18" fill="none" stroke="#1E293B" stroke-width="3"/>
       <circle cx="150" cy="32" r="18" fill="none" stroke="#06B6D4" stroke-width="3" stroke-dasharray="113" stroke-dashoffset="30"/>
       <text x="150" y="37" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="14" font-weight="bold">14</text>
       <text x="150" y="58" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="10" font-weight="bold">Current Streak</text>
     </g>
 
-    <!-- Box 3 -->
     <g transform="translate(650, 0)">
       <rect width="300" height="75" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
       <text x="150" y="36" text-anchor="middle" fill="#34D399" class="font-mono" font-size="26" font-weight="800">42</text>
       <text x="150" y="56" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="10">Longest Streak</text>
     </g>
-  </g>
 
-  <!-- ==================== SECTION 3: GITHUB STATS & LANGUAGES ==================== -->
-  <g transform="translate(25, 550)">
-    <!-- LEFT CARD: GITHUB STATS -->
-    <g transform="translate(0, 0)">
-      <rect width="460" height="170" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
-      <text x="20" y="26" fill="#38BDF8" class="font-mono" font-size="12" font-weight="bold">Sri Aditya's GitHub Stats</text>
-      <line x1="20" y1="36" x2="440" y2="36" stroke="#1E293B" stroke-width="1"/>
-
-      <g transform="translate(25, 56)">
-        <circle cx="6" cy="6" r="4" fill="#F59E0B"/>
-        <text x="20" y="10" fill="#94A3B8" class="font-mono" font-size="11">Total Stars Earned:</text>
-        <text x="400" y="10" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">36</text>
-      </g>
-
-      <g transform="translate(25, 82)">
-        <circle cx="6" cy="6" r="4" fill="#7C3AED"/>
-        <text x="20" y="10" fill="#94A3B8" class="font-mono" font-size="11">Total Commits:</text>
-        <text x="400" y="10" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">1.2k</text>
-      </g>
-
-      <g transform="translate(25, 108)">
-        <circle cx="6" cy="6" r="4" fill="#06B6D4"/>
-        <text x="20" y="10" fill="#94A3B8" class="font-mono" font-size="11">Total PRs:</text>
-        <text x="400" y="10" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">42</text>
-      </g>
-
-      <g transform="translate(25, 134)">
-        <circle cx="6" cy="6" r="4" fill="#10B981"/>
-        <text x="20" y="10" fill="#94A3B8" class="font-mono" font-size="11">Contributed to (last year):</text>
-        <text x="400" y="10" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">8</text>
-      </g>
-    </g>
-
-    <!-- RIGHT CARD: MOST USED LANGUAGES -->
-    <g transform="translate(490, 0)">
-      <rect width="460" height="170" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
-      <text x="20" y="26" fill="#38BDF8" class="font-mono" font-size="12" font-weight="bold">Most Used Languages</text>
-      <line x1="20" y1="36" x2="440" y2="36" stroke="#1E293B" stroke-width="1"/>
-
-      <!-- Bar -->
-      <g transform="translate(20, 52)">
-        <rect width="420" height="10" rx="5" fill="#1E293B"/>
-        <rect x="0" y="0" width="176" height="10" rx="5" fill="#06B6D4"/>
-        <rect x="176" y="0" width="118" height="10" rx="0" fill="#8B5CF6"/>
-        <rect x="294" y="0" width="67" height="10" rx="0" fill="#F59E0B"/>
-        <rect x="361" y="0" width="38" height="10" rx="0" fill="#EC4899"/>
-        <rect x="399" y="0" width="21" height="10" rx="5" fill="#10B981"/>
-      </g>
-
-      <!-- Legend -->
-      <g transform="translate(25, 80)">
-        <g transform="translate(0, 0)">
-          <circle cx="5" cy="5" r="4" fill="#06B6D4"/>
-          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">JavaScript 42.0%</text>
-        </g>
-        <g transform="translate(0, 26)">
-          <circle cx="5" cy="5" r="4" fill="#8B5CF6"/>
-          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">Java 28.0%</text>
-        </g>
-        <g transform="translate(0, 52)">
-          <circle cx="5" cy="5" r="4" fill="#F59E0B"/>
-          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">TypeScript 16.0%</text>
-        </g>
-
-        <g transform="translate(210, 0)">
-          <circle cx="5" cy="5" r="4" fill="#EC4899"/>
-          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">HTML/CSS 9.0%</text>
-        </g>
-        <g transform="translate(210, 26)">
-          <circle cx="5" cy="5" r="4" fill="#10B981"/>
-          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">Shell / Automation 5.0%</text>
-        </g>
-      </g>
-    </g>
-  </g>
-
-  <!-- ==================== SECTION 4: CONTRIBUTION MATRIX GRAPH (EXACT ARIFHAXN MATRIX) ==================== -->
-  <g transform="translate(25, 735)">
-    <rect width="950" height="175" rx="10" fill="#050811" stroke="#334155" stroke-width="1"/>
-
-    <!-- Matrix Pixels Grid matching arifhaxn screenshot -->
-    <g transform="translate(20, 25)">
-      <!-- 52 columns x 7 rows grid -->
+    <!-- MATRIX GRAPH -->
+    <g transform="translate(0, 90)">
+      <rect width="950" height="175" rx="10" fill="#050811" stroke="#334155" stroke-width="1"/>
+      <g transform="translate(20, 25)">
 <g transform="translate(0, 0)"><rect x="0" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="18" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="54" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="72" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="90" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="108" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="126" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="144" y="0" width="14" height="14" rx="3" fill="#334155"/><rect x="162" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="180" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="198" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="216" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="234" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="252" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="270" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="288" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="306" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="324" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="342" y="0" width="14" height="14" rx="3" fill="#334155"/><rect x="360" y="0" width="14" height="14" rx="3" fill="#334155"/><rect x="378" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="396" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="414" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="432" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="450" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="468" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="486" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="504" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="522" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="540" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="576" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="594" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="612" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="630" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="648" y="0" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="666" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="684" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="702" y="0" width="14" height="14" rx="3" fill="#334155"/><rect x="720" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="738" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="756" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="0" width="14" height="14" rx="3" fill="#C084FC"/><rect x="792" y="0" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="828" y="0" width="14" height="14" rx="3" fill="#C084FC"/><rect x="846" y="0" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="864" y="0" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="882" y="0" width="14" height="14" rx="3" fill="#38BDF8"/></g>
 <g transform="translate(0, 18)"><rect x="0" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="18" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="36" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="54" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="72" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="90" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="108" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="126" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="144" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="162" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="180" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="198" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="216" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="234" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="252" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="270" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="288" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="306" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="324" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="342" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="360" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="378" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="396" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="414" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="432" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="450" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="468" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="486" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="504" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="522" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="540" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="576" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="594" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="612" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="630" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="648" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="666" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="684" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="702" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="720" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="738" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="756" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="18" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="792" y="18" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="18" width="14" height="14" rx="3" fill="#E879F9"/><rect x="828" y="18" width="14" height="14" rx="3" fill="#C084FC"/><rect x="846" y="18" width="14" height="14" rx="3" fill="#E879F9"/><rect x="864" y="18" width="14" height="14" rx="3" fill="#C084FC"/><rect x="882" y="18" width="14" height="14" rx="3" fill="#8B5CF6"/></g>
 <g transform="translate(0, 36)"><rect x="0" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="18" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="54" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="72" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="90" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="108" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="144" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="162" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="180" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="216" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="234" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="252" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="270" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="288" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="306" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="324" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="342" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="360" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="378" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="396" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="414" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="432" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="450" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="468" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="486" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="504" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="522" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="540" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="576" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="594" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="612" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="630" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="648" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="666" y="36" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="684" y="36" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="702" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="720" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="738" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="756" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="36" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="792" y="36" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="36" width="14" height="14" rx="3" fill="#C084FC"/><rect x="828" y="36" width="14" height="14" rx="3" fill="#E879F9"/><rect x="846" y="36" width="14" height="14" rx="3" fill="#E879F9"/><rect x="864" y="36" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="882" y="36" width="14" height="14" rx="3" fill="#E879F9"/></g>
@@ -290,53 +274,51 @@
 <g transform="translate(0, 72)"><rect x="0" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="18" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="36" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="54" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="72" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="90" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="108" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="144" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="162" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="180" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="216" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="234" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="252" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="270" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="288" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="306" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="324" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="342" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="360" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="378" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="396" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="414" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="432" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="450" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="468" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="486" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="504" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="522" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="540" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="558" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="576" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="594" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="612" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="630" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="648" y="72" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="666" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="684" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="702" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="720" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="738" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="756" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="72" width="14" height="14" rx="3" fill="#E879F9"/><rect x="792" y="72" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="828" y="72" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="846" y="72" width="14" height="14" rx="3" fill="#C084FC"/><rect x="864" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="882" y="72" width="14" height="14" rx="3" fill="#C084FC"/></g>
 <g transform="translate(0, 90)"><rect x="0" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="18" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="36" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="54" y="90" width="14" height="14" rx="3" fill="#1E293B"/><rect x="72" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="90" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="108" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="144" y="90" width="14" height="14" rx="3" fill="#1E293B"/><rect x="162" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="180" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="216" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="234" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="252" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="270" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="288" y="90" width="14" height="14" rx="3" fill="#0F172A"/><rect x="306" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="324" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="342" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="360" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="378" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="396" y="90" width="14" height="14" rx="3" fill="#0F172A"/><rect x="414" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="432" y="90" width="14" height="14" rx="3" fill="#0F172A"/><rect x="450" y="90" width="14" height="14" rx="3" fill="#0F172A"/><rect x="468" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="486" y="90" width="14" height="14" rx="3" fill="#1E293B"/><rect x="504" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="522" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="540" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="558" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="576" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="594" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="612" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="630" y="90" width="14" height="14" rx="3" fill="#1E293B"/><rect x="648" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="666" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="684" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="702" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="720" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="738" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="756" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="90" width="14" height="14" rx="3" fill="#C084FC"/><rect x="792" y="90" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="90" width="14" height="14" rx="3" fill="#E879F9"/><rect x="828" y="90" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="846" y="90" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="864" y="90" width="14" height="14" rx="3" fill="#E879F9"/><rect x="882" y="90" width="14" height="14" rx="3" fill="#E879F9"/></g>
 <g transform="translate(0, 108)"><rect x="0" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="18" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="54" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="72" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="90" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="108" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="126" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="144" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="162" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="180" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="216" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="234" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="252" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="270" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="288" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="306" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="324" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="342" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="360" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="378" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="396" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="414" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="432" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="450" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="468" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="486" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="504" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="522" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="540" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="576" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="594" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="612" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="630" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="648" y="108" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="666" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="684" y="108" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="702" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="720" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="738" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="756" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="774" y="108" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="792" y="108" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="810" y="108" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="828" y="108" width="14" height="14" rx="3" fill="#E879F9"/><rect x="846" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="864" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="882" y="108" width="14" height="14" rx="3" fill="#C084FC"/></g>
+      </g>
     </g>
   </g>
 
-  <!-- ==================== SECTION 5: PROJECTS.LIST GRID (6 CARDS) ==================== -->
-  <g transform="translate(25, 930)">
-    <text x="0" y="20" fill="#06B6D4" class="font-mono" font-size="13" font-weight="bold">PROJECTS.LIST // projects.sh --all</text>
+  <!-- ==================== FEATURED PROJECTS (5 CARDS) ==================== -->
+  <g transform="translate(25, 1030)">
+    <text x="0" y="20" fill="#06B6D4" class="font-mono" font-size="13" font-weight="bold">FEATURED_PROJECTS // projects.sh --top5</text>
 
     <!-- ROW 1 -->
     <g transform="translate(0, 32)">
-      <!-- Card 1 -->
+      <!-- Project 01 -->
       <g transform="translate(0, 0)">
         <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">ai-testcase-generator</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">01 — ai-testcase-generator</text>
         <circle cx="445" cy="13" r="3" fill="#10B981"/>
 
         <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">AI Test Case Generator</text>
-        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">AI system generating structured test cases with Qase</text>
-        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">integration and automated Playwright test execution.</text>
+        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">AI platform generating structured test cases with Qase API</text>
+        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">integration &amp; Playwright test execution automation.</text>
 
         <g transform="translate(15, 102)">
           <rect width="55" height="18" rx="3" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
           <text x="27.5" y="12" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8">Node.js</text>
-
           <rect x="60" y="0" width="34" height="18" rx="3" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
           <text x="77" y="12" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8">AI</text>
-
           <rect x="99" y="0" width="65" height="18" rx="3" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
           <text x="131.5" y="12" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8">Playwright</text>
         </g>
       </g>
 
-      <!-- Card 2 -->
+      <!-- Project 02 -->
       <g transform="translate(490, 0)">
         <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">automation-testing-framework</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">02 — automation-testing-framework</text>
         <circle cx="445" cy="13" r="3" fill="#10B981"/>
 
         <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Automation Testing Framework</text>
-        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Modular enterprise testing framework using Selenium,</text>
-        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">TestNG, Cucumber BDD &amp; REST API verification.</text>
+        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Modern web automation framework utilizing Selenium,</text>
+        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">Java, TestNG, Cucumber BDD &amp; REST API verification.</text>
 
         <g transform="translate(15, 102)">
           <rect width="55" height="18" rx="3" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
           <text x="27.5" y="12" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8">Selenium</text>
-
           <rect x="60" y="0" width="40" height="18" rx="3" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
           <text x="80" y="12" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8">Java</text>
         </g>
@@ -345,118 +327,73 @@
 
     <!-- ROW 2 -->
     <g transform="translate(0, 180)">
-      <!-- Card 3 -->
+      <!-- Project 03 -->
       <g transform="translate(0, 0)">
         <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">network-auditing-platform</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">03 — network-auditing-platform</text>
         <circle cx="445" cy="13" r="3" fill="#10B981"/>
 
-        <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Network Config Auditing Platform</text>
-        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Frontend analytics dashboards for network audit workflows,</text>
-        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">audit logs, filtering systems, and live charts.</text>
+        <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Network Configuration Auditing Platform</text>
+        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Frontend modules for network auditing, reports, filters,</text>
+        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">REST API integration &amp; interactive data visualization.</text>
 
         <g transform="translate(15, 102)">
           <rect width="52" height="18" rx="3" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
           <text x="26" y="12" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8">React.js</text>
-
           <rect x="57" y="0" width="65" height="18" rx="3" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
           <text x="89.5" y="12" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8">Material UI</text>
         </g>
       </g>
 
-      <!-- Card 4 -->
+      <!-- Project 04 -->
       <g transform="translate(490, 0)">
         <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">hospital-management-system</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">04 — hospital-management-system</text>
         <circle cx="445" cy="13" r="3" fill="#10B981"/>
 
         <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Hospital Management System</text>
-        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Responsive healthcare platform user interface integrated</text>
-        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">with backend REST services for administrative workflows.</text>
+        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Responsive healthcare portal interfaces integrated with</text>
+        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">backend REST APIs for healthcare administrative workflows.</text>
 
         <g transform="translate(15, 102)">
           <rect width="52" height="18" rx="3" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
           <text x="26" y="12" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8">React.js</text>
-
           <rect x="57" y="0" width="68" height="18" rx="3" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
           <text x="91" y="12" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="8">Tailwind CSS</text>
         </g>
       </g>
     </g>
 
-    <!-- ROW 3 -->
+    <!-- ROW 3 (SINGLE FULL WIDTH CARD FOR PROJECT 05) -->
     <g transform="translate(0, 328)">
-      <!-- Card 5 -->
       <g transform="translate(0, 0)">
-        <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
-        <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">developer-portfolio-web</text>
-        <circle cx="445" cy="13" r="3" fill="#10B981"/>
+        <rect width="950" height="110" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+        <path d="M 0 8 Q 0 0 8 0 L 942 0 Q 950 0 950 8 L 950 26 L 0 26 Z" fill="#0F172A"/>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">05 — developer-portfolio-website</text>
+        <circle cx="935" cy="13" r="3" fill="#10B981"/>
 
-        <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Personal Developer Portfolio</text>
-        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">High-performance personal website showcasing engineering</text>
-        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">projects, technical experience, and interactive UI skills.</text>
+        <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Personal Developer Portfolio Website</text>
+        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">High-performance personal website showcasing engineering projects, technical skills, test framework architecture and responsive design.</text>
 
-        <g transform="translate(15, 102)">
+        <g transform="translate(15, 80)">
           <rect width="52" height="18" rx="3" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
           <text x="26" y="12" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8">React.js</text>
-
           <rect x="57" y="0" width="60" height="18" rx="3" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
           <text x="87" y="12" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8">JavaScript</text>
-        </g>
-      </g>
-
-      <!-- Card 6 -->
-      <g transform="translate(490, 0)">
-        <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
-        <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">playwright-api-testing-suite</text>
-        <circle cx="445" cy="13" r="3" fill="#10B981"/>
-
-        <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Playwright API Verification Suite</text>
-        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Automated API verification framework built with Playwright</text>
-        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">for automated contract testing and endpoint assertions.</text>
-
-        <g transform="translate(15, 102)">
-          <rect width="65" height="18" rx="3" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
-          <text x="47.5" y="12" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8">Playwright</text>
-
-          <rect x="65" y="0" width="62" height="18" rx="3" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
-          <text x="96" y="12" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="8">TypeScript</text>
+          <rect x="122" y="0" width="40" height="18" rx="3" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
+          <text x="142" y="12" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="8">HTML5</text>
+          <rect x="167" y="0" width="38" height="18" rx="3" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
+          <text x="186" y="12" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8">CSS3</text>
         </g>
       </g>
     </g>
   </g>
 
-  <!-- ==================== SECTION 6: SOCIAL MEDIA BUTTONS FOOTER matching arifhaxn ==================== -->
-  <g transform="translate(25, 1400)">
-    <g transform="translate(185, 15)">
-      <g transform="translate(0, 0)">
-        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#0A66C2" stroke-width="1"/>
-        <text x="55" y="18" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="9.5" font-weight="bold">💼 LINKEDIN</text>
-      </g>
-
-      <g transform="translate(125, 0)">
-        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-        <text x="55" y="18" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="9.5" font-weight="bold">🐙 GITHUB</text>
-      </g>
-
-      <g transform="translate(250, 0)">
-        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#EF4444" stroke-width="1"/>
-        <text x="55" y="18" text-anchor="middle" fill="#F87171" class="font-mono" font-size="9.5" font-weight="bold">✉️ EMAIL</text>
-      </g>
-
-      <g transform="translate(375, 0)">
-        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#10B981" stroke-width="1"/>
-        <text x="55" y="18" text-anchor="middle" fill="#34D399" class="font-mono" font-size="9.5" font-weight="bold">🌐 PORTFOLIO</text>
-      </g>
-
-      <g transform="translate(500, 0)">
-        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#7C3AED" stroke-width="1"/>
-        <text x="55" y="18" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="9.5" font-weight="bold">🤖 AI SUITE</text>
-      </g>
-    </g>
+  <!-- FOOTER -->
+  <g transform="translate(25, 1560)">
+    <line x1="0" y1="0" x2="950" y2="0" stroke="#1E293B" stroke-width="1"/>
+    <text x="475" y="24" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="10">DEVELOPED BY SRI ADITYA DURGA RAM • 2026</text>
   </g>
 </svg>
