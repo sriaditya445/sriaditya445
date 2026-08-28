@@ -2,7 +2,7 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/light.svg">
-    <img alt="Sri Aditya Durga Ram Developer Profile" src="assets/dark.svg" width="100%">
+    <img alt="Sri Aditya Durga Ram - Software Engineer & QA Automation Developer Profile" src="assets/dark.svg" width="100%">
   </picture>
 </div>
 
@@ -22,7 +22,7 @@
 
 ---
 
-### 💡 Core Philosophy
+### 💡 Core Engineering Philosophy
 
 > *"Building reliable applications through Quality Engineering, Automation and Modern Frontend Development."*
 
@@ -30,42 +30,28 @@ Sri Aditya Durga Ram is a **Software Engineer** specializing in end-to-end Quali
 
 ---
 
-### 🛠️ Technical Stack Overview
+### 🛠️ Core Skills & Tooling
 
-| Category | Skills & Tools |
+| Domain | Technologies & Frameworks |
 | :--- | :--- |
-| **QA Automation** | `Playwright` `Selenium WebDriver` `TestNG` `Cucumber BDD` `API Testing` `Qase` `Bugasura` |
-| **Testing Types** | `Manual Testing` `Functional Testing` `Regression Testing` `Smoke Testing` |
-| **Frontend Dev** | `React.js` `JavaScript` `TypeScript` `HTML5` `CSS3` `Tailwind CSS` `Material UI` `Bootstrap` |
-| **Core Dev & Tools** | `Java` `Postman` `REST APIs` `Git` `GitHub` `Jira` `Maven` `MySQL` |
-| **AI Engineering** | `AI Agents` `Prompt Engineering` `AI-Assisted Development` |
+| **Automation & QA** | Playwright, Selenium WebDriver, TestNG, Cucumber BDD, Qase, Bugasura |
+| **Frontend Development** | React.js, JavaScript (ES6+), TypeScript, HTML5, CSS3, Tailwind CSS, Material UI |
+| **Backend & API Verification** | Node.js, REST APIs, Postman, MySQL |
+| **Developer Infrastructure** | Git, GitHub Actions, Jira, Maven, VS Code |
 
 ---
 
-### 📌 Selected Work & Engineering Highlights
+### 🕹️ Contribution Snake Game & Activity
 
-#### 01. AI Test Case Generator
-* **Description:** AI-powered system that generates structured software test cases and integrates them with Qase. Designed to evolve toward generating Playwright automation tests and tracking execution results.
-* **Tech Stack:** `Node.js` • `AI` • `Qase API` • `Playwright` • `TypeScript`
-
-#### 02. Automation Testing Framework
-* **Description:** Enterprise test automation framework for web applications utilizing modern test automation practices, page object patterns, and BDD test suites.
-* **Tech Stack:** `Selenium` • `Java` • `TestNG` • `Cucumber` • `REST APIs`
-
-#### 03. Network Configuration Auditing Platform
-* **Description:** Developed responsive frontend modules and analytics dashboards for network configuration auditing workflows, including filtered audit reports, API integration, and real-time visualization.
-* **Tech Stack:** `React.js` • `Material UI` • `REST APIs`
-
-#### 04. Hospital Management System
-* **Description:** Built user interfaces and integrated REST APIs for healthcare administration workflows, patient records, and service tracking.
-* **Tech Stack:** `React.js` • `Tailwind CSS` • `REST APIs`
-
-#### 05. Personal Portfolio Website
-* **Description:** Ultra-responsive web application showcasing engineering projects, technical skills, interactive demos, and professional experience.
-* **Tech Stack:** `React.js` • `JavaScript` • `HTML5` • `CSS3`
+```
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 🐍 GitHub Contribution Grid Snake Game Active              │
+  │ Integrated directly into profile banner header visualization│
+  └─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
 <div align="center">
-  <sub>Designed &amp; Maintained by <b>Sri Aditya Durga Ram</b> (@sriaditya445) • 2026</sub>
+  <sub>Designed &amp; Engineered for <b>sriaditya445</b> // Rajahmundry, Andhra Pradesh, India</sub>
 </div>

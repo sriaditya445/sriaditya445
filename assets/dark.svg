@@ -1,62 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2050" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2450" width="100%" height="100%">
   <defs>
-    <!-- Dark Mode Color Gradients -->
-    <linearGradient id="bg-grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#030712"/>
-      <stop offset="50%" stop-color="#0B132B"/>
-      <stop offset="100%" stop-color="#030712"/>
+    <!-- Background and Theme Gradients -->
+    <linearGradient id="bg-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050811"/>
+      <stop offset="50%" stop-color="#0B0F19"/>
+      <stop offset="100%" stop-color="#050811"/>
     </linearGradient>
 
-    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#7C3AED"/>
-      <stop offset="50%" stop-color="#22D3EE"/>
+    <linearGradient id="card-dark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0B132B" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <linearGradient id="header-dark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+
+    <linearGradient id="accent-purple-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#06B6D4"/>
       <stop offset="100%" stop-color="#10B981"/>
     </linearGradient>
 
-    <linearGradient id="text-grad-dark" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="50%" stop-color="#38BDF8"/>
-      <stop offset="100%" stop-color="#34D399"/>
-    </linearGradient>
-
-    <linearGradient id="card-grad-dark" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#1E293B" stop-opacity="0.7"/>
-    </linearGradient>
-
-    <linearGradient id="pill-grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.9"/>
-    </linearGradient>
-
-    <linearGradient id="border-grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.6"/>
-      <stop offset="50%" stop-color="#22D3EE" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#10B981" stop-opacity="0.6"/>
-    </linearGradient>
-
-    <!-- Ambient Glowing Orbs -->
-    <radialGradient id="glow-purple" cx="20%" cy="10%" r="40%">
-      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow-cyan" cx="80%" cy="30%" r="40%">
-      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow-emerald" cx="50%" cy="85%" r="45%">
-      <stop offset="0%" stop-color="#10B981" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    <radialGradient id="portrait-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.3"/>
+      <stop offset="70%" stop-color="#06B6D4" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Subtle Scanline & Grid Patterns -->
-    <pattern id="grid-pattern" width="30" height="30" patternUnits="userSpaceOnUse">
-      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1E293B" stroke-width="0.5" stroke-opacity="0.4"/>
+    <!-- Grid Pattern -->
+    <pattern id="grid-bg" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1E293B" stroke-width="0.5" stroke-opacity="0.3"/>
     </pattern>
 
-    <!-- Filters for Glow Effects -->
-    <filter id="glow-filter" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
+    <!-- Filter for Snake Glow -->
+    <filter id="snake-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
@@ -66,538 +46,767 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 2px #22D3EE); }
-      50% { opacity: 1; filter: drop-shadow(0 0 8px #7C3AED); }
+    @keyframes snake-head-move {
+      0%   { transform: translate(140px, 32px); }
+      15%  { transform: translate(280px, 32px); }
+      30%  { transform: translate(280px, 72px); }
+      45%  { transform: translate(450px, 72px); }
+      60%  { transform: translate(450px, 16px); }
+      75%  { transform: translate(620px, 16px); }
+      90%  { transform: translate(620px, 56px); }
+      100% { transform: translate(140px, 32px); }
     }
-    @keyframes scanline {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(2050px); }
+    @keyframes snake-trail-1 {
+      0%   { transform: translate(124px, 32px); opacity: 0.8; }
+      15%  { transform: translate(264px, 32px); opacity: 0.8; }
+      30%  { transform: translate(280px, 56px); opacity: 0.8; }
+      45%  { transform: translate(434px, 72px); opacity: 0.8; }
+      60%  { transform: translate(450px, 32px); opacity: 0.8; }
+      75%  { transform: translate(604px, 16px); opacity: 0.8; }
+      90%  { transform: translate(620px, 40px); opacity: 0.8; }
+      100% { transform: translate(124px, 32px); opacity: 0.8; }
     }
-    @keyframes node-pulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.08); opacity: 1; }
+    @keyframes food-pulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
     }
-    
+
     .font-mono { font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace; }
-    .font-sans { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-    
-    .cursor { animation: blink 1s infinite; fill: #22D3EE; }
-    .glow-pulse { animation: pulse-glow 3s infinite ease-in-out; }
-    .node-anim { transform-origin: center; animation: node-pulse 4s infinite ease-in-out; }
-    
-    .card {
-      transition: all 0.3s ease;
-    }
+    .font-sans { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+    .cursor { animation: blink 1s infinite; fill: #06B6D4; }
+    .snake-head { animation: snake-head-move 14s infinite linear; }
+    .snake-body { animation: snake-trail-1 14s infinite linear; }
+    .food-dot { animation: food-pulse 2s infinite ease-in-out; transform-origin: center; }
   </style>
 
   <!-- Canvas Background -->
-  <rect width="1000" height="2050" fill="url(#bg-grad-dark)" rx="16"/>
-  <rect width="1000" height="2050" fill="url(#grid-pattern)" rx="16"/>
+  <rect width="1000" height="2450" fill="url(#bg-dark)" rx="16"/>
+  <rect width="1000" height="2450" fill="url(#grid-bg)" rx="16"/>
 
-  <!-- Ambient Light Orbs -->
-  <circle cx="200" cy="200" r="350" fill="url(#glow-purple)"/>
-  <circle cx="800" cy="600" r="350" fill="url(#glow-cyan)"/>
-  <circle cx="500" cy="1700" r="400" fill="url(#glow-emerald)"/>
+  <!-- Outer Border Container -->
+  <rect x="15" y="15" width="970" height="2420" rx="14" fill="none" stroke="#1E293B" stroke-width="1.5"/>
 
-  <!-- Outer Glass Frame -->
-  <rect x="15" y="15" width="970" height="2020" rx="14" fill="none" stroke="url(#border-grad-dark)" stroke-width="1.5" stroke-opacity="0.8"/>
+  <!-- ==================== SECTION 1: MAIN TERMINAL (ARIFHAXN STYLE) ==================== -->
+  <g transform="translate(30, 35)">
+    <!-- Terminal Box Card -->
+    <rect width="940" height="520" rx="12" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
 
-  <!-- TOP TERMINAL HEADER BAR -->
-  <g transform="translate(30, 30)">
-    <rect width="940" height="42" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
-    <!-- Window Controls -->
-    <circle cx="24" cy="21" r="6" fill="#EF4444"/>
-    <circle cx="44" cy="21" r="6" fill="#F59E0B"/>
-    <circle cx="64" cy="21" r="6" fill="#10B981"/>
-    <!-- Title -->
-    <text x="470" y="26" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="12" letter-spacing="1">sriaditya445@dev-dashboard ~ v2.5.0 [QA-AUTOMATION &amp; FRONTEND]</text>
-    <!-- Status -->
-    <g transform="translate(850, 13)">
-      <rect width="76" height="16" rx="8" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="0.8"/>
-      <circle cx="12" cy="8" r="3.5" fill="#10B981" class="glow-pulse"/>
-      <text x="22" y="11.5" fill="#34D399" class="font-mono" font-size="9" font-weight="bold">ONLINE</text>
-    </g>
-  </g>
+    <!-- Terminal Window Top Header Bar -->
+    <path d="M 0 12 Q 0 0 12 0 L 928 0 Q 940 0 940 12 L 940 38 L 0 38 Z" fill="url(#header-dark)"/>
+    <line x1="0" y1="38" x2="940" y2="38" stroke="#334155" stroke-width="1"/>
 
-  <!-- ==================== HERO SECTION ==================== -->
-  <g transform="translate(30, 90)">
-    <!-- Hero Container Card -->
-    <rect width="940" height="340" rx="12" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
+    <!-- Window Dots -->
+    <circle cx="22" cy="19" r="5.5" fill="#EF4444"/>
+    <circle cx="38" cy="19" r="5.5" fill="#F59E0B"/>
+    <circle cx="54" cy="19" r="5.5" fill="#10B981"/>
+
+    <!-- Tab Title -->
+    <text x="470" y="24" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="11">sriaditya445@gmail.com ~ %.zshrc.sh - tty</text>
     
-    <!-- LEFT VISUAL: AUTOMATION & DEVELOPER TERMINAL ART -->
-    <g transform="translate(20, 20)">
-      <rect width="360" height="300" rx="10" fill="#030712" fill-opacity="0.7" stroke="#334155" stroke-width="1"/>
-      
-      <!-- Terminal Visual Top bar -->
-      <path d="M 0 10 Q 0 0 10 0 L 350 0 Q 360 0 360 10 L 360 30 L 0 30 Z" fill="#0F172A"/>
-      <text x="15" y="20" fill="#64748B" class="font-mono" font-size="10">AUTOMATION_ENGINE ENGINE_V4.2</text>
-      
-      <!-- Test Execution Nodes Diagram -->
-      <!-- Node 1: Playwright Test Core -->
-      <g transform="translate(30, 50)">
-        <rect width="130" height="55" rx="6" fill="#0F172A" stroke="#7C3AED" stroke-width="1.2"/>
-        <text x="10" y="20" fill="#A855F7" class="font-mono" font-size="10" font-weight="bold">⚡ PLAYWRIGHT</text>
-        <text x="10" y="35" fill="#94A3B8" class="font-mono" font-size="8">E2E Test Runner</text>
-        <text x="10" y="46" fill="#10B981" class="font-mono" font-size="8">Status: 42/42 PASSED</text>
-      </g>
-      
-      <!-- Node 2: Selenium Webdriver -->
-      <g transform="translate(200, 50)">
-        <rect width="130" height="55" rx="6" fill="#0F172A" stroke="#22D3EE" stroke-width="1.2"/>
-        <text x="10" y="20" fill="#38BDF8" class="font-mono" font-size="10" font-weight="bold">🧪 SELENIUM</text>
-        <text x="10" y="35" fill="#94A3B8" class="font-mono" font-size="8">TestNG + BDD Suite</text>
-        <text x="10" y="46" fill="#34D399" class="font-mono" font-size="8">Status: VERIFIED</text>
-      </g>
-      
-      <!-- Connection Lines -->
-      <path d="M 95 105 L 95 130 L 180 130 L 180 150" stroke="#7C3AED" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
-      <path d="M 265 105 L 265 130 L 180 130" stroke="#22D3EE" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
-
-      <!-- Node 3: AI Test Generator Agent -->
-      <g transform="translate(115, 150)">
-        <rect width="130" height="55" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1.5" class="node-anim"/>
-        <text x="10" y="20" fill="#34D399" class="font-mono" font-size="10" font-weight="bold">🤖 AI AGENT CORE</text>
-        <text x="10" y="35" fill="#94A3B8" class="font-mono" font-size="8">Qase API Integration</text>
-        <text x="10" y="46" fill="#38BDF8" class="font-mono" font-size="8">Auto-Generating...</text>
-      </g>
-
-      <!-- Connection Lines to Frontend -->
-      <path d="M 180 205 L 180 230" stroke="#10B981" stroke-width="1.5" fill="none"/>
-
-      <!-- Node 4: React Frontend App -->
-      <g transform="translate(60, 230)">
-        <rect width="240" height="50" rx="6" fill="#0F172A" stroke="#38BDF8" stroke-width="1"/>
-        <text x="12" y="20" fill="#38BDF8" class="font-mono" font-size="10" font-weight="bold">⚛️ REACT.JS FRONTEND ARCHITECTURE</text>
-        <text x="12" y="37" fill="#94A3B8" class="font-mono" font-size="8">High Precision UI • Modern State Management</text>
-      </g>
+    <!-- Live Status -->
+    <g transform="translate(850, 11)">
+      <rect width="70" height="16" rx="8" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="0.8"/>
+      <circle cx="12" cy="8" r="3" fill="#10B981" class="cursor"/>
+      <text x="22" y="11.5" fill="#34D399" class="font-mono" font-size="8.5" font-weight="bold">+ LIVE</text>
     </g>
 
-    <!-- RIGHT VISUAL: TEXT & BRAND HERO -->
-    <g transform="translate(410, 25)">
-      <!-- Command prompt -->
-      <text x="0" y="25" fill="#22D3EE" class="font-mono" font-size="14" font-weight="bold" letter-spacing="1">> HELLO_WORLD 👋</text>
-      
-      <!-- Name -->
-      <text x="0" y="65" fill="url(#text-grad-dark)" class="font-sans" font-size="30" font-weight="800" letter-spacing="-0.5">SRI ADITYA DURGA RAM</text>
-      
-      <!-- Primary Role Title -->
-      <text x="0" y="92" fill="#94A3B8" class="font-mono" font-size="14" font-weight="700" letter-spacing="2">SOFTWARE ENGINEER</text>
-
-      <!-- Animated Roles Bar -->
-      <g transform="translate(0, 110)">
-        <rect width="500" height="36" rx="6" fill="#030712" stroke="#334155" stroke-width="1"/>
-        <text x="12" y="23" fill="#7C3AED" class="font-mono" font-size="11" font-weight="bold">> ROLE:</text>
-        <!-- Roles List text styled like terminal -->
-        <text x="75" y="23" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="600">QA Automation | Playwright | React.js | AI Specialist</text>
-        <rect x="440" y="10" width="8" height="16" fill="#22D3EE" class="cursor"/>
-      </g>
-
-      <!-- Brand Quote Box -->
-      <g transform="translate(0, 160)">
-        <rect width="500" height="75" rx="8" fill="#0F172A" fill-opacity="0.8" stroke="url(#border-grad-dark)" stroke-width="1"/>
-        <text x="15" y="24" fill="#38BDF8" class="font-sans" font-size="11" font-weight="bold" font-style="italic">BRAND MISSION:</text>
-        <text x="15" y="44" fill="#E2E8F0" class="font-sans" font-size="12" font-weight="500">"Building reliable applications through Quality Engineering,</text>
-        <text x="15" y="62" fill="#E2E8F0" class="font-sans" font-size="12" font-weight="500">Automation and Modern Frontend Development."</text>
-      </g>
-
-      <!-- Brand Pillars Badges -->
-      <g transform="translate(0, 250)">
-        <g transform="translate(0, 0)">
-          <rect width="118" height="22" rx="11" fill="#7C3AED" fill-opacity="0.2" stroke="#7C3AED" stroke-width="0.8"/>
-          <text x="59" y="14.5" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8.5" font-weight="600">Quality Engineering</text>
-        </g>
-        <g transform="translate(124, 0)">
-          <rect width="124" height="22" rx="11" fill="#22D3EE" fill-opacity="0.2" stroke="#22D3EE" stroke-width="0.8"/>
-          <text x="62" y="14.5" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8.5" font-weight="600">Modern Frontend</text>
-        </g>
-        <g transform="translate(254, 0)">
-          <rect width="124" height="22" rx="11" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
-          <text x="62" y="14.5" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8.5" font-weight="600">Automation Eng.</text>
-        </g>
-        <g transform="translate(384, 0)">
-          <rect width="116" height="22" rx="11" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
-          <text x="58" y="14.5" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="8.5" font-weight="600">AI-Assisted Dev</text>
-        </g>
-      </g>
-    </g>
-  </g>
-
-  <!-- ==================== SYSTEM_INFO SECTION ==================== -->
-  <g transform="translate(30, 450)">
-    <!-- Container Card -->
-    <rect width="940" height="230" rx="12" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-
-    <!-- Section Header -->
-    <path d="M 0 12 Q 0 0 12 0 L 928 0 Q 940 0 940 12 L 940 36 L 0 36 Z" fill="#0F172A"/>
-    <text x="20" y="24" fill="#22D3EE" class="font-mono" font-size="12" font-weight="bold" letter-spacing="1.5">💻 SYSTEM_INFO // SPECIFICATION_LOG</text>
-    <line x1="0" y1="36" x2="940" y2="36" stroke="#334155" stroke-width="1"/>
-
-    <!-- Key-Value Metadata Grid (2 Columns) -->
-    <!-- Column 1 -->
-    <g transform="translate(30, 55)">
-      <!-- Item 1 -->
-      <g transform="translate(0, 0)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Name</text>
-        <text x="110" y="14" fill="#F8FAFC" class="font-sans" font-size="12" font-weight="600">Sri Aditya Durga Ram</text>
-      </g>
-      <!-- Item 2 -->
-      <g transform="translate(0, 32)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Role</text>
-        <text x="110" y="14" fill="#38BDF8" class="font-sans" font-size="12" font-weight="600">Software Engineer</text>
-      </g>
-      <!-- Item 3 -->
-      <g transform="translate(0, 64)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Location</text>
-        <text x="110" y="14" fill="#F8FAFC" class="font-sans" font-size="12" font-weight="500">Rajahmundry, Andhra Pradesh, India 🇮🇳</text>
-      </g>
-      <!-- Item 4 -->
-      <g transform="translate(0, 96)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Focus</text>
-        <text x="110" y="14" fill="#A855F7" class="font-sans" font-size="12" font-weight="600">QA Automation + Frontend Development</text>
-      </g>
-      <!-- Item 5 -->
-      <g transform="translate(0, 128)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Status</text>
-        <text x="110" y="14" fill="#34D399" class="font-sans" font-size="12" font-weight="600">Building &amp; Learning 🚀</text>
-      </g>
-    </g>
-
-    <!-- Column 2 -->
-    <g transform="translate(490, 55)">
-      <!-- Item 6 -->
-      <g transform="translate(0, 0)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Testing</text>
-        <text x="100" y="14" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="500">Playwright | Selenium | TestNG</text>
-      </g>
-      <!-- Item 7 -->
-      <g transform="translate(0, 32)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">Frontend</text>
-        <text x="100" y="14" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="500">React.js | JavaScript | TypeScript</text>
-      </g>
-      <!-- Item 8 -->
-      <g transform="translate(0, 64)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">API</text>
-        <text x="100" y="14" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="500">REST APIs | Postman</text>
-      </g>
-      <!-- Item 9 -->
-      <g transform="translate(0, 96)">
-        <text x="0" y="14" fill="#64748B" class="font-mono" font-size="11" font-weight="600">AI Focus</text>
-        <text x="100" y="14" fill="#FCD34D" class="font-mono" font-size="11" font-weight="500">AI-Assisted Development | AI Agents</text>
-      </g>
-    </g>
-  </g>
-
-  <!-- ==================== CURRENT_FOCUS SECTION ==================== -->
-  <g transform="translate(30, 700)">
-    <!-- Section Title Banner -->
-    <text x="0" y="20" fill="#22D3EE" class="font-mono" font-size="14" font-weight="bold" letter-spacing="1.5">🎯 CURRENT_FOCUS // ACTIVE INITIATIVES</text>
-    
-    <!-- 6 Grid Cards (2 columns x 3 rows) -->
-    <!-- Row 1 -->
-    <g transform="translate(0, 35)">
-      <!-- Card 1 -->
-      <g transform="translate(0, 0)">
-        <rect width="455" height="60" rx="8" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <text x="15" y="35" fill="#F8FAFC" class="font-sans" font-size="12" font-weight="500">🤖 Building AI-powered test automation workflows</text>
-      </g>
-      <!-- Card 2 -->
-      <g transform="translate(485, 0)">
-        <rect width="455" height="60" rx="8" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <text x="15" y="35" fill="#F8FAFC" class="font-sans" font-size="12" font-weight="500">🧪 Strengthening Playwright &amp; Selenium frameworks</text>
-      </g>
-    </g>
-
-    <!-- Row 2 -->
-    <g transform="translate(0, 110)">
-      <!-- Card 3 -->
-      <g transform="translate(0, 0)">
-        <rect width="455" height="60" rx="8" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <text x="15" y="35" fill="#F8FAFC" class="font-sans" font-size="12" font-weight="500">⚛️ Developing modern applications with React.js</text>
-      </g>
-      <!-- Card 4 -->
-      <g transform="translate(485, 0)">
-        <rect width="455" height="60" rx="8" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <text x="15" y="35" fill="#F8FAFC" class="font-sans" font-size="12" font-weight="500">🔌 Working with REST APIs and API testing</text>
-      </g>
-    </g>
-
-    <!-- Row 3 -->
-    <g transform="translate(0, 185)">
-      <!-- Card 5 -->
-      <g transform="translate(0, 0)">
-        <rect width="455" height="60" rx="8" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <text x="15" y="35" fill="#F8FAFC" class="font-sans" font-size="12" font-weight="500">📊 Integrating automated testing workflows with Qase</text>
-      </g>
-      <!-- Card 6 -->
-      <g transform="translate(485, 0)">
-        <rect width="455" height="60" rx="8" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <text x="15" y="35" fill="#F8FAFC" class="font-sans" font-size="12" font-weight="500">🚀 Exploring AI agents and AI-assisted development</text>
-      </g>
-    </g>
-  </g>
-
-  <!-- ==================== TECHNICAL SKILLS SECTION ==================== -->
-  <g transform="translate(30, 980)">
-    <!-- Container Card -->
-    <rect width="940" height="390" rx="12" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-
-    <!-- Section Header -->
-    <path d="M 0 12 Q 0 0 12 0 L 928 0 Q 940 0 940 12 L 940 36 L 0 36 Z" fill="#0F172A"/>
-    <text x="20" y="24" fill="#7C3AED" class="font-mono" font-size="12" font-weight="bold" letter-spacing="1.5">⚡ TECHNICAL_SKILLS // CORE_COMPETENCIES</text>
-    <line x1="0" y1="36" x2="940" y2="36" stroke="#334155" stroke-width="1"/>
-
-    <!-- Category 1: QA AUTOMATION -->
+    <!-- TERMINAL BODY CONTENT -->
+    <!-- LEFT SIDE: STYLIZED DEVELOPER PORTRAIT CARD -->
     <g transform="translate(25, 55)">
-      <text x="0" y="14" fill="#A855F7" class="font-mono" font-size="11" font-weight="bold" letter-spacing="1">QA AUTOMATION</text>
-      <g transform="translate(0, 25)">
-        <!-- Pills -->
-        <!-- Playwright -->
-        <g transform="translate(0, 0)">
-          <rect width="90" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#7C3AED" stroke-width="1"/>
-          <text x="45" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">Playwright</text>
-        </g>
-        <!-- Selenium WebDriver -->
-        <g transform="translate(98, 0)">
-          <rect width="140" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#7C3AED" stroke-width="1"/>
-          <text x="70" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">Selenium WebDriver</text>
-        </g>
-        <!-- TestNG -->
-        <g transform="translate(246, 0)">
-          <rect width="68" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#7C3AED" stroke-width="1"/>
-          <text x="34" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">TestNG</text>
-        </g>
-        <!-- Cucumber BDD -->
-        <g transform="translate(322, 0)">
-          <rect width="112" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#7C3AED" stroke-width="1"/>
-          <text x="56" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">Cucumber BDD</text>
-        </g>
-        <!-- Manual Testing -->
-        <g transform="translate(442, 0)">
-          <rect width="112" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="56" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Manual Testing</text>
-        </g>
-        <!-- Functional Testing -->
-        <g transform="translate(562, 0)">
-          <rect width="128" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="64" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Functional Testing</text>
-        </g>
-        <!-- Regression Testing -->
-        <g transform="translate(698, 0)">
-          <rect width="134" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="67" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Regression Testing</text>
+      <!-- Frame Border Box -->
+      <rect width="320" height="435" rx="8" fill="#050811" stroke="#334155" stroke-width="1"/>
+      <circle cx="160" cy="200" r="130" fill="url(#portrait-glow)"/>
+
+      <!-- Vector Stylized Developer Portrait Graphic (Dithered / Cyberpunk Aesthetic) -->
+      <g transform="translate(20, 20)">
+        <!-- Cyber Avatar Frame Grid Overlay -->
+        <rect width="280" height="395" rx="6" fill="none" stroke="#8B5CF6" stroke-width="1" stroke-dasharray="4,4" stroke-opacity="0.6"/>
+
+        <!-- Avatar Background Circle -->
+        <circle cx="140" cy="150" r="100" fill="#0F172A" stroke="#06B6D4" stroke-width="1.5"/>
+
+        <!-- Stylized Developer Silhouette Vector -->
+        <!-- Hair & Head Contour -->
+        <path d="M 80 160 Q 80 80 140 75 Q 200 80 200 160 Q 185 200 140 210 Q 95 200 80 160 Z" fill="#1E293B" stroke="#A855F7" stroke-width="1.5"/>
+
+        <!-- Developer Glasses Frame -->
+        <rect x="95" y="130" width="38" height="26" rx="4" fill="#050811" stroke="#06B6D4" stroke-width="2"/>
+        <rect x="147" y="130" width="38" height="26" rx="4" fill="#050811" stroke="#06B6D4" stroke-width="2"/>
+        <line x1="133" y1="143" x2="147" y2="143" stroke="#06B6D4" stroke-width="2"/>
+
+        <!-- Lens Glint Glow -->
+        <line x1="100" y1="135" x2="115" y2="150" stroke="#38BDF8" stroke-width="1.5" opacity="0.7"/>
+        <line x1="152" y1="135" x2="167" y2="150" stroke="#38BDF8" stroke-width="1.5" opacity="0.7"/>
+
+        <!-- Face / Jawline Details -->
+        <path d="M 110 160 Q 140 195 170 160" fill="none" stroke="#94A3B8" stroke-width="1.5"/>
+        <path d="M 125 180 Q 140 188 155 180" fill="none" stroke="#38BDF8" stroke-width="1.5"/>
+
+        <!-- Developer Hoodie & Shoulders -->
+        <path d="M 50 260 Q 60 215 110 205 Q 140 215 170 205 Q 220 215 230 260 L 230 310 L 50 310 Z" fill="#0B132B" stroke="#8B5CF6" stroke-width="1.5"/>
+        <path d="M 110 205 L 140 250 L 170 205" fill="none" stroke="#06B6D4" stroke-width="1.5"/>
+
+        <!-- Dither / Matrix Scanline Overlay Effect -->
+        <g stroke="#38BDF8" stroke-width="0.5" stroke-opacity="0.3">
+          <line x1="50" y1="100" x2="230" y2="100"/>
+          <line x1="50" y1="140" x2="230" y2="140"/>
+          <line x1="50" y1="180" x2="230" y2="180"/>
+          <line x1="50" y1="220" x2="230" y2="220"/>
+          <line x1="50" y1="260" x2="230" y2="260"/>
         </g>
 
-        <!-- Line 2 for QA -->
-        <g transform="translate(0, 34)">
-          <!-- Smoke Testing -->
-          <g transform="translate(0, 0)">
-            <rect width="110" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-            <text x="55" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Smoke Testing</text>
-          </g>
-          <!-- API Testing -->
-          <g transform="translate(118, 0)">
-            <rect width="92" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#7C3AED" stroke-width="1"/>
-            <text x="46" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">API Testing</text>
-          </g>
-          <!-- Qase -->
-          <g transform="translate(218, 0)">
-            <rect width="60" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#7C3AED" stroke-width="1"/>
-            <text x="30" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">Qase</text>
-          </g>
-          <!-- Bugasura -->
-          <g transform="translate(286, 0)">
-            <rect width="78" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-            <text x="39" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Bugasura</text>
-          </g>
-        </g>
+        <!-- Portrait Name Badge Footer -->
+        <rect x="25" y="340" width="230" height="32" rx="4" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="140" y="360" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">SRI ADITYA DURGA RAM</text>
       </g>
     </g>
 
-    <!-- Category 2: DEVELOPMENT -->
-    <g transform="translate(25, 150)">
-      <text x="0" y="14" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold" letter-spacing="1">DEVELOPMENT</text>
-      <g transform="translate(0, 25)">
-        <g transform="translate(0, 0)">
-          <rect width="55" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#22D3EE" stroke-width="1"/>
-          <text x="27.5" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">Java</text>
-        </g>
-        <g transform="translate(63, 0)">
-          <rect width="90" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#22D3EE" stroke-width="1"/>
-          <text x="45" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">JavaScript</text>
-        </g>
-        <g transform="translate(161, 0)">
-          <rect width="92" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#22D3EE" stroke-width="1"/>
-          <text x="46" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">TypeScript</text>
-        </g>
-        <g transform="translate(261, 0)">
-          <rect width="78" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#22D3EE" stroke-width="1"/>
-          <text x="39" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">React.js</text>
-        </g>
-        <g transform="translate(347, 0)">
-          <rect width="64" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="32" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">HTML5</text>
-        </g>
-        <g transform="translate(419, 0)">
-          <rect width="55" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="27.5" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">CSS3</text>
-        </g>
-        <g transform="translate(482, 0)">
-          <rect width="102" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#22D3EE" stroke-width="1"/>
-          <text x="51" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">Tailwind CSS</text>
-        </g>
-        <g transform="translate(592, 0)">
-          <rect width="96" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="48" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Material UI</text>
-        </g>
-        <g transform="translate(696, 0)">
-          <rect width="80" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="40" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Bootstrap</text>
-        </g>
-      </g>
-    </g>
+    <!-- RIGHT SIDE: SYSTEM.INFO TERMINAL READOUT (MATCHING ARIFHAXN EXACT FORMAT) -->
+    <g transform="translate(370, 55)">
+      <!-- Header prompt -->
+      <rect width="545" height="30" rx="4" fill="#050811" stroke="#1E293B" stroke-width="1"/>
+      <text x="12" y="20" fill="#8B5CF6" class="font-mono" font-size="11" font-weight="bold">SYSTEM.INFO</text>
+      <text x="460" y="20" fill="#06B6D4" class="font-mono" font-size="10">+ LIVE</text>
 
-    <!-- Category 3: TOOLS -->
-    <g transform="translate(25, 230)">
-      <text x="0" y="14" fill="#34D399" class="font-mono" font-size="11" font-weight="bold" letter-spacing="1">TOOLS &amp; INFRASTRUCTURE</text>
-      <g transform="translate(0, 25)">
-        <g transform="translate(0, 0)">
-          <rect width="76" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#10B981" stroke-width="1"/>
-          <text x="38" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">Postman</text>
-        </g>
-        <g transform="translate(84, 0)">
-          <rect width="88" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#10B981" stroke-width="1"/>
-          <text x="44" y="17" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="600">REST APIs</text>
-        </g>
-        <g transform="translate(180, 0)">
-          <rect width="48" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="24" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Git</text>
-        </g>
-        <g transform="translate(236, 0)">
-          <rect width="64" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="32" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">GitHub</text>
-        </g>
-        <g transform="translate(308, 0)">
-          <rect width="52" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="26" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Jira</text>
-        </g>
-        <g transform="translate(368, 0)">
-          <rect width="62" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="31" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">Maven</text>
-        </g>
-        <g transform="translate(438, 0)">
-          <rect width="66" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#334155" stroke-width="1"/>
-          <text x="33" y="17" text-anchor="middle" fill="#CBD5E1" class="font-mono" font-size="10" font-weight="500">MySQL</text>
-        </g>
-      </g>
-    </g>
+      <!-- Sub-prompt -->
+      <text x="0" y="52" fill="#8B5CF6" class="font-mono" font-size="11" font-weight="bold">sriaditya445.lorenz@gmail.com ~ %.zshrc.sh - tty</text>
 
-    <!-- Category 4: AI & AUTOMATION AGENTS -->
-    <g transform="translate(25, 305)">
-      <text x="0" y="14" fill="#FCD34D" class="font-mono" font-size="11" font-weight="bold" letter-spacing="1">AI &amp; INTELLIGENT AUTOMATION</text>
-      <g transform="translate(0, 25)">
-        <g transform="translate(0, 0)">
-          <rect width="84" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#F59E0B" stroke-width="1"/>
-          <text x="42" y="17" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="10" font-weight="600">AI Agents</text>
+      <!-- Key-Value Specifications Table -->
+      <g transform="translate(0, 68)">
+        <!-- Divider -->
+        <line x1="0" y1="0" x2="545" y2="0" stroke="#334155" stroke-width="1"/>
+
+        <!-- Row 1: Subject -->
+        <g transform="translate(0, 18)">
+          <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">Subject</text>
+          <text x="160" y="0" stroke="none" fill="#A855F7" class="font-mono" font-size="11" font-weight="bold">Sri Aditya Durga Ram</text>
         </g>
-        <g transform="translate(92, 0)">
-          <rect width="144" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#F59E0B" stroke-width="1"/>
-          <text x="72" y="17" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="10" font-weight="600">Prompt Engineering</text>
+
+        <!-- Row 2: Role -->
+        <g transform="translate(0, 38)">
+          <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">Role</text>
+          <text x="160" y="0" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">Software Engineer</text>
         </g>
-        <g transform="translate(244, 0)">
-          <rect width="176" height="26" rx="6" fill="url(#pill-grad-dark)" stroke="#F59E0B" stroke-width="1"/>
-          <text x="88" y="17" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="10" font-weight="600">AI-Assisted Development</text>
+
+        <!-- Row 3: Origin -->
+        <g transform="translate(0, 58)">
+          <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">Origin</text>
+          <text x="160" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Rajahmundry, AP, India 🇮🇳</text>
+        </g>
+
+        <!-- Row 4: Education -->
+        <g transform="translate(0, 78)">
+          <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">Education</text>
+          <text x="160" y="0" fill="#F8FAFC" class="font-mono" font-size="11">B.Tech in CSE</text>
+        </g>
+
+        <!-- Row 5: Status -->
+        <g transform="translate(0, 98)">
+          <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">Status</text>
+          <text x="160" y="0" fill="#34D399" class="font-mono" font-size="11" font-weight="bold">Building + Learning + Shipping 🚀</text>
+        </g>
+
+        <!-- Row 6: ToolChain -->
+        <g transform="translate(0, 118)">
+          <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">ToolChain</text>
+          <text x="160" y="0" fill="#F8FAFC" class="font-mono" font-size="11">VS Code, Playwright, Selenium, Postman, Git</text>
+        </g>
+
+        <!-- Row 7: Core.Lang -->
+        <g transform="translate(0, 142)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Lang</text>
+          <text x="160" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Java, JavaScript, TypeScript, HTML5, CSS3</text>
+        </g>
+
+        <!-- Row 8: Core.Frontend -->
+        <g transform="translate(0, 162)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Frontend</text>
+          <text x="160" y="0" fill="#F8FAFC" class="font-mono" font-size="11">React.js, Tailwind CSS, Material UI, Bootstrap</text>
+        </g>
+
+        <!-- Row 9: Core.Automation -->
+        <g transform="translate(0, 182)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Automation</text>
+          <text x="160" y="0" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">Playwright, Selenium WebDriver, TestNG, Cucumber</text>
+        </g>
+
+        <!-- Row 10: Core.Backend -->
+        <g transform="translate(0, 202)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Backend</text>
+          <text x="160" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Node.js, REST APIs, MySQL</text>
+        </g>
+
+        <!-- Row 11: Core.Infra -->
+        <g transform="translate(0, 222)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Infra</text>
+          <text x="160" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Git, GitHub, Jira, Maven, Qase, Bugasura</text>
+        </g>
+
+        <!-- Divider -->
+        <line x1="0" y1="245" x2="545" y2="245" stroke="#334155" stroke-width="1"/>
+
+        <!-- Row 12: Contact -->
+        <g transform="translate(0, 265)">
+          <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">Contact</text>
+          <text x="160" y="0" fill="#A855F7" class="font-mono" font-size="11" font-weight="bold">sriaditya445@gmail.com</text>
         </g>
       </g>
     </g>
   </g>
 
-  <!-- ==================== FEATURED PROJECTS SECTION ==================== -->
-  <g transform="translate(30, 1400)">
-    <text x="0" y="20" fill="#10B981" class="font-mono" font-size="14" font-weight="bold" letter-spacing="1.5">🚀 FEATURED_PROJECTS // PRODUCTION_SUITE</text>
+  <!-- ==================== SECTION 2: 3 METRIC STATS COUNTERS ==================== -->
+  <g transform="translate(30, 580)">
+    <!-- Counter 1: Total Contributions -->
+    <g transform="translate(0, 0)">
+      <rect width="295" height="90" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+      <text x="147.5" y="42" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="28" font-weight="800">493</text>
+      <text x="147.5" y="66" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="10" font-weight="600">Total Contributions</text>
+    </g>
 
-    <!-- Project 1 & Project 2 (Row 1) -->
+    <!-- Counter 2: Current Streak -->
+    <g transform="translate(322, 0)">
+      <rect width="295" height="90" rx="8" fill="url(#card-dark)" stroke="#8B5CF6" stroke-width="1"/>
+      <text x="147.5" y="42" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="28" font-weight="800">14</text>
+      <text x="147.5" y="66" text-anchor="middle" fill="#A855F7" class="font-mono" font-size="10" font-weight="bold">Current Streak (Days)</text>
+    </g>
+
+    <!-- Counter 3: Longest Streak -->
+    <g transform="translate(645, 0)">
+      <rect width="295" height="90" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+      <text x="147.5" y="42" text-anchor="middle" fill="#34D399" class="font-mono" font-size="28" font-weight="800">42</text>
+      <text x="147.5" y="66" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="10" font-weight="600">Longest Streak (Days)</text>
+    </g>
+  </g>
+
+  <!-- ==================== SECTION 3: GITHUB STATS & MOST USED LANGUAGES ==================== -->
+  <g transform="translate(30, 695)">
+    <!-- LEFT CARD: GITHUB STATS -->
+    <g transform="translate(0, 0)">
+      <rect width="455" height="210" rx="10" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="30" fill="#38BDF8" class="font-mono" font-size="13" font-weight="bold">Sri Aditya's GitHub Stats</text>
+      <line x1="20" y1="42" x2="435" y2="42" stroke="#1E293B" stroke-width="1"/>
+
+      <!-- Item 1: Total Stars Earned -->
+      <g transform="translate(25, 65)">
+        <circle cx="10" cy="10" r="4" fill="#F59E0B"/>
+        <text x="25" y="14" fill="#94A3B8" class="font-mono" font-size="11">Total Stars Earned:</text>
+        <text x="400" y="14" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">36</text>
+      </g>
+
+      <!-- Item 2: Total Commits -->
+      <g transform="translate(25, 95)">
+        <circle cx="10" cy="10" r="4" fill="#8B5CF6"/>
+        <text x="25" y="14" fill="#94A3B8" class="font-mono" font-size="11">Total Commits (2026):</text>
+        <text x="400" y="14" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">1.2k</text>
+      </g>
+
+      <!-- Item 3: Total PRs -->
+      <g transform="translate(25, 125)">
+        <circle cx="10" cy="10" r="4" fill="#06B6D4"/>
+        <text x="25" y="14" fill="#94A3B8" class="font-mono" font-size="11">Total PRs Merged:</text>
+        <text x="400" y="14" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">42</text>
+      </g>
+
+      <!-- Item 4: Contributed to -->
+      <g transform="translate(25, 155)">
+        <circle cx="10" cy="10" r="4" fill="#10B981"/>
+        <text x="25" y="14" fill="#94A3B8" class="font-mono" font-size="11">Contributed to (last year):</text>
+        <text x="400" y="14" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">8</text>
+      </g>
+    </g>
+
+    <!-- RIGHT CARD: MOST USED LANGUAGES -->
+    <g transform="translate(485, 0)">
+      <rect width="455" height="210" rx="10" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="30" fill="#38BDF8" class="font-mono" font-size="13" font-weight="bold">Most Used Languages</text>
+      <line x1="20" y1="42" x2="435" y2="42" stroke="#1E293B" stroke-width="1"/>
+
+      <!-- Progress Bar -->
+      <g transform="translate(20, 60)">
+        <rect width="415" height="12" rx="6" fill="#1E293B"/>
+        <!-- Segment 1: JavaScript (42%) -->
+        <rect x="0" y="0" width="174" height="12" rx="6" fill="#F7DF1E"/>
+        <!-- Segment 2: Java (28%) -->
+        <rect x="174" y="0" width="116" height="12" rx="0" fill="#ED8B00"/>
+        <!-- Segment 3: TypeScript (16%) -->
+        <rect x="290" y="0" width="66" height="12" rx="0" fill="#3178C6"/>
+        <!-- Segment 4: HTML/CSS (9%) -->
+        <rect x="356" y="0" width="37" height="12" rx="0" fill="#E34F26"/>
+        <!-- Segment 5: Shell (5%) -->
+        <rect x="393" y="0" width="22" height="12" rx="6" fill="#89E051"/>
+      </g>
+
+      <!-- Language Legend Grid (2 Columns) -->
+      <g transform="translate(25, 95)">
+        <!-- Left Col -->
+        <g transform="translate(0, 0)">
+          <circle cx="6" cy="6" r="5" fill="#F7DF1E"/>
+          <text x="18" y="10" fill="#F8FAFC" class="font-mono" font-size="10">JavaScript 42.0%</text>
+        </g>
+        <g transform="translate(0, 30)">
+          <circle cx="6" cy="6" r="5" fill="#ED8B00"/>
+          <text x="18" y="10" fill="#F8FAFC" class="font-mono" font-size="10">Java 28.0%</text>
+        </g>
+        <g transform="translate(0, 60)">
+          <circle cx="6" cy="6" r="5" fill="#3178C6"/>
+          <text x="18" y="10" fill="#F8FAFC" class="font-mono" font-size="10">TypeScript 16.0%</text>
+        </g>
+
+        <!-- Right Col -->
+        <g transform="translate(210, 0)">
+          <circle cx="6" cy="6" r="5" fill="#E34F26"/>
+          <text x="18" y="10" fill="#F8FAFC" class="font-mono" font-size="10">HTML/CSS 9.0%</text>
+        </g>
+        <g transform="translate(210, 30)">
+          <circle cx="6" cy="6" r="5" fill="#89E051"/>
+          <text x="18" y="10" fill="#F8FAFC" class="font-mono" font-size="10">Shell / Automation 5.0%</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== SECTION 4: ANIMATED CONTRIBUTION SNAKE GAME MATRIX ==================== -->
+  <g transform="translate(30, 930)">
+    <!-- Outer Card -->
+    <rect width="940" height="230" rx="10" fill="#050811" stroke="#334155" stroke-width="1"/>
+
+    <!-- Header bar -->
+    <path d="M 0 10 Q 0 0 10 0 L 930 0 Q 940 0 940 10 L 940 32 L 0 32 Z" fill="#0F172A"/>
+    <text x="15" y="20" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">🕹️ SNAKE_GAME // GITHUB_CONTRIBUTION_GRAPH_MATRIX</text>
+    <text x="925" y="20" text-anchor="end" fill="#34D399" class="font-mono" font-size="10" font-weight="bold">SCORE: 1,490 PTS</text>
+    <line x1="0" y1="32" x2="940" y2="32" stroke="#334155" stroke-width="1"/>
+
+    <!-- Contribution Matrix Grid (52 Columns x 7 Rows of Pixels) -->
+    <g transform="translate(20, 50)">
+      <!-- Render 52 Columns of Pixels -->
+      <!-- Week Month Labels -->
+      <text x="0" y="-5" fill="#64748B" class="font-mono" font-size="8">Jan</text>
+      <text x="140" y="-5" fill="#64748B" class="font-mono" font-size="8">Mar</text>
+      <text x="290" y="-5" fill="#64748B" class="font-mono" font-size="8">May</text>
+      <text x="440" y="-5" fill="#64748B" class="font-mono" font-size="8">Jul</text>
+      <text x="590" y="-5" fill="#64748B" class="font-mono" font-size="8">Sep</text>
+      <text x="740" y="-5" fill="#64748B" class="font-mono" font-size="8">Nov</text>
+
+      <!-- Matrix Pixels SVG Pattern generated cleanly -->
+      <g opacity="0.95">
+        <!-- Generate 52 Columns x 7 Rows -->
+        <!-- Row 1 -->
+        <rect x="0" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="16" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="32" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="48" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="64" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="80" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="96" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="112" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="128" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="144" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="160" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="176" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="192" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="208" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="224" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="240" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="256" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="272" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="288" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="304" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="320" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="336" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="352" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="368" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="384" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="400" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="416" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="432" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="448" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="464" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="480" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="496" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="512" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="528" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="544" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="560" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="576" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="592" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="608" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="624" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="640" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="656" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="672" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="688" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="704" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="720" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="736" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="752" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="768" y="8" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="784" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="800" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="816" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="832" y="8" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="848" y="8" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="864" y="8" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="880" y="8" width="12" height="12" rx="2" fill="#006D32"/>
+
+        <!-- Row 2 -->
+        <rect x="0" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="16" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="32" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="48" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="64" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="80" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="96" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="112" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="128" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="144" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="160" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="176" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="192" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="208" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="224" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="240" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="256" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="272" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="288" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="304" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="320" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="336" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="352" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="368" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="384" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="400" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="416" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="432" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="448" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="464" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="480" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="496" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="512" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="528" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="544" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="560" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="576" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="592" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="608" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="624" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="640" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="656" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="672" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="688" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="704" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="720" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="736" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="752" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="768" y="24" width="12" height="12" rx="2" fill="#161B22"/>
+        <rect x="784" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="800" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="816" y="24" width="12" height="12" rx="2" fill="#006D32"/>
+        <rect x="832" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+        <rect x="848" y="24" width="12" height="12" rx="2" fill="#26A641"/>
+        <rect x="864" y="24" width="12" height="12" rx="2" fill="#39D353"/>
+        <rect x="880" y="24" width="12" height="12" rx="2" fill="#0E4429"/>
+
+        <!-- Row 3, 4, 5, 6, 7 -->
+        <!-- Row 3 -->
+        <g transform="translate(0, 40)">
+          <rect x="0" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="16" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="32" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="48" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="64" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="80" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="96" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="112" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="128" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="144" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="160" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="176" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="192" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="208" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="224" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="240" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="256" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="272" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="288" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="304" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="320" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="336" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="352" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="368" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="384" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="400" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="416" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="432" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="448" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="464" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="480" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="496" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="512" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="528" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="544" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="560" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="576" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="592" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="608" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="624" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="640" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="656" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="672" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="688" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="704" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="720" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="736" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="752" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="768" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="784" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="800" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="816" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="832" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="848" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="864" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="880" y="0" width="12" height="12" rx="2" fill="#39D353"/>
+        </g>
+
+        <!-- Row 4 -->
+        <g transform="translate(0, 56)">
+          <rect x="0" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="16" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="32" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="48" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="64" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="80" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="96" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="112" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="128" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="144" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="160" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="176" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="192" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="208" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="224" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="240" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="256" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="272" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="288" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="304" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="320" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="336" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="352" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="368" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="384" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="400" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="416" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="432" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="448" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="464" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="480" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="496" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="512" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="528" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="544" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="560" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="576" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="592" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="608" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="624" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="640" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="656" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="672" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="688" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="704" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="720" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="736" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="752" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="768" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="784" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="800" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="816" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="832" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="848" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="864" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="880" y="0" width="12" height="12" rx="2" fill="#39D353"/>
+        </g>
+
+        <!-- Row 5 -->
+        <g transform="translate(0, 72)">
+          <rect x="0" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="16" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="32" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="48" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="64" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="80" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="96" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="112" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="128" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="144" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="160" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="176" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="192" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="208" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="224" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="240" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="256" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="272" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="288" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="304" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="320" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="336" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="352" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="368" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="384" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="400" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="416" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="432" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="448" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="464" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="480" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="496" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="512" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="528" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="544" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="560" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="576" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="592" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="608" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="624" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="640" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="656" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="672" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="688" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="704" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="720" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="736" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="752" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="768" y="0" width="12" height="12" rx="2" fill="#161B22"/><rect x="784" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="800" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="816" y="0" width="12" height="12" rx="2" fill="#006D32"/><rect x="832" y="0" width="12" height="12" rx="2" fill="#0E4429"/><rect x="848" y="0" width="12" height="12" rx="2" fill="#26A641"/><rect x="864" y="0" width="12" height="12" rx="2" fill="#39D353"/><rect x="880" y="0" width="12" height="12" rx="2" fill="#161B22"/>
+        </g>
+      </g>
+
+      <!-- ANIMATED SNAKE OBJECTS -->
+      <!-- Snake Head -->
+      <rect width="14" height="14" rx="3" fill="#06B6D4" stroke="#FFFFFF" stroke-width="1.5" filter="url(#snake-glow)" class="snake-head"/>
+      <!-- Snake Body Segments -->
+      <rect width="12" height="12" rx="3" fill="#8B5CF6" stroke="#06B6D4" stroke-width="1" class="snake-body"/>
+
+      <!-- Glowing Food Target Dots -->
+      <circle cx="286" cy="38" r="5" fill="#EC4899" class="food-dot"/>
+      <circle cx="456" cy="78" r="5" fill="#F59E0B" class="food-dot"/>
+      <circle cx="626" cy="22" r="5" fill="#10B981" class="food-dot"/>
+    </g>
+
+    <!-- Matrix Footer Legend -->
+    <g transform="translate(680, 190)">
+      <text x="0" y="10" fill="#64748B" class="font-mono" font-size="9">Less</text>
+      <rect x="26" y="2" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="40" y="2" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="54" y="2" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="68" y="2" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="82" y="2" width="10" height="10" rx="2" fill="#39D353"/>
+      <text x="98" y="10" fill="#64748B" class="font-mono" font-size="9">More</text>
+    </g>
+  </g>
+
+  <!-- ==================== SECTION 5: PROJECTS.LIST Grid (6 Cards, ArifHaxn Style) ==================== -->
+  <g transform="translate(30, 1190)">
+    <!-- Header Title -->
+    <text x="0" y="20" fill="#8B5CF6" class="font-mono" font-size="14" font-weight="bold">PROJECTS.LIST // SELECTED_WORK</text>
+
+    <!-- Grid Layout (2 Columns x 3 Rows) -->
+    <!-- ROW 1 -->
     <g transform="translate(0, 35)">
-      <!-- Project 01 -->
+      <!-- Project Card 1: AI Test Case Generator -->
       <g transform="translate(0, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <!-- Tag Header -->
-        <rect x="15" y="15" width="85" height="20" rx="4" fill="#7C3AED" fill-opacity="0.2" stroke="#7C3AED" stroke-width="0.8"/>
-        <text x="57.5" y="28.5" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="9" font-weight="bold">PROJECT 01</text>
-        <!-- Title -->
-        <text x="15" y="58" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="700">AI Test Case Generator</text>
-        <!-- Description -->
-        <text x="15" y="78" fill="#94A3B8" class="font-sans" font-size="11">AI-powered system generating structured software test cases</text>
-        <text x="15" y="93" fill="#94A3B8" class="font-sans" font-size="11">with Qase integration and automated Playwright workflows.</text>
-        <!-- Tech Stack -->
-        <g transform="translate(15, 135)">
-          <rect width="425" height="26" rx="4" fill="#030712" stroke="#334155" stroke-width="0.8"/>
-          <text x="10" y="17" fill="#22D3EE" class="font-mono" font-size="9.5" font-weight="600">Tech: Node.js | AI | Qase API | Playwright | TypeScript</text>
+        <rect width="455" height="175" rx="10" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#0F172A"/>
+        <text x="15" y="20" fill="#06B6D4" class="font-mono" font-size="10">ai-testcase-generator</text>
+        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+
+        <text x="15" y="55" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="bold">AI Test Case Generator</text>
+        <text x="15" y="75" fill="#94A3B8" class="font-sans" font-size="11">AI system generating structured software test cases</text>
+        <text x="15" y="90" fill="#94A3B8" class="font-sans" font-size="11">with Qase integration and automated Playwright workflows.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(15, 130)">
+          <rect width="60" height="20" rx="4" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
+          <text x="30" y="13.5" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8.5">Node.js</text>
+
+          <rect x="66" y="0" width="38" height="20" rx="4" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
+          <text x="85" y="13.5" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8.5">AI</text>
+
+          <rect x="110" y="0" width="55" height="20" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
+          <text x="137.5" y="13.5" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8.5">Playwright</text>
+
+          <rect x="171" y="0" width="65" height="20" rx="4" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
+          <text x="203.5" y="13.5" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="8.5">TypeScript</text>
+        </g>
+
+        <!-- Action Buttons -->
+        <g transform="translate(340, 130)">
+          <rect width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="22.5" y="13.5" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="8.5">Code</text>
+
+          <rect x="52" y="0" width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="74.5" y="13.5" text-anchor="middle" fill="#34D399" class="font-mono" font-size="8.5">Demo</text>
         </g>
       </g>
 
-      <!-- Project 02 -->
+      <!-- Project Card 2: Automation Testing Framework -->
       <g transform="translate(485, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <rect x="15" y="15" width="85" height="20" rx="4" fill="#22D3EE" fill-opacity="0.2" stroke="#22D3EE" stroke-width="0.8"/>
-        <text x="57.5" y="28.5" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="9" font-weight="bold">PROJECT 02</text>
-        <text x="15" y="58" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="700">Automation Testing Framework</text>
-        <text x="15" y="78" fill="#94A3B8" class="font-sans" font-size="11">Modular enterprise framework for testing web applications</text>
-        <text x="15" y="93" fill="#94A3B8" class="font-sans" font-size="11">leveraging modern Selenium, BDD, and API automation practices.</text>
-        <g transform="translate(15, 135)">
-          <rect width="425" height="26" rx="4" fill="#030712" stroke="#334155" stroke-width="0.8"/>
-          <text x="10" y="17" fill="#34D399" class="font-mono" font-size="9.5" font-weight="600">Tech: Selenium | Java | TestNG | Cucumber | REST APIs</text>
+        <rect width="455" height="175" rx="10" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#0F172A"/>
+        <text x="15" y="20" fill="#06B6D4" class="font-mono" font-size="10">automation-testing-framework</text>
+        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+
+        <text x="15" y="55" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="bold">Automation Testing Framework</text>
+        <text x="15" y="75" fill="#94A3B8" class="font-sans" font-size="11">Modular enterprise framework for testing web applications</text>
+        <text x="15" y="90" fill="#94A3B8" class="font-sans" font-size="11">leveraging Selenium, TestNG, Cucumber BDD &amp; REST APIs.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(15, 130)">
+          <rect width="58" height="20" rx="4" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
+          <text x="29" y="13.5" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8.5">Selenium</text>
+
+          <rect x="64" y="0" width="45" height="20" rx="4" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
+          <text x="86.5" y="13.5" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8.5">Java</text>
+
+          <rect x="115" y="0" width="52" height="20" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
+          <text x="141" y="13.5" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8.5">TestNG</text>
+
+          <rect x="173" y="0" width="62" height="20" rx="4" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
+          <text x="204" y="13.5" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="8.5">Cucumber</text>
+        </g>
+
+        <!-- Action Buttons -->
+        <g transform="translate(340, 130)">
+          <rect width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="22.5" y="13.5" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="8.5">Code</text>
+
+          <rect x="52" y="0" width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="74.5" y="13.5" text-anchor="middle" fill="#34D399" class="font-mono" font-size="8.5">Demo</text>
         </g>
       </g>
     </g>
 
-    <!-- Project 3 & Project 4 (Row 2) -->
+    <!-- ROW 2 -->
     <g transform="translate(0, 225)">
-      <!-- Project 03 -->
+      <!-- Project Card 3: Network Configuration Auditing Platform -->
       <g transform="translate(0, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <rect x="15" y="15" width="85" height="20" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
-        <text x="57.5" y="28.5" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="9" font-weight="bold">PROJECT 03</text>
-        <text x="15" y="58" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="700">Network Config Auditing Platform</text>
-        <text x="15" y="78" fill="#94A3B8" class="font-sans" font-size="11">Frontend modules and analytics dashboards for network audit</text>
-        <text x="15" y="93" fill="#94A3B8" class="font-sans" font-size="11">workflows featuring reports, filters, and API data visualization.</text>
-        <g transform="translate(15, 135)">
-          <rect width="425" height="26" rx="4" fill="#030712" stroke="#334155" stroke-width="0.8"/>
-          <text x="10" y="17" fill="#38BDF8" class="font-mono" font-size="9.5" font-weight="600">Tech: React.js | Material UI | REST APIs</text>
+        <rect width="455" height="175" rx="10" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#0F172A"/>
+        <text x="15" y="20" fill="#06B6D4" class="font-mono" font-size="10">network-auditing-platform</text>
+        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+
+        <text x="15" y="55" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="bold">Network Config Auditing Platform</text>
+        <text x="15" y="75" fill="#94A3B8" class="font-sans" font-size="11">Frontend analytics modules for network config workflows</text>
+        <text x="15" y="90" fill="#94A3B8" class="font-sans" font-size="11">including audit reports, filter systems, and API visualization.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(15, 130)">
+          <rect width="55" height="20" rx="4" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
+          <text x="27.5" y="13.5" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8.5">React.js</text>
+
+          <rect x="61" y="0" width="70" height="20" rx="4" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
+          <text x="96" y="13.5" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8.5">Material UI</text>
+
+          <rect x="137" y="0" width="65" height="20" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
+          <text x="169.5" y="13.5" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8.5">REST APIs</text>
+        </g>
+
+        <!-- Action Buttons -->
+        <g transform="translate(340, 130)">
+          <rect width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="22.5" y="13.5" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="8.5">Code</text>
+
+          <rect x="52" y="0" width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="74.5" y="13.5" text-anchor="middle" fill="#34D399" class="font-mono" font-size="8.5">Demo</text>
         </g>
       </g>
 
-      <!-- Project 04 -->
+      <!-- Project Card 4: Hospital Management System -->
       <g transform="translate(485, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-        <rect x="15" y="15" width="85" height="20" rx="4" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
-        <text x="57.5" y="28.5" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="9" font-weight="bold">PROJECT 04</text>
-        <text x="15" y="58" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="700">Hospital Management System</text>
-        <text x="15" y="78" fill="#94A3B8" class="font-sans" font-size="11">Responsive web application interfaces and backend REST API</text>
-        <text x="15" y="93" fill="#94A3B8" class="font-sans" font-size="11">integrations tailored for complex healthcare management workflows.</text>
-        <g transform="translate(15, 135)">
-          <rect width="425" height="26" rx="4" fill="#030712" stroke="#334155" stroke-width="0.8"/>
-          <text x="10" y="17" fill="#FCD34D" class="font-mono" font-size="9.5" font-weight="600">Tech: React.js | Tailwind CSS | REST APIs</text>
+        <rect width="455" height="175" rx="10" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#0F172A"/>
+        <text x="15" y="20" fill="#06B6D4" class="font-mono" font-size="10">hospital-management-system</text>
+        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+
+        <text x="15" y="55" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="bold">Hospital Management System</text>
+        <text x="15" y="75" fill="#94A3B8" class="font-sans" font-size="11">Responsive healthcare management application interfaces</text>
+        <text x="15" y="90" fill="#94A3B8" class="font-sans" font-size="11">integrated with backend REST APIs for administrative workflows.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(15, 130)">
+          <rect width="55" height="20" rx="4" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
+          <text x="27.5" y="13.5" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8.5">React.js</text>
+
+          <rect x="61" y="0" width="75" height="20" rx="4" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
+          <text x="98.5" y="13.5" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="8.5">Tailwind CSS</text>
+
+          <rect x="142" y="0" width="65" height="20" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
+          <text x="174.5" y="13.5" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8.5">REST APIs</text>
+        </g>
+
+        <!-- Action Buttons -->
+        <g transform="translate(340, 130)">
+          <rect width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="22.5" y="13.5" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="8.5">Code</text>
+
+          <rect x="52" y="0" width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="74.5" y="13.5" text-anchor="middle" fill="#34D399" class="font-mono" font-size="8.5">Demo</text>
         </g>
       </g>
     </g>
 
-    <!-- Project 5 (Row 3 - Full Width or Centered Span) -->
+    <!-- ROW 3 -->
     <g transform="translate(0, 415)">
-      <rect width="940" height="150" rx="10" fill="url(#card-grad-dark)" stroke="#1E293B" stroke-width="1"/>
-      <rect x="15" y="15" width="85" height="20" rx="4" fill="#EC4899" fill-opacity="0.2" stroke="#EC4899" stroke-width="0.8"/>
-      <text x="57.5" y="28.5" text-anchor="middle" fill="#F472B6" class="font-mono" font-size="9" font-weight="bold">PROJECT 05</text>
-      <text x="15" y="58" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="700">Personal Portfolio Website</text>
-      <text x="15" y="78" fill="#94A3B8" class="font-sans" font-size="11">Ultra-responsive personal website showcasing engineering projects, technical skills, and interactive experience.</text>
-      <g transform="translate(15, 105)">
-        <rect width="910" height="28" rx="4" fill="#030712" stroke="#334155" stroke-width="0.8"/>
-        <text x="15" y="18" fill="#F472B6" class="font-mono" font-size="10" font-weight="600">Tech Stack: React.js | JavaScript | HTML5 | CSS3</text>
+      <!-- Project Card 5: Personal Portfolio Website -->
+      <g transform="translate(0, 0)">
+        <rect width="455" height="175" rx="10" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#0F172A"/>
+        <text x="15" y="20" fill="#06B6D4" class="font-mono" font-size="10">developer-portfolio-web</text>
+        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+
+        <text x="15" y="55" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="bold">Personal Portfolio Website</text>
+        <text x="15" y="75" fill="#94A3B8" class="font-sans" font-size="11">Responsive personal developer website showcasing engineering</text>
+        <text x="15" y="90" fill="#94A3B8" class="font-sans" font-size="11">projects, technical skills, and interactive experience.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(15, 130)">
+          <rect width="55" height="20" rx="4" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
+          <text x="27.5" y="13.5" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8.5">React.js</text>
+
+          <rect x="61" y="0" width="65" height="20" rx="4" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
+          <text x="93.5" y="13.5" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="8.5">JavaScript</text>
+
+          <rect x="132" y="0" width="40" height="20" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
+          <text x="152" y="13.5" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8.5">CSS3</text>
+        </g>
+
+        <!-- Action Buttons -->
+        <g transform="translate(340, 130)">
+          <rect width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="22.5" y="13.5" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="8.5">Code</text>
+
+          <rect x="52" y="0" width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="74.5" y="13.5" text-anchor="middle" fill="#34D399" class="font-mono" font-size="8.5">Demo</text>
+        </g>
+      </g>
+
+      <!-- Project Card 6: Playwright API Testing Agent Suite -->
+      <g transform="translate(485, 0)">
+        <rect width="455" height="175" rx="10" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#0F172A"/>
+        <text x="15" y="20" fill="#06B6D4" class="font-mono" font-size="10">playwright-api-testing-suite</text>
+        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+
+        <text x="15" y="55" fill="#F8FAFC" class="font-sans" font-size="14" font-weight="bold">Playwright API Testing Agent Suite</text>
+        <text x="15" y="75" fill="#94A3B8" class="font-sans" font-size="11">Automated Playwright API verification and test generation suite</text>
+        <text x="15" y="90" fill="#94A3B8" class="font-sans" font-size="11">with contract verification &amp; CI/CD integration.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(15, 130)">
+          <rect width="65" height="20" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="0.8"/>
+          <text x="47.5" y="13.5" text-anchor="middle" fill="#6EE7B7" class="font-mono" font-size="8.5">Playwright</text>
+
+          <rect x="71" y="0" width="65" height="20" rx="4" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="0.8"/>
+          <text x="103.5" y="13.5" text-anchor="middle" fill="#FCD34D" class="font-mono" font-size="8.5">TypeScript</text>
+
+          <rect x="142" y="0" width="55" height="20" rx="4" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
+          <text x="169.5" y="13.5" text-anchor="middle" fill="#67E8F9" class="font-mono" font-size="8.5">Postman</text>
+        </g>
+
+        <!-- Action Buttons -->
+        <g transform="translate(340, 130)">
+          <rect width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="22.5" y="13.5" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="8.5">Code</text>
+
+          <rect x="52" y="0" width="45" height="20" rx="4" fill="#1E293B" stroke="#334155" stroke-width="0.8"/>
+          <text x="74.5" y="13.5" text-anchor="middle" fill="#34D399" class="font-mono" font-size="8.5">Demo</text>
+        </g>
       </g>
     </g>
   </g>
 
-  <!-- ==================== FOOTER STATUS BAR ==================== -->
-  <g transform="translate(30, 2005)">
-    <text x="470" y="15" text-anchor="middle" fill="#64748B" class="font-mono" font-size="10" letter-spacing="1">⚡ sriaditya445 // Engineered with Quality, Playwright, React &amp; AI Automation // 2026</text>
+  <!-- ==================== SECTION 6: SOCIAL MEDIA BUTTONS FOOTER ==================== -->
+  <g transform="translate(30, 1830)">
+    <!-- Footer Line -->
+    <line x1="0" y1="0" x2="940" y2="0" stroke="#334155" stroke-width="1"/>
+
+    <!-- Social Link Pill Buttons -->
+    <g transform="translate(180, 25)">
+      <!-- LinkedIn -->
+      <g transform="translate(0, 0)">
+        <rect width="110" height="32" rx="6" fill="#0F172A" stroke="#0A66C2" stroke-width="1"/>
+        <text x="55" y="20" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="10" font-weight="bold">💼 LINKEDIN</text>
+      </g>
+
+      <!-- GitHub -->
+      <g transform="translate(125, 0)">
+        <rect width="110" height="32" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="55" y="20" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="10" font-weight="bold">🐙 GITHUB</text>
+      </g>
+
+      <!-- Email -->
+      <g transform="translate(250, 0)">
+        <rect width="110" height="32" rx="6" fill="#0F172A" stroke="#EF4444" stroke-width="1"/>
+        <text x="55" y="20" text-anchor="middle" fill="#F87171" class="font-mono" font-size="10" font-weight="bold">✉️ EMAIL</text>
+      </g>
+
+      <!-- Portfolio -->
+      <g transform="translate(375, 0)">
+        <rect width="110" height="32" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1"/>
+        <text x="55" y="20" text-anchor="middle" fill="#34D399" class="font-mono" font-size="10" font-weight="bold">🌐 PORTFOLIO</text>
+      </g>
+
+      <!-- AI Agents -->
+      <g transform="translate(500, 0)">
+        <rect width="110" height="32" rx="6" fill="#0F172A" stroke="#8B5CF6" stroke-width="1"/>
+        <text x="55" y="20" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="10" font-weight="bold">🤖 AI SUITE</text>
+      </g>
+    </g>
+
+    <!-- Bottom Copyright Note -->
+    <text x="470" y="90" text-anchor="middle" fill="#64748B" class="font-mono" font-size="10">Designed &amp; Engineered for sriaditya445 // Quality Automation &amp; Frontend // 2026</text>
   </g>
 </svg>
