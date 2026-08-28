@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 2450" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1480" width="100%" height="100%">
   <defs>
-    <!-- Light Theme Gradients -->
+    <!-- Light Background & Theme Gradients -->
     <linearGradient id="bg-light" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#F8FAFC"/>
       <stop offset="50%" stop-color="#F1F5F9"/>
-      <stop offset="100%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
     </linearGradient>
 
     <linearGradient id="card-light" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="100%" stop-color="#F8FAFC"/>
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98"/>
+      <stop offset="100%" stop-color="#F8FAFC" stop-opacity="0.98"/>
     </linearGradient>
 
     <linearGradient id="header-light" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -18,573 +18,550 @@
     </linearGradient>
 
     <radialGradient id="portrait-glow-light" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#6D28D9" stop-opacity="0.12"/>
-      <stop offset="70%" stop-color="#0891B2" stop-opacity="0.05"/>
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.20"/>
+      <stop offset="60%" stop-color="#6D28D9" stop-opacity="0.10"/>
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </radialGradient>
 
     <!-- Grid Pattern -->
-    <pattern id="grid-bg-light" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E2E8F0" stroke-width="0.7" stroke-opacity="0.6"/>
+    <pattern id="grid-pattern-light" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#CBD5E1" stroke-width="0.5" stroke-opacity="0.6"/>
     </pattern>
+
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
   </defs>
 
   <style>
-    @keyframes blink-light {
+    @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
-    @keyframes snake-head-move-light {
-      0%   { transform: translate(140px, 32px); }
-      15%  { transform: translate(280px, 32px); }
-      30%  { transform: translate(280px, 72px); }
-      45%  { transform: translate(450px, 72px); }
-      60%  { transform: translate(450px, 16px); }
-      75%  { transform: translate(620px, 16px); }
-      90%  { transform: translate(620px, 56px); }
-      100% { transform: translate(140px, 32px); }
+    @keyframes snake-head-move {
+      0%   { transform: translate(140px, 28px); }
+      15%  { transform: translate(300px, 28px); }
+      30%  { transform: translate(300px, 68px); }
+      45%  { transform: translate(500px, 68px); }
+      60%  { transform: translate(500px, 12px); }
+      75%  { transform: translate(680px, 12px); }
+      90%  { transform: translate(680px, 52px); }
+      100% { transform: translate(140px, 28px); }
     }
-    @keyframes snake-trail-light {
-      0%   { transform: translate(124px, 32px); opacity: 0.8; }
-      15%  { transform: translate(264px, 32px); opacity: 0.8; }
-      30%  { transform: translate(280px, 56px); opacity: 0.8; }
-      45%  { transform: translate(434px, 72px); opacity: 0.8; }
-      60%  { transform: translate(450px, 32px); opacity: 0.8; }
-      75%  { transform: translate(604px, 16px); opacity: 0.8; }
-      90%  { transform: translate(620px, 40px); opacity: 0.8; }
-      100% { transform: translate(124px, 32px); opacity: 0.8; }
+    @keyframes snake-body-move {
+      0%   { transform: translate(124px, 28px); opacity: 0.85; }
+      15%  { transform: translate(284px, 28px); opacity: 0.85; }
+      30%  { transform: translate(300px, 52px); opacity: 0.85; }
+      45%  { transform: translate(484px, 68px); opacity: 0.85; }
+      60%  { transform: translate(500px, 28px); opacity: 0.85; }
+      75%  { transform: translate(664px, 12px); opacity: 0.85; }
+      90%  { transform: translate(680px, 36px); opacity: 0.85; }
+      100% { transform: translate(124px, 28px); opacity: 0.85; }
+    }
+    @keyframes pulse-food {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.25); }
     }
 
     .font-mono { font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace; }
     .font-sans { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
-    .cursor-light { animation: blink-light 1s infinite; fill: #0891B2; }
-    .snake-head-light { animation: snake-head-move-light 14s infinite linear; }
-    .snake-body-light { animation: snake-trail-light 14s infinite linear; }
+    .cursor { animation: blink 1.2s infinite; fill: #0284C7; }
+    .snake-head { animation: snake-head-move 14s infinite linear; }
+    .snake-body { animation: snake-body-move 14s infinite linear; }
+    .food-dot { animation: pulse-food 2s infinite ease-in-out; transform-origin: center; }
   </style>
 
-  <!-- Canvas Background -->
-  <rect width="1000" height="2450" fill="url(#bg-light)" rx="16"/>
-  <rect width="1000" height="2450" fill="url(#grid-bg-light)" rx="16"/>
+  <!-- Base Canvas Background -->
+  <rect width="1000" height="1480" fill="url(#bg-light)" rx="16"/>
+  <rect width="1000" height="1480" fill="url(#grid-pattern-light)" rx="16"/>
 
-  <!-- Outer Border Container -->
-  <rect x="15" y="15" width="970" height="2420" rx="14" fill="none" stroke="#CBD5E1" stroke-width="1.5"/>
+  <!-- Outer Border -->
+  <rect x="12" y="12" width="976" height="1456" rx="14" fill="none" stroke="#CBD5E1" stroke-width="1.5"/>
 
-  <!-- ==================== SECTION 1: MAIN TERMINAL (LIGHT MODE) ==================== -->
-  <g transform="translate(30, 35)">
-    <rect width="940" height="520" rx="12" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+  <!-- ==================== SECTION 1: TOP TERMINAL WINDOW ==================== -->
+  <g transform="translate(25, 25)">
+    <!-- Terminal Main Box -->
+    <rect width="950" height="420" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
 
     <!-- Window Top Header Bar -->
-    <path d="M 0 12 Q 0 0 12 0 L 928 0 Q 940 0 940 12 L 940 38 L 0 38 Z" fill="url(#header-light)"/>
-    <line x1="0" y1="38" x2="940" y2="38" stroke="#CBD5E1" stroke-width="1"/>
+    <path d="M 0 10 Q 0 0 10 0 L 940 0 Q 950 0 950 10 L 950 36 L 0 36 Z" fill="url(#header-light)"/>
+    <line x1="0" y1="36" x2="950" y2="36" stroke="#CBD5E1" stroke-width="1"/>
 
     <!-- Window Dots -->
-    <circle cx="22" cy="19" r="5.5" fill="#EF4444"/>
-    <circle cx="38" cy="19" r="5.5" fill="#F59E0B"/>
-    <circle cx="54" cy="19" r="5.5" fill="#10B981"/>
+    <circle cx="20" cy="18" r="5" fill="#EF4444"/>
+    <circle cx="35" cy="18" r="5" fill="#F59E0B"/>
+    <circle cx="50" cy="18" r="5" fill="#10B981"/>
 
-    <text x="470" y="24" text-anchor="middle" fill="#475569" class="font-mono" font-size="11">sriaditya445@gmail.com ~ %.zshrc.sh - tty</text>
-    
-    <g transform="translate(850, 11)">
-      <rect width="70" height="16" rx="8" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="0.8"/>
-      <circle cx="12" cy="8" r="3" fill="#059669" class="cursor-light"/>
+    <!-- Window Title -->
+    <text x="475" y="23" text-anchor="middle" fill="#475569" class="font-mono" font-size="11">sriaditya445@system ~ %.zshrc.sh - tty</text>
+
+    <!-- Live Badge -->
+    <g transform="translate(860, 10)">
+      <rect width="72" height="16" rx="8" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+      <circle cx="12" cy="8" r="3" fill="#059669" class="cursor"/>
       <text x="22" y="11.5" fill="#047857" class="font-mono" font-size="8.5" font-weight="bold">+ LIVE</text>
     </g>
 
+    <!-- TERMINAL BODY CONTENT -->
     <!-- LEFT SIDE: DEVELOPER PORTRAIT CARD -->
-    <g transform="translate(25, 55)">
-      <rect width="320" height="435" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
-      <circle cx="160" cy="200" r="130" fill="url(#portrait-glow-light)"/>
+    <g transform="translate(20, 50)">
+      <rect width="280" height="350" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+      <circle cx="140" cy="155" r="110" fill="url(#portrait-glow-light)"/>
 
+      <g transform="translate(15, 15)">
+        <!-- Framing Border -->
+        <rect width="250" height="320" rx="6" fill="none" stroke="#0284C7" stroke-width="1" stroke-dasharray="4,4" stroke-opacity="0.6"/>
+
+        <!-- Developer Avatar Vector Illustration -->
+        <path d="M 65 130 Q 65 60 125 55 Q 185 60 185 130 Q 170 170 125 180 Q 80 170 65 130 Z" fill="#E2E8F0" stroke="#6D28D9" stroke-width="1.5"/>
+
+        <path d="M 75 90 Q 125 55 175 90" fill="none" stroke="#0284C7" stroke-width="1.2"/>
+        <path d="M 85 75 Q 125 50 165 75" fill="none" stroke="#7C3AED" stroke-width="1"/>
+
+        <!-- Eyeglasses Frame -->
+        <rect x="78" y="105" width="38" height="24" rx="4" fill="#FFFFFF" stroke="#0284C7" stroke-width="2"/>
+        <rect x="134" y="105" width="38" height="24" rx="4" fill="#FFFFFF" stroke="#0284C7" stroke-width="2"/>
+        <line x1="116" y1="117" x2="134" y2="117" stroke="#0284C7" stroke-width="2"/>
+
+        <line x1="82" y1="109" x2="96" y2="123" stroke="#0284C7" stroke-width="1.5" opacity="0.8"/>
+        <line x1="138" y1="109" x2="152" y2="123" stroke="#0284C7" stroke-width="1.5" opacity="0.8"/>
+
+        <path d="M 90 135 Q 125 170 160 135" fill="none" stroke="#64748B" stroke-width="1.5"/>
+        <path d="M 105 152 Q 125 160 145 152" fill="none" stroke="#0284C7" stroke-width="1.5"/>
+
+        <!-- Hoodie Jacket & Collar -->
+        <path d="M 40 220 Q 50 175 95 165 Q 125 175 155 165 Q 200 175 210 220 L 210 260 L 40 260 Z" fill="#F1F5F9" stroke="#6D28D9" stroke-width="1.5"/>
+        <path d="M 95 165 L 125 210 L 155 165" fill="none" stroke="#0284C7" stroke-width="1.5"/>
+        <line x1="125" y1="210" x2="125" y2="260" stroke="#0284C7" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+        <!-- Developer Name Card Footer -->
+        <rect x="10" y="270" width="230" height="36" rx="5" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+        <text x="125" y="287" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">SRI ADITYA DURGA RAM</text>
+        <text x="125" y="300" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="9">SOFTWARE ENGINEER</text>
+      </g>
+    </g>
+
+    <!-- RIGHT SIDE: SYSTEM.INFO TERMINAL TABLE -->
+    <g transform="translate(320, 50)">
+      <rect width="610" height="350" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+
+      <!-- Inner Padding Container -->
       <g transform="translate(20, 20)">
-        <rect width="280" height="395" rx="6" fill="none" stroke="#6D28D9" stroke-width="1" stroke-dasharray="4,4" stroke-opacity="0.6"/>
-        <circle cx="140" cy="150" r="100" fill="#FFFFFF" stroke="#0891B2" stroke-width="1.5"/>
+        <text x="0" y="0" fill="#6D28D9" class="font-mono" font-size="12" font-weight="bold">SYSTEM.INFO</text>
+        <text x="520" y="0" fill="#0284C7" class="font-mono" font-size="10">+ ONLINE</text>
 
-        <!-- Stylized Developer Silhouette Vector -->
-        <path d="M 80 160 Q 80 80 140 75 Q 200 80 200 160 Q 185 200 140 210 Q 95 200 80 160 Z" fill="#E2E8F0" stroke="#6D28D9" stroke-width="1.5"/>
+        <!-- Command Prompt Line -->
+        <text x="0" y="22" fill="#64748B" class="font-mono" font-size="11">sriaditya445@system:~$ cat identity.json</text>
+        <line x1="0" y1="32" x2="570" y2="32" stroke="#E2E8F0" stroke-width="1"/>
 
-        <rect x="95" y="130" width="38" height="26" rx="4" fill="#FFFFFF" stroke="#0891B2" stroke-width="2"/>
-        <rect x="147" y="130" width="38" height="26" rx="4" fill="#FFFFFF" stroke="#0891B2" stroke-width="2"/>
-        <line x1="133" y1="143" x2="147" y2="143" stroke="#0891B2" stroke-width="2"/>
-
-        <line x1="100" y1="135" x2="115" y2="150" stroke="#0284C7" stroke-width="1.5" opacity="0.7"/>
-        <line x1="152" y1="135" x2="167" y2="150" stroke="#0284C7" stroke-width="1.5" opacity="0.7"/>
-
-        <path d="M 110 160 Q 140 195 170 160" fill="none" stroke="#475569" stroke-width="1.5"/>
-        <path d="M 125 180 Q 140 188 155 180" fill="none" stroke="#0284C7" stroke-width="1.5"/>
-
-        <path d="M 50 260 Q 60 215 110 205 Q 140 215 170 205 Q 220 215 230 260 L 230 310 L 50 310 Z" fill="#CBD5E1" stroke="#6D28D9" stroke-width="1.5"/>
-        <path d="M 110 205 L 140 250 L 170 205" fill="none" stroke="#0891B2" stroke-width="1.5"/>
-
-        <g stroke="#0284C7" stroke-width="0.5" stroke-opacity="0.3">
-          <line x1="50" y1="100" x2="230" y2="100"/>
-          <line x1="50" y1="140" x2="230" y2="140"/>
-          <line x1="50" y1="180" x2="230" y2="180"/>
-          <line x1="50" y1="220" x2="230" y2="220"/>
-          <line x1="50" y1="260" x2="230" y2="260"/>
-        </g>
-
-        <rect x="25" y="340" width="230" height="32" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
-        <text x="140" y="360" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">SRI ADITYA DURGA RAM</text>
-      </g>
-    </g>
-
-    <!-- RIGHT SIDE: SYSTEM.INFO READOUT -->
-    <g transform="translate(370, 55)">
-      <rect width="545" height="30" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
-      <text x="12" y="20" fill="#6D28D9" class="font-mono" font-size="11" font-weight="bold">SYSTEM.INFO</text>
-      <text x="460" y="20" fill="#0891B2" class="font-mono" font-size="10">+ LIVE</text>
-
-      <text x="0" y="52" fill="#6D28D9" class="font-mono" font-size="11" font-weight="bold">sriaditya445.lorenz@gmail.com ~ %.zshrc.sh - tty</text>
-
-      <g transform="translate(0, 68)">
-        <line x1="0" y1="0" x2="545" y2="0" stroke="#CBD5E1" stroke-width="1"/>
-
-        <g transform="translate(0, 18)">
+        <!-- Specifications Table -->
+        <!-- Row 1: Subject -->
+        <g transform="translate(0, 52)">
           <text x="0" y="0" fill="#64748B" class="font-mono" font-size="11">Subject</text>
-          <text x="160" y="0" fill="#6D28D9" class="font-mono" font-size="11" font-weight="bold">Sri Aditya Durga Ram</text>
+          <text x="150" y="0" fill="#7C3AED" class="font-mono" font-size="11" font-weight="bold">Sri Aditya Durga Ram</text>
         </g>
 
-        <g transform="translate(0, 38)">
+        <!-- Row 2: Role -->
+        <g transform="translate(0, 74)">
           <text x="0" y="0" fill="#64748B" class="font-mono" font-size="11">Role</text>
-          <text x="160" y="0" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">Software Engineer</text>
+          <text x="150" y="0" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">Software Engineer | QA Automation &amp; Frontend</text>
         </g>
 
-        <g transform="translate(0, 58)">
+        <!-- Row 3: Origin -->
+        <g transform="translate(0, 96)">
           <text x="0" y="0" fill="#64748B" class="font-mono" font-size="11">Origin</text>
-          <text x="160" y="0" fill="#0F172A" class="font-mono" font-size="11">Rajahmundry, AP, India 🇮🇳</text>
+          <text x="150" y="0" fill="#0F172A" class="font-mono" font-size="11">Rajahmundry, AP, India 🇮🇳</text>
         </g>
 
-        <g transform="translate(0, 78)">
-          <text x="0" y="0" fill="#64748B" class="font-mono" font-size="11">Education</text>
-          <text x="160" y="0" fill="#0F172A" class="font-mono" font-size="11">B.Tech in CSE</text>
-        </g>
-
-        <g transform="translate(0, 98)">
-          <text x="0" y="0" fill="#64748B" class="font-mono" font-size="11">Status</text>
-          <text x="160" y="0" fill="#047857" class="font-mono" font-size="11" font-weight="bold">Building + Learning + Shipping 🚀</text>
-        </g>
-
+        <!-- Row 4: Status -->
         <g transform="translate(0, 118)">
+          <text x="0" y="0" fill="#64748B" class="font-mono" font-size="11">Status</text>
+          <text x="150" y="0" fill="#059669" class="font-mono" font-size="11" font-weight="bold">Building + Learning + Shipping 🚀</text>
+        </g>
+
+        <!-- Row 5: ToolChain -->
+        <g transform="translate(0, 140)">
           <text x="0" y="0" fill="#64748B" class="font-mono" font-size="11">ToolChain</text>
-          <text x="160" y="0" fill="#0F172A" class="font-mono" font-size="11">VS Code, Playwright, Selenium, Postman, Git</text>
+          <text x="150" y="0" fill="#0F172A" class="font-mono" font-size="11">Playwright, Selenium, React.js, Postman, VS Code</text>
         </g>
 
-        <g transform="translate(0, 142)">
-          <text x="0" y="0" fill="#0891B2" class="font-mono" font-size="11" font-weight="bold">Core.Lang</text>
-          <text x="160" y="0" fill="#0F172A" class="font-mono" font-size="11">Java, JavaScript, TypeScript, HTML5, CSS3</text>
+        <!-- Row 6: Core.Automation -->
+        <g transform="translate(0, 168)">
+          <text x="0" y="0" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">Core.Automation</text>
+          <text x="150" y="0" fill="#0369A1" class="font-mono" font-size="11" font-weight="bold">Playwright, Selenium WebDriver, TestNG, Cucumber</text>
         </g>
 
-        <g transform="translate(0, 162)">
-          <text x="0" y="0" fill="#0891B2" class="font-mono" font-size="11" font-weight="bold">Core.Frontend</text>
-          <text x="160" y="0" fill="#0F172A" class="font-mono" font-size="11">React.js, Tailwind CSS, Material UI, Bootstrap</text>
+        <!-- Row 7: Core.Frontend -->
+        <g transform="translate(0, 190)">
+          <text x="0" y="0" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">Core.Frontend</text>
+          <text x="150" y="0" fill="#0F172A" class="font-mono" font-size="11">React.js, JavaScript (ES6+), TypeScript, Tailwind CSS</text>
         </g>
 
-        <g transform="translate(0, 182)">
-          <text x="0" y="0" fill="#0891B2" class="font-mono" font-size="11" font-weight="bold">Core.Automation</text>
-          <text x="160" y="0" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">Playwright, Selenium WebDriver, TestNG, Cucumber</text>
+        <!-- Row 8: Core.Backend -->
+        <g transform="translate(0, 212)">
+          <text x="0" y="0" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">Core.Backend/API</text>
+          <text x="150" y="0" fill="#0F172A" class="font-mono" font-size="11">Node.js, REST API Testing, MySQL, Postman</text>
         </g>
 
-        <g transform="translate(0, 202)">
-          <text x="0" y="0" fill="#0891B2" class="font-mono" font-size="11" font-weight="bold">Core.Backend</text>
-          <text x="160" y="0" fill="#0F172A" class="font-mono" font-size="11">Node.js, REST APIs, MySQL</text>
+        <!-- Row 9: Core.Infra -->
+        <g transform="translate(0, 234)">
+          <text x="0" y="0" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">Core.Infra/Tools</text>
+          <text x="150" y="0" fill="#0F172A" class="font-mono" font-size="11">Git, GitHub Actions, Jira, Maven, Qase, Bugasura</text>
         </g>
 
-        <g transform="translate(0, 222)">
-          <text x="0" y="0" fill="#0891B2" class="font-mono" font-size="11" font-weight="bold">Core.Infra</text>
-          <text x="160" y="0" fill="#0F172A" class="font-mono" font-size="11">Git, GitHub, Jira, Maven, Qase, Bugasura</text>
-        </g>
+        <line x1="0" y1="252" x2="570" y2="252" stroke="#E2E8F0" stroke-width="1"/>
 
-        <line x1="0" y1="245" x2="545" y2="245" stroke="#CBD5E1" stroke-width="1"/>
-
-        <g transform="translate(0, 265)">
+        <!-- Row 10: Contact -->
+        <g transform="translate(0, 272)">
           <text x="0" y="0" fill="#64748B" class="font-mono" font-size="11">Contact</text>
-          <text x="160" y="0" fill="#6D28D9" class="font-mono" font-size="11" font-weight="bold">sriaditya445@gmail.com</text>
+          <text x="150" y="0" fill="#7C3AED" class="font-mono" font-size="11" font-weight="bold">sriaditya445@gmail.com</text>
         </g>
       </g>
     </g>
   </g>
 
-  <!-- ==================== SECTION 2: 3 METRIC COUNTERS ==================== -->
-  <g transform="translate(30, 580)">
+  <!-- ==================== SECTION 2: 3 METRIC STATS COUNTERS ==================== -->
+  <g transform="translate(25, 460)">
+    <!-- Box 1 -->
     <g transform="translate(0, 0)">
-      <rect width="295" height="90" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-      <text x="147.5" y="42" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="28" font-weight="800">493</text>
-      <text x="147.5" y="66" text-anchor="middle" fill="#64748B" class="font-mono" font-size="10" font-weight="600">Total Contributions</text>
+      <rect width="300" height="75" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+      <text x="150" y="36" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="26" font-weight="800">493</text>
+      <text x="150" y="56" text-anchor="middle" fill="#64748B" class="font-mono" font-size="10">Total Contributions</text>
     </g>
 
-    <g transform="translate(322, 0)">
-      <rect width="295" height="90" rx="8" fill="url(#card-light)" stroke="#6D28D9" stroke-width="1"/>
-      <text x="147.5" y="42" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="28" font-weight="800">14</text>
-      <text x="147.5" y="66" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="10" font-weight="bold">Current Streak (Days)</text>
+    <!-- Box 2 -->
+    <g transform="translate(325, 0)">
+      <rect width="300" height="75" rx="8" fill="url(#card-light)" stroke="#6D28D9" stroke-width="1"/>
+      <text x="150" y="36" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="26" font-weight="800">14</text>
+      <text x="150" y="56" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="10" font-weight="bold">Current Streak (Days)</text>
     </g>
 
-    <g transform="translate(645, 0)">
-      <rect width="295" height="90" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-      <text x="147.5" y="42" text-anchor="middle" fill="#047857" class="font-mono" font-size="28" font-weight="800">42</text>
-      <text x="147.5" y="66" text-anchor="middle" fill="#64748B" class="font-mono" font-size="10" font-weight="600">Longest Streak (Days)</text>
+    <!-- Box 3 -->
+    <g transform="translate(650, 0)">
+      <rect width="300" height="75" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+      <text x="150" y="36" text-anchor="middle" fill="#059669" class="font-mono" font-size="26" font-weight="800">42</text>
+      <text x="150" y="56" text-anchor="middle" fill="#64748B" class="font-mono" font-size="10">Longest Streak (Days)</text>
     </g>
   </g>
 
-  <!-- ==================== SECTION 3: GITHUB STATS & MOST USED LANGUAGES ==================== -->
-  <g transform="translate(30, 695)">
+  <!-- ==================== SECTION 3: GITHUB STATS & LANGUAGES ==================== -->
+  <g transform="translate(25, 550)">
     <!-- LEFT CARD: GITHUB STATS -->
     <g transform="translate(0, 0)">
-      <rect width="455" height="210" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-      <text x="20" y="30" fill="#0284C7" class="font-mono" font-size="13" font-weight="bold">Sri Aditya's GitHub Stats</text>
-      <line x1="20" y1="42" x2="435" y2="42" stroke="#E2E8F0" stroke-width="1"/>
+      <rect width="460" height="170" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+      <text x="20" y="26" fill="#0284C7" class="font-mono" font-size="12" font-weight="bold">Sri Aditya's GitHub Stats</text>
+      <line x1="20" y1="36" x2="440" y2="36" stroke="#E2E8F0" stroke-width="1"/>
 
-      <g transform="translate(25, 65)">
-        <circle cx="10" cy="10" r="4" fill="#D97706"/>
-        <text x="25" y="14" fill="#64748B" class="font-mono" font-size="11">Total Stars Earned:</text>
-        <text x="400" y="14" text-anchor="end" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">36</text>
+      <g transform="translate(25, 56)">
+        <circle cx="6" cy="6" r="4" fill="#D97706"/>
+        <text x="20" y="10" fill="#64748B" class="font-mono" font-size="11">Total Stars Earned:</text>
+        <text x="400" y="10" text-anchor="end" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">36</text>
       </g>
 
-      <g transform="translate(25, 95)">
-        <circle cx="10" cy="10" r="4" fill="#6D28D9"/>
-        <text x="25" y="14" fill="#64748B" class="font-mono" font-size="11">Total Commits (2026):</text>
-        <text x="400" y="14" text-anchor="end" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">1.2k</text>
+      <g transform="translate(25, 82)">
+        <circle cx="6" cy="6" r="4" fill="#6D28D9"/>
+        <text x="20" y="10" fill="#64748B" class="font-mono" font-size="11">Total Commits (2026):</text>
+        <text x="400" y="10" text-anchor="end" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">1.2k</text>
       </g>
 
-      <g transform="translate(25, 125)">
-        <circle cx="10" cy="10" r="4" fill="#0891B2"/>
-        <text x="25" y="14" fill="#64748B" class="font-mono" font-size="11">Total PRs Merged:</text>
-        <text x="400" y="14" text-anchor="end" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">42</text>
+      <g transform="translate(25, 108)">
+        <circle cx="6" cy="6" r="4" fill="#0284C7"/>
+        <text x="20" y="10" fill="#64748B" class="font-mono" font-size="11">Total PRs Merged:</text>
+        <text x="400" y="10" text-anchor="end" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">42</text>
       </g>
 
-      <g transform="translate(25, 155)">
-        <circle cx="10" cy="10" r="4" fill="#059669"/>
-        <text x="25" y="14" fill="#64748B" class="font-mono" font-size="11">Contributed to (last year):</text>
-        <text x="400" y="14" text-anchor="end" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">8</text>
+      <g transform="translate(25, 134)">
+        <circle cx="6" cy="6" r="4" fill="#059669"/>
+        <text x="20" y="10" fill="#64748B" class="font-mono" font-size="11">Contributed to (last year):</text>
+        <text x="400" y="10" text-anchor="end" fill="#0F172A" class="font-mono" font-size="11" font-weight="bold">8</text>
       </g>
     </g>
 
     <!-- RIGHT CARD: MOST USED LANGUAGES -->
-    <g transform="translate(485, 0)">
-      <rect width="455" height="210" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-      <text x="20" y="30" fill="#0284C7" class="font-mono" font-size="13" font-weight="bold">Most Used Languages</text>
-      <line x1="20" y1="42" x2="435" y2="42" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(490, 0)">
+      <rect width="460" height="170" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+      <text x="20" y="26" fill="#0284C7" class="font-mono" font-size="12" font-weight="bold">Most Used Languages</text>
+      <line x1="20" y1="36" x2="440" y2="36" stroke="#E2E8F0" stroke-width="1"/>
 
-      <g transform="translate(20, 60)">
-        <rect width="415" height="12" rx="6" fill="#E2E8F0"/>
-        <rect x="0" y="0" width="174" height="12" rx="6" fill="#F59E0B"/>
-        <rect x="174" y="0" width="116" height="12" rx="0" fill="#D97706"/>
-        <rect x="290" y="0" width="66" height="12" rx="0" fill="#0284C7"/>
-        <rect x="356" y="0" width="37" height="12" rx="0" fill="#EA580C"/>
-        <rect x="393" y="0" width="22" height="12" rx="6" fill="#16A34A"/>
+      <!-- Bar -->
+      <g transform="translate(20, 52)">
+        <rect width="420" height="10" rx="5" fill="#E2E8F0"/>
+        <rect x="0" y="0" width="176" height="10" rx="5" fill="#D97706"/>
+        <rect x="176" y="0" width="118" height="10" rx="0" fill="#EA580C"/>
+        <rect x="294" y="0" width="67" height="10" rx="0" fill="#2563EB"/>
+        <rect x="361" y="0" width="38" height="10" rx="0" fill="#DC2626"/>
+        <rect x="399" y="0" width="21" height="10" rx="5" fill="#16A34A"/>
       </g>
 
-      <g transform="translate(25, 95)">
+      <!-- Legend -->
+      <g transform="translate(25, 80)">
         <g transform="translate(0, 0)">
-          <circle cx="6" cy="6" r="5" fill="#F59E0B"/>
-          <text x="18" y="10" fill="#0F172A" class="font-mono" font-size="10">JavaScript 42.0%</text>
+          <circle cx="5" cy="5" r="4" fill="#D97706"/>
+          <text x="16" y="9" fill="#0F172A" class="font-mono" font-size="10">JavaScript 42.0%</text>
         </g>
-        <g transform="translate(0, 30)">
-          <circle cx="6" cy="6" r="5" fill="#D97706"/>
-          <text x="18" y="10" fill="#0F172A" class="font-mono" font-size="10">Java 28.0%</text>
+        <g transform="translate(0, 26)">
+          <circle cx="5" cy="5" r="4" fill="#EA580C"/>
+          <text x="16" y="9" fill="#0F172A" class="font-mono" font-size="10">Java 28.0%</text>
         </g>
-        <g transform="translate(0, 60)">
-          <circle cx="6" cy="6" r="5" fill="#0284C7"/>
-          <text x="18" y="10" fill="#0F172A" class="font-mono" font-size="10">TypeScript 16.0%</text>
+        <g transform="translate(0, 52)">
+          <circle cx="5" cy="5" r="4" fill="#2563EB"/>
+          <text x="16" y="9" fill="#0F172A" class="font-mono" font-size="10">TypeScript 16.0%</text>
         </g>
 
         <g transform="translate(210, 0)">
-          <circle cx="6" cy="6" r="5" fill="#EA580C"/>
-          <text x="18" y="10" fill="#0F172A" class="font-mono" font-size="10">HTML/CSS 9.0%</text>
+          <circle cx="5" cy="5" r="4" fill="#DC2626"/>
+          <text x="16" y="9" fill="#0F172A" class="font-mono" font-size="10">HTML/CSS 9.0%</text>
         </g>
-        <g transform="translate(210, 30)">
-          <circle cx="6" cy="6" r="5" fill="#16A34A"/>
-          <text x="18" y="10" fill="#0F172A" class="font-mono" font-size="10">Shell / Automation 5.0%</text>
+        <g transform="translate(210, 26)">
+          <circle cx="5" cy="5" r="4" fill="#16A34A"/>
+          <text x="16" y="9" fill="#0F172A" class="font-mono" font-size="10">Shell / Automation 5.0%</text>
         </g>
       </g>
     </g>
   </g>
 
   <!-- ==================== SECTION 4: ANIMATED CONTRIBUTION SNAKE GAME MATRIX ==================== -->
-  <g transform="translate(30, 930)">
-    <rect width="940" height="230" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+  <g transform="translate(25, 735)">
+    <rect width="950" height="175" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
 
-    <path d="M 0 10 Q 0 0 10 0 L 930 0 Q 940 0 940 10 L 940 32 L 0 32 Z" fill="#F1F5F9"/>
-    <text x="15" y="20" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">🕹️ SNAKE_GAME // GITHUB_CONTRIBUTION_GRAPH_MATRIX</text>
-    <text x="925" y="20" text-anchor="end" fill="#047857" class="font-mono" font-size="10" font-weight="bold">SCORE: 1,490 PTS</text>
-    <line x1="0" y1="32" x2="940" y2="32" stroke="#CBD5E1" stroke-width="1"/>
+    <path d="M 0 10 Q 0 0 10 0 L 940 0 Q 950 0 950 10 L 950 30 L 0 30 Z" fill="#F1F5F9"/>
+    <text x="15" y="19" fill="#0284C7" class="font-mono" font-size="11" font-weight="bold">🕹️ SNAKE_GAME // GITHUB_CONTRIBUTION_GRAPH_MATRIX</text>
+    <text x="935" y="19" text-anchor="end" fill="#059669" class="font-mono" font-size="10" font-weight="bold">SCORE: 1,490 PTS</text>
+    <line x1="0" y1="30" x2="950" y2="30" stroke="#CBD5E1" stroke-width="1"/>
 
-    <g transform="translate(20, 50)">
-      <text x="0" y="-5" fill="#64748B" class="font-mono" font-size="8">Jan</text>
-      <text x="140" y="-5" fill="#64748B" class="font-mono" font-size="8">Mar</text>
-      <text x="290" y="-5" fill="#64748B" class="font-mono" font-size="8">May</text>
-      <text x="440" y="-5" fill="#64748B" class="font-mono" font-size="8">Jul</text>
-      <text x="590" y="-5" fill="#64748B" class="font-mono" font-size="8">Sep</text>
-      <text x="740" y="-5" fill="#64748B" class="font-mono" font-size="8">Nov</text>
+    <!-- Matrix Pixels Grid -->
+    <g transform="translate(20, 42)">
+      <text x="0" y="-4" fill="#64748B" class="font-mono" font-size="8">Jan</text>
+      <text x="140" y="-4" fill="#64748B" class="font-mono" font-size="8">Mar</text>
+      <text x="290" y="-4" fill="#64748B" class="font-mono" font-size="8">May</text>
+      <text x="440" y="-4" fill="#64748B" class="font-mono" font-size="8">Jul</text>
+      <text x="590" y="-4" fill="#64748B" class="font-mono" font-size="8">Sep</text>
+      <text x="740" y="-4" fill="#64748B" class="font-mono" font-size="8">Nov</text>
 
       <g opacity="0.95">
-        <!-- Light Matrix Pixel Blocks -->
-        <!-- Row 1 -->
-        <rect x="0" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="16" y="8" width="12" height="12" rx="2" fill="#40C463"/><rect x="32" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="48" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="64" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="80" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="96" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="112" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="128" y="8" width="12" height="12" rx="2" fill="#40C463"/><rect x="144" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="160" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="176" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="192" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="208" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="224" y="8" width="12" height="12" rx="2" fill="#40C463"/><rect x="240" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="256" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="272" y="8" width="12" height="12" rx="2" fill="#40C463"/><rect x="288" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="304" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="320" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="336" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="352" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="368" y="8" width="12" height="12" rx="2" fill="#40C463"/><rect x="384" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="400" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="416" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="432" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="448" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="464" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="480" y="8" width="12" height="12" rx="2" fill="#40C463"/><rect x="496" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="512" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="528" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="544" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="560" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="576" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="592" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="608" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="624" y="8" width="12" height="12" rx="2" fill="#40C463"/><rect x="640" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="656" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="672" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="688" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="704" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="720" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="736" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="752" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="768" y="8" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="784" y="8" width="12" height="12" rx="2" fill="#40C463"/><rect x="800" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="816" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="832" y="8" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="848" y="8" width="12" height="12" rx="2" fill="#216E39"/><rect x="864" y="8" width="12" height="12" rx="2" fill="#30A14E"/><rect x="880" y="8" width="12" height="12" rx="2" fill="#40C463"/>
+        <!-- 52 columns x 7 rows grid -->
+        <g transform="translate(0, 6)">
+          <rect x="0" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="16" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="32" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="48" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="64" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="80" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="96" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="112" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="128" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="144" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="160" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="176" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="192" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="208" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="224" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="240" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="256" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="272" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="288" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="304" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="320" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="336" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="352" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="368" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="384" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="400" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="416" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="432" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="448" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="464" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="480" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="496" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="512" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="528" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="544" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="560" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="576" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="592" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="608" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="624" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="640" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="656" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="672" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="688" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="704" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="720" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="736" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="752" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="768" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="784" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="800" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="816" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="832" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="848" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="864" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="880" y="0" width="12" height="12" rx="2.5" fill="#40C463"/>
+        </g>
 
-        <!-- Row 2, 3, 4, 5 -->
-        <g transform="translate(0, 24)">
-          <rect x="0" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="16" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="32" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="48" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="64" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="80" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="96" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="112" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="128" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="144" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="160" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="176" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="192" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="208" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="224" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="240" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="256" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="272" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="288" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="304" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="320" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="336" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="352" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="368" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="384" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="400" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="416" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="432" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="448" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="464" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="480" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="496" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="512" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="528" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="544" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="560" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="576" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="592" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="608" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="624" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="640" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="656" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="672" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="688" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="704" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="720" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="736" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="752" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="768" y="0" width="12" height="12" rx="2" fill="#EBEDF0"/><rect x="784" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="800" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="816" y="0" width="12" height="12" rx="2" fill="#40C463"/><rect x="832" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/><rect x="848" y="0" width="12" height="12" rx="2" fill="#30A14E"/><rect x="864" y="0" width="12" height="12" rx="2" fill="#216E39"/><rect x="880" y="0" width="12" height="12" rx="2" fill="#9BE9A8"/>
+        <g transform="translate(0, 22)">
+          <rect x="0" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="16" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="32" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="48" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="64" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="80" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="96" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="112" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="128" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="144" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="160" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="176" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="192" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="208" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="224" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="240" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="256" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="272" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="288" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="304" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="320" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="336" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="352" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="368" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="384" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="400" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="416" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="432" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="448" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="464" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="480" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="496" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="512" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="528" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="544" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="560" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="576" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="592" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="608" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="624" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="640" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="656" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="672" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="688" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="704" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="720" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="736" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="752" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="768" y="0" width="12" height="12" rx="2.5" fill="#EBEDF0"/><rect x="784" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="800" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="816" y="0" width="12" height="12" rx="2.5" fill="#40C463"/><rect x="832" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/><rect x="848" y="0" width="12" height="12" rx="2.5" fill="#30A14E"/><rect x="864" y="0" width="12" height="12" rx="2.5" fill="#216E39"/><rect x="880" y="0" width="12" height="12" rx="2.5" fill="#9BE9A8"/>
         </g>
       </g>
 
       <!-- Animated Snake -->
-      <rect width="14" height="14" rx="3" fill="#0891B2" stroke="#FFFFFF" stroke-width="1.5" class="snake-head-light"/>
-      <rect width="12" height="12" rx="3" fill="#6D28D9" stroke="#0891B2" stroke-width="1" class="snake-body-light"/>
+      <rect width="13" height="13" rx="3" fill="#0284C7" stroke="#FFFFFF" stroke-width="1.2" filter="url(#glow-blue)" class="snake-head"/>
+      <rect width="11" height="11" rx="3" fill="#6D28D9" stroke="#0284C7" stroke-width="0.8" class="snake-body"/>
 
-      <circle cx="286" cy="38" r="5" fill="#DB2777"/>
-      <circle cx="456" cy="78" r="5" fill="#D97706"/>
-      <circle cx="626" cy="22" r="5" fill="#059669"/>
+      <!-- Food Dots -->
+      <circle cx="306" cy="34" r="4.5" fill="#DB2777" class="food-dot"/>
+      <circle cx="486" cy="70" r="4.5" fill="#D97706" class="food-dot"/>
+      <circle cx="666" cy="18" r="4.5" fill="#059669" class="food-dot"/>
     </g>
 
-    <g transform="translate(680, 190)">
+    <!-- Legend -->
+    <g transform="translate(690, 145)">
       <text x="0" y="10" fill="#64748B" class="font-mono" font-size="9">Less</text>
-      <rect x="26" y="2" width="10" height="10" rx="2" fill="#EBEDF0"/>
-      <rect x="40" y="2" width="10" height="10" rx="2" fill="#9BE9A8"/>
-      <rect x="54" y="2" width="10" height="10" rx="2" fill="#40C463"/>
-      <rect x="68" y="2" width="10" height="10" rx="2" fill="#30A14E"/>
-      <rect x="82" y="2" width="10" height="10" rx="2" fill="#216E39"/>
-      <text x="98" y="10" fill="#64748B" class="font-mono" font-size="9">More</text>
+      <rect x="28" y="2" width="10" height="10" rx="2" fill="#EBEDF0"/>
+      <rect x="42" y="2" width="10" height="10" rx="2" fill="#9BE9A8"/>
+      <rect x="56" y="2" width="10" height="10" rx="2" fill="#40C463"/>
+      <rect x="70" y="2" width="10" height="10" rx="2" fill="#30A14E"/>
+      <rect x="84" y="2" width="10" height="10" rx="2" fill="#216E39"/>
+      <text x="100" y="10" fill="#64748B" class="font-mono" font-size="9">More</text>
     </g>
   </g>
 
-  <!-- ==================== SECTION 5: PROJECTS.LIST Grid ==================== -->
-  <g transform="translate(30, 1190)">
-    <text x="0" y="20" fill="#6D28D9" class="font-mono" font-size="14" font-weight="bold">PROJECTS.LIST // SELECTED_WORK</text>
+  <!-- ==================== SECTION 5: PROJECTS.LIST GRID (6 CARDS) ==================== -->
+  <g transform="translate(25, 930)">
+    <text x="0" y="20" fill="#6D28D9" class="font-mono" font-size="13" font-weight="bold">PROJECTS.LIST // FEATURED_SOFTWARE_PROJECTS</text>
 
     <!-- ROW 1 -->
-    <g transform="translate(0, 35)">
-      <!-- Project 1 -->
+    <g transform="translate(0, 32)">
+      <!-- Card 1 -->
       <g transform="translate(0, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#F1F5F9"/>
-        <text x="15" y="20" fill="#0284C7" class="font-mono" font-size="10">ai-testcase-generator</text>
-        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+        <rect width="460" height="135" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#F1F5F9"/>
+        <text x="12" y="17" fill="#0284C7" class="font-mono" font-size="10">ai-testcase-generator</text>
+        <circle cx="445" cy="13" r="3" fill="#059669"/>
 
-        <text x="15" y="55" fill="#0F172A" class="font-sans" font-size="14" font-weight="bold">AI Test Case Generator</text>
-        <text x="15" y="75" fill="#475569" class="font-sans" font-size="11">AI system generating structured software test cases</text>
-        <text x="15" y="90" fill="#475569" class="font-sans" font-size="11">with Qase integration and automated Playwright workflows.</text>
+        <text x="15" y="48" fill="#0F172A" class="font-sans" font-size="13" font-weight="bold">AI Test Case Generator</text>
+        <text x="15" y="66" fill="#475569" class="font-sans" font-size="10.5">AI system generating structured test cases with Qase</text>
+        <text x="15" y="80" fill="#475569" class="font-sans" font-size="10.5">integration and automated Playwright test execution.</text>
 
-        <g transform="translate(15, 130)">
-          <rect width="60" height="20" rx="4" fill="#6D28D9" fill-opacity="0.1" stroke="#6D28D9" stroke-width="0.8"/>
-          <text x="30" y="13.5" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8.5">Node.js</text>
+        <g transform="translate(15, 102)">
+          <rect width="55" height="18" rx="3" fill="#6D28D9" fill-opacity="0.15" stroke="#6D28D9" stroke-width="0.8"/>
+          <text x="27.5" y="12" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8">Node.js</text>
 
-          <rect x="66" y="0" width="38" height="20" rx="4" fill="#0891B2" fill-opacity="0.1" stroke="#0891B2" stroke-width="0.8"/>
-          <text x="85" y="13.5" text-anchor="middle" fill="#0369A1" class="font-mono" font-size="8.5">AI</text>
+          <rect x="60" y="0" width="34" height="18" rx="3" fill="#0284C7" fill-opacity="0.15" stroke="#0284C7" stroke-width="0.8"/>
+          <text x="77" y="12" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8">AI</text>
 
-          <rect x="110" y="0" width="55" height="20" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
-          <text x="137.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">Playwright</text>
+          <rect x="99" y="0" width="65" height="18" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+          <text x="131.5" y="12" text-anchor="middle" fill="#059669" class="font-mono" font-size="8">Playwright</text>
 
-          <rect x="171" y="0" width="65" height="20" rx="4" fill="#D97706" fill-opacity="0.1" stroke="#D97706" stroke-width="0.8"/>
-          <text x="203.5" y="13.5" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8.5">TypeScript</text>
-        </g>
-
-        <g transform="translate(340, 130)">
-          <rect width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="22.5" y="13.5" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8.5">Code</text>
-
-          <rect x="52" y="0" width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="74.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">Demo</text>
+          <rect x="169" y="0" width="62" height="18" rx="3" fill="#D97706" fill-opacity="0.15" stroke="#D97706" stroke-width="0.8"/>
+          <text x="200" y="12" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8">TypeScript</text>
         </g>
       </g>
 
-      <!-- Project 2 -->
-      <g transform="translate(485, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#F1F5F9"/>
-        <text x="15" y="20" fill="#0284C7" class="font-mono" font-size="10">automation-testing-framework</text>
-        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+      <!-- Card 2 -->
+      <g transform="translate(490, 0)">
+        <rect width="460" height="135" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#F1F5F9"/>
+        <text x="12" y="17" fill="#0284C7" class="font-mono" font-size="10">automation-testing-framework</text>
+        <circle cx="445" cy="13" r="3" fill="#059669"/>
 
-        <text x="15" y="55" fill="#0F172A" class="font-sans" font-size="14" font-weight="bold">Automation Testing Framework</text>
-        <text x="15" y="75" fill="#475569" class="font-sans" font-size="11">Modular enterprise framework for testing web applications</text>
-        <text x="15" y="90" fill="#475569" class="font-sans" font-size="11">leveraging Selenium, TestNG, Cucumber BDD &amp; REST APIs.</text>
+        <text x="15" y="48" fill="#0F172A" class="font-sans" font-size="13" font-weight="bold">Automation Testing Framework</text>
+        <text x="15" y="66" fill="#475569" class="font-sans" font-size="10.5">Modular enterprise testing framework using Selenium,</text>
+        <text x="15" y="80" fill="#475569" class="font-sans" font-size="10.5">TestNG, Cucumber BDD &amp; REST API verification.</text>
 
-        <g transform="translate(15, 130)">
-          <rect width="58" height="20" rx="4" fill="#0891B2" fill-opacity="0.1" stroke="#0891B2" stroke-width="0.8"/>
-          <text x="29" y="13.5" text-anchor="middle" fill="#0369A1" class="font-mono" font-size="8.5">Selenium</text>
+        <g transform="translate(15, 102)">
+          <rect width="55" height="18" rx="3" fill="#0284C7" fill-opacity="0.15" stroke="#0284C7" stroke-width="0.8"/>
+          <text x="27.5" y="12" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8">Selenium</text>
 
-          <rect x="64" y="0" width="45" height="20" rx="4" fill="#6D28D9" fill-opacity="0.1" stroke="#6D28D9" stroke-width="0.8"/>
-          <text x="86.5" y="13.5" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8.5">Java</text>
+          <rect x="60" y="0" width="40" height="18" rx="3" fill="#6D28D9" fill-opacity="0.15" stroke="#6D28D9" stroke-width="0.8"/>
+          <text x="80" y="12" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8">Java</text>
 
-          <rect x="115" y="0" width="52" height="20" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
-          <text x="141" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">TestNG</text>
+          <rect x="105" y="0" width="50" height="18" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+          <text x="130" y="12" text-anchor="middle" fill="#059669" class="font-mono" font-size="8">TestNG</text>
 
-          <rect x="173" y="0" width="62" height="20" rx="4" fill="#D97706" fill-opacity="0.1" stroke="#D97706" stroke-width="0.8"/>
-          <text x="204" y="13.5" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8.5">Cucumber</text>
-        </g>
-
-        <g transform="translate(340, 130)">
-          <rect width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="22.5" y="13.5" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8.5">Code</text>
-
-          <rect x="52" y="0" width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="74.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">Demo</text>
+          <rect x="160" y="0" width="60" height="18" rx="3" fill="#D97706" fill-opacity="0.15" stroke="#D97706" stroke-width="0.8"/>
+          <text x="190" y="12" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8">Cucumber</text>
         </g>
       </g>
     </g>
 
     <!-- ROW 2 -->
-    <g transform="translate(0, 225)">
-      <!-- Project 3 -->
+    <g transform="translate(0, 180)">
+      <!-- Card 3 -->
       <g transform="translate(0, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#F1F5F9"/>
-        <text x="15" y="20" fill="#0284C7" class="font-mono" font-size="10">network-auditing-platform</text>
-        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+        <rect width="460" height="135" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#F1F5F9"/>
+        <text x="12" y="17" fill="#0284C7" class="font-mono" font-size="10">network-auditing-platform</text>
+        <circle cx="445" cy="13" r="3" fill="#059669"/>
 
-        <text x="15" y="55" fill="#0F172A" class="font-sans" font-size="14" font-weight="bold">Network Config Auditing Platform</text>
-        <text x="15" y="75" fill="#475569" class="font-sans" font-size="11">Frontend analytics modules for network config workflows</text>
-        <text x="15" y="90" fill="#475569" class="font-sans" font-size="11">including audit reports, filter systems, and API visualization.</text>
+        <text x="15" y="48" fill="#0F172A" class="font-sans" font-size="13" font-weight="bold">Network Config Auditing Platform</text>
+        <text x="15" y="66" fill="#475569" class="font-sans" font-size="10.5">Frontend analytics dashboards for network audit workflows,</text>
+        <text x="15" y="80" fill="#475569" class="font-sans" font-size="10.5">audit logs, filtering systems, and live charts.</text>
 
-        <g transform="translate(15, 130)">
-          <rect width="55" height="20" rx="4" fill="#0891B2" fill-opacity="0.1" stroke="#0891B2" stroke-width="0.8"/>
-          <text x="27.5" y="13.5" text-anchor="middle" fill="#0369A1" class="font-mono" font-size="8.5">React.js</text>
+        <g transform="translate(15, 102)">
+          <rect width="52" height="18" rx="3" fill="#0284C7" fill-opacity="0.15" stroke="#0284C7" stroke-width="0.8"/>
+          <text x="26" y="12" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8">React.js</text>
 
-          <rect x="61" y="0" width="70" height="20" rx="4" fill="#6D28D9" fill-opacity="0.1" stroke="#6D28D9" stroke-width="0.8"/>
-          <text x="96" y="13.5" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8.5">Material UI</text>
+          <rect x="57" y="0" width="65" height="18" rx="3" fill="#6D28D9" fill-opacity="0.15" stroke="#6D28D9" stroke-width="0.8"/>
+          <text x="89.5" y="12" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8">Material UI</text>
 
-          <rect x="137" y="0" width="65" height="20" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
-          <text x="169.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">REST APIs</text>
-        </g>
-
-        <g transform="translate(340, 130)">
-          <rect width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="22.5" y="13.5" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8.5">Code</text>
-
-          <rect x="52" y="0" width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="74.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">Demo</text>
+          <rect x="127" y="0" width="60" height="18" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+          <text x="157" y="12" text-anchor="middle" fill="#059669" class="font-mono" font-size="8">REST APIs</text>
         </g>
       </g>
 
-      <!-- Project 4 -->
-      <g transform="translate(485, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#F1F5F9"/>
-        <text x="15" y="20" fill="#0284C7" class="font-mono" font-size="10">hospital-management-system</text>
-        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+      <!-- Card 4 -->
+      <g transform="translate(490, 0)">
+        <rect width="460" height="135" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#F1F5F9"/>
+        <text x="12" y="17" fill="#0284C7" class="font-mono" font-size="10">hospital-management-system</text>
+        <circle cx="445" cy="13" r="3" fill="#059669"/>
 
-        <text x="15" y="55" fill="#0F172A" class="font-sans" font-size="14" font-weight="bold">Hospital Management System</text>
-        <text x="15" y="75" fill="#475569" class="font-sans" font-size="11">Responsive healthcare management application interfaces</text>
-        <text x="15" y="90" fill="#475569" class="font-sans" font-size="11">integrated with backend REST APIs for administrative workflows.</text>
+        <text x="15" y="48" fill="#0F172A" class="font-sans" font-size="13" font-weight="bold">Hospital Management System</text>
+        <text x="15" y="66" fill="#475569" class="font-sans" font-size="10.5">Responsive healthcare platform user interface integrated</text>
+        <text x="15" y="80" fill="#475569" class="font-sans" font-size="10.5">with backend REST services for administrative workflows.</text>
 
-        <g transform="translate(15, 130)">
-          <rect width="55" height="20" rx="4" fill="#0891B2" fill-opacity="0.1" stroke="#0891B2" stroke-width="0.8"/>
-          <text x="27.5" y="13.5" text-anchor="middle" fill="#0369A1" class="font-mono" font-size="8.5">React.js</text>
+        <g transform="translate(15, 102)">
+          <rect width="52" height="18" rx="3" fill="#0284C7" fill-opacity="0.15" stroke="#0284C7" stroke-width="0.8"/>
+          <text x="26" y="12" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8">React.js</text>
 
-          <rect x="61" y="0" width="75" height="20" rx="4" fill="#D97706" fill-opacity="0.1" stroke="#D97706" stroke-width="0.8"/>
-          <text x="98.5" y="13.5" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8.5">Tailwind CSS</text>
+          <rect x="57" y="0" width="68" height="18" rx="3" fill="#D97706" fill-opacity="0.15" stroke="#D97706" stroke-width="0.8"/>
+          <text x="91" y="12" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8">Tailwind CSS</text>
 
-          <rect x="142" y="0" width="65" height="20" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
-          <text x="174.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">REST APIs</text>
-        </g>
-
-        <g transform="translate(340, 130)">
-          <rect width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="22.5" y="13.5" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8.5">Code</text>
-
-          <rect x="52" y="0" width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="74.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">Demo</text>
+          <rect x="130" y="0" width="60" height="18" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+          <text x="160" y="12" text-anchor="middle" fill="#059669" class="font-mono" font-size="8">REST APIs</text>
         </g>
       </g>
     </g>
 
     <!-- ROW 3 -->
-    <g transform="translate(0, 415)">
-      <!-- Project 5 -->
+    <g transform="translate(0, 328)">
+      <!-- Card 5 -->
       <g transform="translate(0, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#F1F5F9"/>
-        <text x="15" y="20" fill="#0284C7" class="font-mono" font-size="10">developer-portfolio-web</text>
-        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+        <rect width="460" height="135" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#F1F5F9"/>
+        <text x="12" y="17" fill="#0284C7" class="font-mono" font-size="10">developer-portfolio-web</text>
+        <circle cx="445" cy="13" r="3" fill="#059669"/>
 
-        <text x="15" y="55" fill="#0F172A" class="font-sans" font-size="14" font-weight="bold">Personal Portfolio Website</text>
-        <text x="15" y="75" fill="#475569" class="font-sans" font-size="11">Responsive personal developer website showcasing engineering</text>
-        <text x="15" y="90" fill="#475569" class="font-sans" font-size="11">projects, technical skills, and interactive experience.</text>
+        <text x="15" y="48" fill="#0F172A" class="font-sans" font-size="13" font-weight="bold">Personal Developer Portfolio</text>
+        <text x="15" y="66" fill="#475569" class="font-sans" font-size="10.5">High-performance personal website showcasing engineering</text>
+        <text x="15" y="80" fill="#475569" class="font-sans" font-size="10.5">projects, technical experience, and interactive UI skills.</text>
 
-        <g transform="translate(15, 130)">
-          <rect width="55" height="20" rx="4" fill="#0891B2" fill-opacity="0.1" stroke="#0891B2" stroke-width="0.8"/>
-          <text x="27.5" y="13.5" text-anchor="middle" fill="#0369A1" class="font-mono" font-size="8.5">React.js</text>
+        <g transform="translate(15, 102)">
+          <rect width="52" height="18" rx="3" fill="#0284C7" fill-opacity="0.15" stroke="#0284C7" stroke-width="0.8"/>
+          <text x="26" y="12" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8">React.js</text>
 
-          <rect x="61" y="0" width="65" height="20" rx="4" fill="#6D28D9" fill-opacity="0.1" stroke="#6D28D9" stroke-width="0.8"/>
-          <text x="93.5" y="13.5" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8.5">JavaScript</text>
+          <rect x="57" y="0" width="60" height="18" rx="3" fill="#6D28D9" fill-opacity="0.15" stroke="#6D28D9" stroke-width="0.8"/>
+          <text x="87" y="12" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="8">JavaScript</text>
 
-          <rect x="132" y="0" width="40" height="20" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
-          <text x="152" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">CSS3</text>
-        </g>
-
-        <g transform="translate(340, 130)">
-          <rect width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="22.5" y="13.5" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8.5">Code</text>
-
-          <rect x="52" y="0" width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="74.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">Demo</text>
+          <rect x="122" y="0" width="38" height="18" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+          <text x="141" y="12" text-anchor="middle" fill="#059669" class="font-mono" font-size="8">CSS3</text>
         </g>
       </g>
 
-      <!-- Project 6 -->
-      <g transform="translate(485, 0)">
-        <rect width="455" height="175" rx="10" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
-        <path d="M 0 10 Q 0 0 10 0 L 445 0 Q 455 0 455 10 L 455 30 L 0 30 Z" fill="#F1F5F9"/>
-        <text x="15" y="20" fill="#0284C7" class="font-mono" font-size="10">playwright-api-testing-suite</text>
-        <circle cx="438" cy="15" r="3" fill="#10B981"/>
+      <!-- Card 6 -->
+      <g transform="translate(490, 0)">
+        <rect width="460" height="135" rx="8" fill="url(#card-light)" stroke="#CBD5E1" stroke-width="1"/>
+        <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#F1F5F9"/>
+        <text x="12" y="17" fill="#0284C7" class="font-mono" font-size="10">playwright-api-testing-suite</text>
+        <circle cx="445" cy="13" r="3" fill="#059669"/>
 
-        <text x="15" y="55" fill="#0F172A" class="font-sans" font-size="14" font-weight="bold">Playwright API Testing Agent Suite</text>
-        <text x="15" y="75" fill="#475569" class="font-sans" font-size="11">Automated Playwright API verification and test generation suite</text>
-        <text x="15" y="90" fill="#475569" class="font-sans" font-size="11">with contract verification &amp; CI/CD integration.</text>
+        <text x="15" y="48" fill="#0F172A" class="font-sans" font-size="13" font-weight="bold">Playwright API Verification Suite</text>
+        <text x="15" y="66" fill="#475569" class="font-sans" font-size="10.5">Automated API verification framework built with Playwright</text>
+        <text x="15" y="80" fill="#475569" class="font-sans" font-size="10.5">for automated contract testing and endpoint assertions.</text>
 
-        <g transform="translate(15, 130)">
-          <rect width="65" height="20" rx="4" fill="#059669" fill-opacity="0.1" stroke="#059669" stroke-width="0.8"/>
-          <text x="47.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">Playwright</text>
+        <g transform="translate(15, 102)">
+          <rect width="65" height="18" rx="3" fill="#059669" fill-opacity="0.15" stroke="#059669" stroke-width="0.8"/>
+          <text x="47.5" y="12" text-anchor="middle" fill="#059669" class="font-mono" font-size="8">Playwright</text>
 
-          <rect x="71" y="0" width="65" height="20" rx="4" fill="#D97706" fill-opacity="0.1" stroke="#D97706" stroke-width="0.8"/>
-          <text x="103.5" y="13.5" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8.5">TypeScript</text>
+          <rect x="65" y="0" width="62" height="18" rx="3" fill="#D97706" fill-opacity="0.15" stroke="#D97706" stroke-width="0.8"/>
+          <text x="96" y="12" text-anchor="middle" fill="#B45309" class="font-mono" font-size="8">TypeScript</text>
 
-          <rect x="142" y="0" width="55" height="20" rx="4" fill="#0891B2" fill-opacity="0.1" stroke="#0891B2" stroke-width="0.8"/>
-          <text x="169.5" y="13.5" text-anchor="middle" fill="#0369A1" class="font-mono" font-size="8.5">Postman</text>
-        </g>
-
-        <g transform="translate(340, 130)">
-          <rect width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="22.5" y="13.5" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8.5">Code</text>
-
-          <rect x="52" y="0" width="45" height="20" rx="4" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="0.8"/>
-          <text x="74.5" y="13.5" text-anchor="middle" fill="#047857" class="font-mono" font-size="8.5">Demo</text>
+          <rect x="132" y="0" width="50" height="18" rx="3" fill="#0284C7" fill-opacity="0.15" stroke="#0284C7" stroke-width="0.8"/>
+          <text x="157" y="12" text-anchor="middle" fill="#0284C7" class="font-mono" font-size="8">Postman</text>
         </g>
       </g>
     </g>
   </g>
 
   <!-- ==================== SECTION 6: SOCIAL MEDIA BUTTONS FOOTER ==================== -->
-  <g transform="translate(30, 1830)">
-    <line x1="0" y1="0" x2="940" y2="0" stroke="#CBD5E1" stroke-width="1"/>
+  <g transform="translate(25, 1400)">
+    <line x1="0" y1="0" x2="950" y2="0" stroke="#CBD5E1" stroke-width="1"/>
 
-    <g transform="translate(180, 25)">
+    <g transform="translate(185, 15)">
       <g transform="translate(0, 0)">
-        <rect width="110" height="32" rx="6" fill="#F1F5F9" stroke="#0A66C2" stroke-width="1"/>
-        <text x="55" y="20" text-anchor="middle" fill="#0A66C2" class="font-mono" font-size="10" font-weight="bold">💼 LINKEDIN</text>
+        <rect width="110" height="28" rx="5" fill="#FFFFFF" stroke="#0A66C2" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#0A66C2" class="font-mono" font-size="9.5" font-weight="bold">💼 LINKEDIN</text>
       </g>
 
       <g transform="translate(125, 0)">
-        <rect width="110" height="32" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
-        <text x="55" y="20" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="10" font-weight="bold">🐙 GITHUB</text>
+        <rect width="110" height="28" rx="5" fill="#FFFFFF" stroke="#475569" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#0F172A" class="font-mono" font-size="9.5" font-weight="bold">🐙 GITHUB</text>
       </g>
 
       <g transform="translate(250, 0)">
-        <rect width="110" height="32" rx="6" fill="#F1F5F9" stroke="#EF4444" stroke-width="1"/>
-        <text x="55" y="20" text-anchor="middle" fill="#DC2626" class="font-mono" font-size="10" font-weight="bold">✉️ EMAIL</text>
+        <rect width="110" height="28" rx="5" fill="#FFFFFF" stroke="#EF4444" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#DC2626" class="font-mono" font-size="9.5" font-weight="bold">✉️ EMAIL</text>
       </g>
 
       <g transform="translate(375, 0)">
-        <rect width="110" height="32" rx="6" fill="#F1F5F9" stroke="#10B981" stroke-width="1"/>
-        <text x="55" y="20" text-anchor="middle" fill="#059669" class="font-mono" font-size="10" font-weight="bold">🌐 PORTFOLIO</text>
+        <rect width="110" height="28" rx="5" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#059669" class="font-mono" font-size="9.5" font-weight="bold">🌐 PORTFOLIO</text>
       </g>
 
       <g transform="translate(500, 0)">
-        <rect width="110" height="32" rx="6" fill="#F1F5F9" stroke="#8B5CF6" stroke-width="1"/>
-        <text x="55" y="20" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="10" font-weight="bold">🤖 AI SUITE</text>
+        <rect width="110" height="28" rx="5" fill="#FFFFFF" stroke="#6D28D9" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#6D28D9" class="font-mono" font-size="9.5" font-weight="bold">🤖 AI SUITE</text>
       </g>
     </g>
 
-    <text x="470" y="90" text-anchor="middle" fill="#64748B" class="font-mono" font-size="10">Designed &amp; Engineered for sriaditya445 // Quality Automation &amp; Frontend // 2026</text>
+    <text x="475" y="60" text-anchor="middle" fill="#64748B" class="font-mono" font-size="9.5">Designed &amp; Engineered for sriaditya445 // Quality Automation &amp; Software Engineering // 2026</text>
   </g>
 </svg>
