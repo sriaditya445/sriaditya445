@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1620" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1520" width="100%" height="100%">
   <defs>
     <!-- Background & Theme Gradients -->
     <linearGradient id="bg-dark" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -9,12 +9,11 @@
 
     <linearGradient id="card-dark" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#0F172A" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#090D16" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0B132B" stop-opacity="0.95"/>
     </linearGradient>
 
     <linearGradient id="header-dark" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#1E293B"/>
-      <stop offset="50%" stop-color="#111827"/>
       <stop offset="100%" stop-color="#0F172A"/>
     </linearGradient>
 
@@ -25,222 +24,231 @@
     </linearGradient>
 
     <radialGradient id="portrait-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.30"/>
-      <stop offset="60%" stop-color="#06B6D4" stop-opacity="0.15"/>
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#06B6D4" stop-opacity="0.18"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
 
     <!-- Grid Pattern -->
-    <pattern id="grid-pattern" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1E293B" stroke-width="0.5" stroke-opacity="0.35"/>
+    <pattern id="grid-pattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1E293B" stroke-width="0.5" stroke-opacity="0.4"/>
     </pattern>
   </defs>
 
   <style>
     .font-mono { font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace; }
     .font-sans { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+    /* ANIMATED SNAKE GAME KEYFRAMES */
+    @keyframes snake-head-move {
+      0%   { transform: translate(36px, 18px); }
+      10%  { transform: translate(144px, 18px); }
+      20%  { transform: translate(144px, 72px); }
+      30%  { transform: translate(288px, 72px); }
+      40%  { transform: translate(288px, 18px); }
+      50%  { transform: translate(504px, 18px); }
+      60%  { transform: translate(504px, 90px); }
+      70%  { transform: translate(720px, 90px); }
+      80%  { transform: translate(720px, 36px); }
+      90%  { transform: translate(846px, 36px); }
+      100% { transform: translate(36px, 18px); }
+    }
+
+    @keyframes snake-body1-move {
+      0%   { transform: translate(18px, 18px); }
+      10%  { transform: translate(126px, 18px); }
+      20%  { transform: translate(144px, 54px); }
+      30%  { transform: translate(270px, 72px); }
+      40%  { transform: translate(288px, 36px); }
+      50%  { transform: translate(486px, 18px); }
+      60%  { transform: translate(504px, 72px); }
+      70%  { transform: translate(702px, 90px); }
+      80%  { transform: translate(720px, 54px); }
+      90%  { transform: translate(828px, 36px); }
+      100% { transform: translate(18px, 18px); }
+    }
+
+    @keyframes snake-body2-move {
+      0%   { transform: translate(0px, 18px); }
+      10%  { transform: translate(108px, 18px); }
+      20%  { transform: translate(144px, 36px); }
+      30%  { transform: translate(252px, 72px); }
+      40%  { transform: translate(288px, 54px); }
+      50%  { transform: translate(468px, 18px); }
+      60%  { transform: translate(504px, 54px); }
+      70%  { transform: translate(684px, 90px); }
+      80%  { transform: translate(720px, 72px); }
+      90%  { transform: translate(810px, 36px); }
+      100% { transform: translate(0px, 18px); }
+    }
+
+    @keyframes food-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    .snake-head {
+      animation: snake-head-move 14s infinite linear;
+    }
+    .snake-body1 {
+      animation: snake-body1-move 14s infinite linear;
+    }
+    .snake-body2 {
+      animation: snake-body2-move 14s infinite linear;
+    }
+    .food-dot {
+      animation: food-pulse 1.8s infinite ease-in-out;
+      transform-origin: center;
+    }
   </style>
 
   <!-- Base Canvas Background -->
-  <rect width="1000" height="1620" fill="url(#bg-dark)" rx="16"/>
-  <rect width="1000" height="1620" fill="url(#grid-pattern)" rx="16"/>
-  <rect x="12" y="12" width="976" height="1596" rx="14" fill="none" stroke="#1E293B" stroke-width="1.5"/>
+  <rect width="1000" height="1520" fill="url(#bg-dark)" rx="16"/>
+  <rect width="1000" height="1520" fill="url(#grid-pattern)" rx="16"/>
+  <rect x="12" y="12" width="976" height="1496" rx="14" fill="none" stroke="#1E293B" stroke-width="1.5"/>
 
-  <!-- ==================== HERO TERMINAL BANNER ==================== -->
+  <!-- ==================== SECTION 1: TOP TERMINAL WINDOW ==================== -->
   <g transform="translate(25, 25)">
-    <rect width="950" height="490" rx="12" fill="url(#card-dark)" stroke="#06B6D4" stroke-width="1"/>
-    <path d="M 0 12 Q 0 0 12 0 L 938 0 Q 950 0 950 12 L 950 38 L 0 38 Z" fill="url(#header-dark)"/>
-    <line x1="0" y1="38" x2="950" y2="38" stroke="#334155" stroke-width="1"/>
+    <!-- Terminal Main Box -->
+    <rect width="950" height="420" rx="10" fill="url(#card-dark)" stroke="#06B6D4" stroke-width="1"/>
+
+    <!-- Window Top Header Bar -->
+    <path d="M 0 10 Q 0 0 10 0 L 940 0 Q 950 0 950 10 L 950 36 L 0 36 Z" fill="url(#header-dark)"/>
+    <line x1="0" y1="36" x2="950" y2="36" stroke="#334155" stroke-width="1"/>
 
     <!-- Window Dots -->
-    <circle cx="20" cy="19" r="5" fill="#EF4444"/>
-    <circle cx="35" cy="19" r="5" fill="#F59E0B"/>
-    <circle cx="50" cy="19" r="5" fill="#10B981"/>
-    <text x="475" y="24" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="11">sriaditya445@terminal ~ zsh - 100x49</text>
+    <circle cx="20" cy="18" r="5" fill="#EF4444"/>
+    <circle cx="35" cy="18" r="5" fill="#F59E0B"/>
+    <circle cx="50" cy="18" r="5" fill="#10B981"/>
+
+    <!-- Window Title -->
+    <text x="475" y="23" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="11">sriaditya445 / README.md - terminal</text>
     
-    <g transform="translate(850, 11)">
-      <rect width="80" height="18" rx="9" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="0.8"/>
-      <circle cx="12" cy="9" r="3.5" fill="#10B981"/>
-      <text x="22" y="12.5" fill="#34D399" class="font-mono" font-size="8.5" font-weight="bold">ONLINE ●</text>
+    <!-- Live Badge -->
+    <g transform="translate(860, 10)">
+      <rect width="72" height="16" rx="8" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="0.8"/>
+      <circle cx="12" cy="8" r="3" fill="#10B981"/>
+      <text x="22" y="11.5" fill="#34D399" class="font-mono" font-size="8.5" font-weight="bold">+ LIVE</text>
     </g>
 
-    <!-- TOP HERO HEADER -->
-    <g transform="translate(25, 52)">
-      <text x="0" y="20" fill="#10B981" class="font-mono" font-size="13" font-weight="bold">HELLO_WORLD 👋</text>
-      <text x="0" y="44" fill="#F8FAFC" class="font-mono" font-size="22" font-weight="900" letter-spacing="1">SRI ADITYA DURGA RAM</text>
-      <rect x="0" y="52" width="310" height="2" fill="url(#glow-purple-cyan)"/>
-      <text x="0" y="70" fill="#38BDF8" class="font-mono" font-size="12" font-weight="bold">&gt; SOFTWARE ENGINEER | QA AUTOMATION | FRONTEND</text>
-    </g>
+    <!-- TERMINAL BODY CONTENT -->
+    <!-- LEFT SIDE: DITHERED DEVELOPER PORTRAIT CARD -->
+    <g transform="translate(20, 50)">
+      <rect width="280" height="350" rx="8" fill="#050811" stroke="#334155" stroke-width="1"/>
+      <circle cx="140" cy="155" r="110" fill="url(#portrait-glow)"/>
 
-    <!-- LEFT SIDE: REAL HIGH-RES DEVELOPER PORTRAIT CARD -->
-    <g transform="translate(25, 140)">
-      <rect width="270" height="330" rx="8" fill="#050811" stroke="#334155" stroke-width="1"/>
-      <circle cx="135" cy="145" r="105" fill="url(#portrait-glow)"/>
-
-      <g transform="translate(10, 10)">
+      <g transform="translate(15, 15)">
         <defs>
-          <clipPath id="avatar-clip-real">
-            <rect width="250" height="235" rx="8" />
+          <clipPath id="avatar-clip-dark">
+            <rect width="250" height="240" rx="10" />
           </clipPath>
         </defs>
 
-        <!-- Clean Framing Border -->
-        <rect width="250" height="235" rx="8" fill="#0F172A" stroke="#06B6D4" stroke-width="1.5" />
+        <!-- Framing Border -->
+        <rect width="250" height="240" rx="10" fill="#0F172A" stroke="#06B6D4" stroke-width="1.5" />
 
-        <!-- Crisp Original Real Photograph -->
-        <image href="data:image/jpeg;base64,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" x="0" y="0" width="250" height="235" preserveAspectRatio="xMidYMin slice" clip-path="url(#avatar-clip-real)" opacity="1.0"/>
+        <!-- Dithered Developer Photo matching theme artwork -->
+        <image href="data:image/png;base64,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" x="0" y="0" width="250" height="240" preserveAspectRatio="xMidYMin slice" clip-path="url(#avatar-clip-dark)" opacity="0.98"/>
 
-        <!-- Subtle Tech Frame Lines -->
-        <rect width="250" height="235" rx="8" fill="none" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="6,6" stroke-opacity="0.5"/>
+        <!-- High-Tech Cyber Frame Overlay -->
+        <rect width="250" height="240" rx="10" fill="none" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="6,6" stroke-opacity="0.6"/>
 
-        <!-- Corners -->
+        <!-- Corner Accents -->
         <path d="M 0 20 L 0 0 L 20 0" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
         <path d="M 230 0 L 250 0 L 250 20" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
-        <path d="M 0 215 L 0 235 L 20 235" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
-        <path d="M 230 235 L 250 235 L 250 215" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
+        <path d="M 0 220 L 0 240 L 20 240" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
+        <path d="M 230 240 L 250 240 L 250 220" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
 
         <!-- Developer Name Card Footer -->
-        <rect x="5" y="250" width="240" height="50" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-        <text x="120" y="270" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">SRI ADITYA DURGA RAM</text>
-        <text x="120" y="286" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="9">SOFTWARE ENGINEER</text>
+        <rect x="10" y="258" width="230" height="42" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="125" y="276" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">SRI ADITYA DURGA RAM</text>
+        <text x="125" y="291" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="9">SOFTWARE ENGINEER</text>
       </g>
     </g>
 
-    <!-- RIGHT SIDE: SYSTEM_INFO TABLE -->
-    <g transform="translate(315, 140)">
-      <rect width="610" height="330" rx="8" fill="#050811" stroke="#1E293B" stroke-width="1"/>
+    <!-- RIGHT SIDE: SYSTEM.INFO TERMINAL TABLE -->
+    <g transform="translate(320, 50)">
+      <rect width="610" height="350" rx="8" fill="#050811" stroke="#1E293B" stroke-width="1"/>
 
-      <g transform="translate(20, 18)">
-        <text x="0" y="0" fill="#7C3AED" class="font-mono" font-size="12" font-weight="bold">SYSTEM_INFO</text>
-        <text x="530" y="0" text-anchor="end" fill="#06B6D4" class="font-mono" font-size="10">v2.4.0</text>
-        <line x1="0" y1="10" x2="570" y2="10" stroke="#334155" stroke-width="1"/>
+      <!-- Inner Padding Container -->
+      <g transform="translate(20, 20)">
+        <text x="0" y="0" fill="#7C3AED" class="font-mono" font-size="12" font-weight="bold">SYSTEM.INFO</text>
 
-        <g transform="translate(0, 30)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Name</text>
-          <text x="120" y="0" fill="#A855F7" class="font-mono" font-size="10.5" font-weight="bold">Sri Aditya Durga Ram</text>
-        </g>
-        <g transform="translate(0, 50)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Role</text>
-          <text x="120" y="0" fill="#38BDF8" class="font-mono" font-size="10.5" font-weight="bold">Software Engineer</text>
-        </g>
-        <g transform="translate(0, 70)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Location</text>
-          <text x="120" y="0" fill="#F8FAFC" class="font-mono" font-size="10.5">Rajahmundry, Andhra Pradesh, India 🇮🇳</text>
-        </g>
-        <g transform="translate(0, 90)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Focus</text>
-          <text x="120" y="0" fill="#34D399" class="font-mono" font-size="10.5" font-weight="bold">QA Automation + Frontend Development</text>
-        </g>
-        <g transform="translate(0, 110)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Testing</text>
-          <text x="120" y="0" fill="#F8FAFC" class="font-mono" font-size="10.5">Playwright | Selenium | TestNG | Cucumber BDD</text>
-        </g>
-        <g transform="translate(0, 130)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Frontend</text>
-          <text x="120" y="0" fill="#F8FAFC" class="font-mono" font-size="10.5">React.js | JavaScript | TypeScript | Tailwind CSS</text>
-        </g>
-        <g transform="translate(0, 150)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">API</text>
-          <text x="120" y="0" fill="#F8FAFC" class="font-mono" font-size="10.5">REST APIs | Postman Verification | Endpoint Testing</text>
-        </g>
-        <g transform="translate(0, 170)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">AI Focus</text>
-          <text x="120" y="0" fill="#C084FC" class="font-mono" font-size="10.5" font-weight="bold">AI-Assisted Development | AI Agents | Prompt Eng</text>
-        </g>
-        <g transform="translate(0, 190)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Status</text>
-          <text x="120" y="0" fill="#10B981" class="font-mono" font-size="10.5" font-weight="bold">Building • Testing • Learning 🚀</text>
+        <!-- Command Prompt Line -->
+        <text x="0" y="22" fill="#94A3B8" class="font-mono" font-size="11">sriaditya445@system:~$ cat identity.json</text>
+        <line x1="0" y1="32" x2="570" y2="32" stroke="#334155" stroke-width="1"/>
+
+        <!-- Specifications Table -->
+        <g transform="translate(0, 52)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Subject</text>
+          <text x="150" y="0" fill="#A855F7" class="font-mono" font-size="11" font-weight="bold">Sri Aditya Durga Ram</text>
         </g>
 
-        <line x1="0" y1="206" x2="570" y2="206" stroke="#334155" stroke-width="1"/>
-        <g transform="translate(0, 222)">
-          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="10.5">Brand</text>
-          <text x="120" y="0" fill="#94A3B8" class="font-mono" font-size="10">"Building reliable apps through Quality Engineering &amp; Automation."</text>
-        </g>
-      </g>
-    </g>
-  </g>
-
-  <!-- ==================== DEVELOPER_PLAYGROUND PANELS ==================== -->
-  <g transform="translate(25, 530)">
-    <!-- LEFT PANEL: DEVELOPER_STATUS -->
-    <g transform="translate(0, 0)">
-      <rect width="460" height="200" rx="10" fill="url(#card-dark)" stroke="#8B5CF6" stroke-width="1"/>
-      <path d="M 0 10 Q 0 0 10 0 L 450 0 Q 460 0 460 10 L 460 30 L 0 30 Z" fill="#0F172A"/>
-      <text x="15" y="20" fill="#C084FC" class="font-mono" font-size="11" font-weight="bold">╔═ DEVELOPER_STATUS ════════════════════════════╗</text>
-
-      <g transform="translate(20, 48)">
-        <text x="0" y="0" fill="#94A3B8" class="font-mono" font-size="11">║ Role:</text>
-        <text x="170" y="0" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">Software Engineer</text>
-        <text x="410" y="0" fill="#94A3B8" class="font-mono" font-size="11">║</text>
-
-        <text x="0" y="22" fill="#94A3B8" class="font-mono" font-size="11">║ Speciality:</text>
-        <text x="170" y="22" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">QA Automation</text>
-        <text x="410" y="22" fill="#94A3B8" class="font-mono" font-size="11">║</text>
-
-        <text x="0" y="44" fill="#94A3B8" class="font-mono" font-size="11">║ Primary Weapon:</text>
-        <text x="170" y="44" fill="#34D399" class="font-mono" font-size="11" font-weight="bold">Playwright</text>
-        <text x="410" y="44" fill="#94A3B8" class="font-mono" font-size="11">║</text>
-
-        <text x="0" y="66" fill="#94A3B8" class="font-mono" font-size="11">║ Secondary Weapon:</text>
-        <text x="170" y="66" fill="#67E8F9" class="font-mono" font-size="11" font-weight="bold">React.js</text>
-        <text x="410" y="66" fill="#94A3B8" class="font-mono" font-size="11">║</text>
-
-        <text x="0" y="88" fill="#94A3B8" class="font-mono" font-size="11">║ Current Mission:</text>
-        <text x="170" y="88" fill="#F59E0B" class="font-mono" font-size="11" font-weight="bold">Building &amp; Learning</text>
-        <text x="410" y="88" fill="#94A3B8" class="font-mono" font-size="11">║</text>
-
-        <text x="0" y="110" fill="#94A3B8" class="font-mono" font-size="11">║ Status:</text>
-        <text x="170" y="110" fill="#10B981" class="font-mono" font-size="11" font-weight="bold">ONLINE ●</text>
-        <text x="410" y="110" fill="#94A3B8" class="font-mono" font-size="11">║</text>
-
-        <text x="0" y="130" fill="#C084FC" class="font-mono" font-size="11">╚═══════════════════════════════════════════════╝</text>
-      </g>
-    </g>
-
-    <!-- RIGHT PANEL: TODAY'S_DEV_QUEST -->
-    <g transform="translate(490, 0)">
-      <rect width="460" height="200" rx="10" fill="url(#card-dark)" stroke="#06B6D4" stroke-width="1"/>
-      <path d="M 0 10 Q 0 0 10 0 L 450 0 Q 460 0 460 10 L 460 30 L 0 30 Z" fill="#0F172A"/>
-      <text x="15" y="20" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">🎯 TODAY'S_DEV_QUEST</text>
-
-      <g transform="translate(20, 48)">
-        <g transform="translate(0, 0)">
-          <rect width="18" height="18" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
-          <text x="4.5" y="13" fill="#34D399" class="font-mono" font-size="12">✓</text>
-          <text x="30" y="13" fill="#F8FAFC" class="font-mono" font-size="11.5" font-weight="bold">&gt; Write clean code</text>
-        </g>
-
-        <g transform="translate(0, 32)">
-          <rect width="18" height="18" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
-          <text x="4.5" y="13" fill="#34D399" class="font-mono" font-size="12">✓</text>
-          <text x="30" y="13" fill="#F8FAFC" class="font-mono" font-size="11.5" font-weight="bold">&gt; Automate repetitive tests</text>
-        </g>
-
-        <g transform="translate(0, 64)">
-          <rect width="18" height="18" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
-          <text x="4.5" y="13" fill="#34D399" class="font-mono" font-size="12">✓</text>
-          <text x="30" y="13" fill="#F8FAFC" class="font-mono" font-size="11.5" font-weight="bold">&gt; Learn something new</text>
+        <g transform="translate(0, 74)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Role</text>
+          <text x="150" y="0" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">Software Engineer | QA Automation &amp; Frontend</text>
         </g>
 
         <g transform="translate(0, 96)">
-          <rect width="18" height="18" rx="4" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
-          <text x="4.5" y="13" fill="#34D399" class="font-mono" font-size="12">✓</text>
-          <text x="30" y="13" fill="#F8FAFC" class="font-mono" font-size="11.5" font-weight="bold">&gt; Ship an improvement</text>
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Origin</text>
+          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Rajahmundry, AP, India 🇮🇳</text>
+        </g>
+
+        <g transform="translate(0, 118)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Status</text>
+          <text x="150" y="0" fill="#34D399" class="font-mono" font-size="11" font-weight="bold">Building + Learning + Shipping 🚀</text>
+        </g>
+
+        <g transform="translate(0, 140)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">ToolChain</text>
+          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">VS Code, Playwright, Selenium, Postman, Git</text>
+        </g>
+
+        <g transform="translate(0, 168)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Lang</text>
+          <text x="150" y="0" fill="#38BDF8" class="font-mono" font-size="11" font-weight="bold">Java, JavaScript, TypeScript, HTML5, CSS3</text>
+        </g>
+
+        <g transform="translate(0, 190)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Frontend</text>
+          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">React.js, Tailwind CSS, Material UI, Bootstrap</text>
+        </g>
+
+        <g transform="translate(0, 212)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Backend</text>
+          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Node.js, REST APIs, Express.js</text>
+        </g>
+
+        <g transform="translate(0, 234)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Database</text>
+          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">MySQL, PostgreSQL, MongoDB</text>
+        </g>
+
+        <g transform="translate(0, 256)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">Core.Infra</text>
+          <text x="150" y="0" fill="#F8FAFC" class="font-mono" font-size="11">Git, GitHub Actions, Jira, Maven, Qase</text>
+        </g>
+
+        <line x1="0" y1="272" x2="570" y2="272" stroke="#334155" stroke-width="1"/>
+
+        <g transform="translate(0, 288)">
+          <text x="0" y="0" fill="#06B6D4" class="font-mono" font-size="11">Contact</text>
+          <text x="150" y="0" fill="#A855F7" class="font-mono" font-size="11" font-weight="bold">sriaditya445@gmail.com</text>
         </g>
       </g>
     </g>
   </g>
 
-  <!-- ==================== METRICS & MATRIX ROW ==================== -->
-  <g transform="translate(25, 750)">
-    <!-- 3 COUNTERS -->
+  <!-- ==================== SECTION 2: 3 METRIC STATS COUNTERS ==================== -->
+  <g transform="translate(25, 460)">
+    <!-- Box 1 -->
     <g transform="translate(0, 0)">
       <rect width="300" height="75" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
       <text x="150" y="36" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="26" font-weight="800">493</text>
       <text x="150" y="56" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="10">Total Contributions</text>
     </g>
 
+    <!-- Box 2 - Streak Gauge Ring -->
     <g transform="translate(325, 0)">
       <rect width="300" height="75" rx="8" fill="url(#card-dark)" stroke="#06B6D4" stroke-width="1"/>
       <circle cx="150" cy="32" r="18" fill="none" stroke="#1E293B" stroke-width="3"/>
@@ -249,43 +257,141 @@
       <text x="150" y="58" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="10" font-weight="bold">Current Streak</text>
     </g>
 
+    <!-- Box 3 -->
     <g transform="translate(650, 0)">
       <rect width="300" height="75" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
       <text x="150" y="36" text-anchor="middle" fill="#34D399" class="font-mono" font-size="26" font-weight="800">42</text>
       <text x="150" y="56" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="10">Longest Streak</text>
     </g>
+  </g>
 
-    <!-- MATRIX GRAPH -->
-    <g transform="translate(0, 90)">
-      <rect width="950" height="175" rx="10" fill="#050811" stroke="#334155" stroke-width="1"/>
-      <g transform="translate(20, 25)">
-<g transform="translate(0, 0)"><rect x="0" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="18" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="54" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="72" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="90" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="108" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="126" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="144" y="0" width="14" height="14" rx="3" fill="#334155"/><rect x="162" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="180" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="198" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="216" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="234" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="252" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="270" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="288" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="306" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="324" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="342" y="0" width="14" height="14" rx="3" fill="#334155"/><rect x="360" y="0" width="14" height="14" rx="3" fill="#334155"/><rect x="378" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="396" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="414" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="432" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="450" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="468" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="486" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="504" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="522" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="540" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="576" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="594" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="612" y="0" width="14" height="14" rx="3" fill="#0F172A"/><rect x="630" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="648" y="0" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="666" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="684" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="702" y="0" width="14" height="14" rx="3" fill="#334155"/><rect x="720" y="0" width="14" height="14" rx="3" fill="#1E293B"/><rect x="738" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="756" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="0" width="14" height="14" rx="3" fill="#C084FC"/><rect x="792" y="0" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="0" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="828" y="0" width="14" height="14" rx="3" fill="#C084FC"/><rect x="846" y="0" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="864" y="0" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="882" y="0" width="14" height="14" rx="3" fill="#38BDF8"/></g>
-<g transform="translate(0, 18)"><rect x="0" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="18" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="36" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="54" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="72" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="90" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="108" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="126" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="144" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="162" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="180" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="198" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="216" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="234" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="252" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="270" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="288" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="306" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="324" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="342" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="360" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="378" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="396" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="414" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="432" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="450" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="468" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="486" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="504" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="522" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="540" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="576" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="594" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="612" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="630" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="648" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="666" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="684" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="702" y="18" width="14" height="14" rx="3" fill="#334155"/><rect x="720" y="18" width="14" height="14" rx="3" fill="#0F172A"/><rect x="738" y="18" width="14" height="14" rx="3" fill="#1E293B"/><rect x="756" y="18" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="18" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="792" y="18" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="18" width="14" height="14" rx="3" fill="#E879F9"/><rect x="828" y="18" width="14" height="14" rx="3" fill="#C084FC"/><rect x="846" y="18" width="14" height="14" rx="3" fill="#E879F9"/><rect x="864" y="18" width="14" height="14" rx="3" fill="#C084FC"/><rect x="882" y="18" width="14" height="14" rx="3" fill="#8B5CF6"/></g>
-<g transform="translate(0, 36)"><rect x="0" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="18" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="54" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="72" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="90" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="108" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="144" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="162" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="180" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="216" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="234" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="252" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="270" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="288" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="306" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="324" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="342" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="360" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="378" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="396" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="414" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="432" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="450" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="468" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="486" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="504" y="36" width="14" height="14" rx="3" fill="#1E293B"/><rect x="522" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="540" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="576" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="594" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="612" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="630" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="648" y="36" width="14" height="14" rx="3" fill="#334155"/><rect x="666" y="36" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="684" y="36" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="702" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="720" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="738" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="756" y="36" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="36" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="792" y="36" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="36" width="14" height="14" rx="3" fill="#C084FC"/><rect x="828" y="36" width="14" height="14" rx="3" fill="#E879F9"/><rect x="846" y="36" width="14" height="14" rx="3" fill="#E879F9"/><rect x="864" y="36" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="882" y="36" width="14" height="14" rx="3" fill="#E879F9"/></g>
-<g transform="translate(0, 54)"><rect x="0" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="18" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="36" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="54" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="72" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="90" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="108" y="54" width="14" height="14" rx="3" fill="#1E293B"/><rect x="126" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="144" y="54" width="14" height="14" rx="3" fill="#1E293B"/><rect x="162" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="180" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="216" y="54" width="14" height="14" rx="3" fill="#1E293B"/><rect x="234" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="252" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="270" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="288" y="54" width="14" height="14" rx="3" fill="#1E293B"/><rect x="306" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="324" y="54" width="14" height="14" rx="3" fill="#1E293B"/><rect x="342" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="360" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="378" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="396" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="414" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="432" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="450" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="468" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="486" y="54" width="14" height="14" rx="3" fill="#1E293B"/><rect x="504" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="522" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="540" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="576" y="54" width="14" height="14" rx="3" fill="#0F172A"/><rect x="594" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="612" y="54" width="14" height="14" rx="3" fill="#334155"/><rect x="630" y="54" width="14" height="14" rx="3" fill="#1E293B"/><rect x="648" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="666" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="684" y="54" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="702" y="54" width="14" height="14" rx="3" fill="#1E293B"/><rect x="720" y="54" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="738" y="54" width="14" height="14" rx="3" fill="#334155"/><rect x="756" y="54" width="14" height="14" rx="3" fill="#334155"/><rect x="774" y="54" width="14" height="14" rx="3" fill="#E879F9"/><rect x="792" y="54" width="14" height="14" rx="3" fill="#C084FC"/><rect x="810" y="54" width="14" height="14" rx="3" fill="#C084FC"/><rect x="828" y="54" width="14" height="14" rx="3" fill="#C084FC"/><rect x="846" y="54" width="14" height="14" rx="3" fill="#C084FC"/><rect x="864" y="54" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="882" y="54" width="14" height="14" rx="3" fill="#8B5CF6"/></g>
-<g transform="translate(0, 72)"><rect x="0" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="18" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="36" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="54" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="72" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="90" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="108" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="144" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="162" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="180" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="216" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="234" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="252" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="270" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="288" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="306" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="324" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="342" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="360" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="378" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="396" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="414" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="432" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="450" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="468" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="486" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="504" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="522" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="540" y="72" width="14" height="14" rx="3" fill="#1E293B"/><rect x="558" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="576" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="594" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="612" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="630" y="72" width="14" height="14" rx="3" fill="#334155"/><rect x="648" y="72" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="666" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="684" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="702" y="72" width="14" height="14" rx="3" fill="#0F172A"/><rect x="720" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="738" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="756" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="72" width="14" height="14" rx="3" fill="#E879F9"/><rect x="792" y="72" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="828" y="72" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="846" y="72" width="14" height="14" rx="3" fill="#C084FC"/><rect x="864" y="72" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="882" y="72" width="14" height="14" rx="3" fill="#C084FC"/></g>
-<g transform="translate(0, 90)"><rect x="0" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="18" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="36" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="54" y="90" width="14" height="14" rx="3" fill="#1E293B"/><rect x="72" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="90" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="108" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="144" y="90" width="14" height="14" rx="3" fill="#1E293B"/><rect x="162" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="180" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="216" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="234" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="252" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="270" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="288" y="90" width="14" height="14" rx="3" fill="#0F172A"/><rect x="306" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="324" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="342" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="360" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="378" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="396" y="90" width="14" height="14" rx="3" fill="#0F172A"/><rect x="414" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="432" y="90" width="14" height="14" rx="3" fill="#0F172A"/><rect x="450" y="90" width="14" height="14" rx="3" fill="#0F172A"/><rect x="468" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="486" y="90" width="14" height="14" rx="3" fill="#1E293B"/><rect x="504" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="522" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="540" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="558" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="576" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="594" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="612" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="630" y="90" width="14" height="14" rx="3" fill="#1E293B"/><rect x="648" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="666" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="684" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="702" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="720" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="738" y="90" width="14" height="14" rx="3" fill="#334155"/><rect x="756" y="90" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="774" y="90" width="14" height="14" rx="3" fill="#C084FC"/><rect x="792" y="90" width="14" height="14" rx="3" fill="#E879F9"/><rect x="810" y="90" width="14" height="14" rx="3" fill="#E879F9"/><rect x="828" y="90" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="846" y="90" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="864" y="90" width="14" height="14" rx="3" fill="#E879F9"/><rect x="882" y="90" width="14" height="14" rx="3" fill="#E879F9"/></g>
-<g transform="translate(0, 108)"><rect x="0" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="18" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="54" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="72" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="90" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="108" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="126" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="144" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="162" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="180" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="198" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="216" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="234" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="252" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="270" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="288" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="306" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="324" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="342" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="360" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="378" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="396" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="414" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="432" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="450" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="468" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="486" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="504" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="522" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="540" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="558" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="576" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="594" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="612" y="108" width="14" height="14" rx="3" fill="#1E293B"/><rect x="630" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="648" y="108" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="666" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="684" y="108" width="14" height="14" rx="3" fill="#8B5CF6"/><rect x="702" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="720" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="738" y="108" width="14" height="14" rx="3" fill="#0F172A"/><rect x="756" y="108" width="14" height="14" rx="3" fill="#334155"/><rect x="774" y="108" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="792" y="108" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="810" y="108" width="14" height="14" rx="3" fill="#38BDF8"/><rect x="828" y="108" width="14" height="14" rx="3" fill="#E879F9"/><rect x="846" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="864" y="108" width="14" height="14" rx="3" fill="#06B6D4"/><rect x="882" y="108" width="14" height="14" rx="3" fill="#C084FC"/></g>
+  <!-- ==================== SECTION 3: GITHUB STATS & LANGUAGES ==================== -->
+  <g transform="translate(25, 550)">
+    <!-- LEFT CARD: GITHUB STATS -->
+    <g transform="translate(0, 0)">
+      <rect width="460" height="170" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="26" fill="#38BDF8" class="font-mono" font-size="12" font-weight="bold">Sri Aditya's GitHub Stats</text>
+      <line x1="20" y1="36" x2="440" y2="36" stroke="#1E293B" stroke-width="1"/>
+
+      <g transform="translate(25, 56)">
+        <circle cx="6" cy="6" r="4" fill="#F59E0B"/>
+        <text x="20" y="10" fill="#94A3B8" class="font-mono" font-size="11">Total Stars Earned:</text>
+        <text x="400" y="10" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">36</text>
+      </g>
+
+      <g transform="translate(25, 82)">
+        <circle cx="6" cy="6" r="4" fill="#7C3AED"/>
+        <text x="20" y="10" fill="#94A3B8" class="font-mono" font-size="11">Total Commits:</text>
+        <text x="400" y="10" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">1.2k</text>
+      </g>
+
+      <g transform="translate(25, 108)">
+        <circle cx="6" cy="6" r="4" fill="#06B6D4"/>
+        <text x="20" y="10" fill="#94A3B8" class="font-mono" font-size="11">Total PRs:</text>
+        <text x="400" y="10" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">42</text>
+      </g>
+
+      <g transform="translate(25, 134)">
+        <circle cx="6" cy="6" r="4" fill="#10B981"/>
+        <text x="20" y="10" fill="#94A3B8" class="font-mono" font-size="11">Contributed to (last year):</text>
+        <text x="400" y="10" text-anchor="end" fill="#F8FAFC" class="font-mono" font-size="11" font-weight="bold">8</text>
+      </g>
+    </g>
+
+    <!-- RIGHT CARD: MOST USED LANGUAGES -->
+    <g transform="translate(490, 0)">
+      <rect width="460" height="170" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="26" fill="#38BDF8" class="font-mono" font-size="12" font-weight="bold">Most Used Languages</text>
+      <line x1="20" y1="36" x2="440" y2="36" stroke="#1E293B" stroke-width="1"/>
+
+      <!-- Bar -->
+      <g transform="translate(20, 52)">
+        <rect width="420" height="10" rx="5" fill="#1E293B"/>
+        <rect x="0" y="0" width="176" height="10" rx="5" fill="#06B6D4"/>
+        <rect x="176" y="0" width="118" height="10" rx="0" fill="#8B5CF6"/>
+        <rect x="294" y="0" width="67" height="10" rx="0" fill="#F59E0B"/>
+        <rect x="361" y="0" width="38" height="10" rx="0" fill="#EC4899"/>
+        <rect x="399" y="0" width="21" height="10" rx="5" fill="#10B981"/>
+      </g>
+
+      <!-- Legend -->
+      <g transform="translate(25, 80)">
+        <g transform="translate(0, 0)">
+          <circle cx="5" cy="5" r="4" fill="#06B6D4"/>
+          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">JavaScript 42.0%</text>
+        </g>
+        <g transform="translate(0, 26)">
+          <circle cx="5" cy="5" r="4" fill="#8B5CF6"/>
+          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">Java 28.0%</text>
+        </g>
+        <g transform="translate(0, 52)">
+          <circle cx="5" cy="5" r="4" fill="#F59E0B"/>
+          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">TypeScript 16.0%</text>
+        </g>
+
+        <g transform="translate(210, 0)">
+          <circle cx="5" cy="5" r="4" fill="#EC4899"/>
+          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">HTML/CSS 9.0%</text>
+        </g>
+        <g transform="translate(210, 26)">
+          <circle cx="5" cy="5" r="4" fill="#10B981"/>
+          <text x="16" y="9" fill="#F8FAFC" class="font-mono" font-size="10">Shell / Automation 5.0%</text>
+        </g>
       </g>
     </g>
   </g>
 
-  <!-- ==================== FEATURED PROJECTS (5 CARDS) ==================== -->
-  <g transform="translate(25, 1030)">
-    <text x="0" y="20" fill="#06B6D4" class="font-mono" font-size="13" font-weight="bold">FEATURED_PROJECTS // projects.sh --top5</text>
+  <!-- ==================== SECTION 4: ANIMATED SNAKE CONTRIBUTION GAME MATRIX ==================== -->
+  <g transform="translate(25, 735)">
+    <rect width="950" height="200" rx="10" fill="#050811" stroke="#334155" stroke-width="1"/>
+
+    <!-- Snake Header Bar -->
+    <path d="M 0 10 Q 0 0 10 0 L 940 0 Q 950 0 950 10 L 950 32 L 0 32 Z" fill="#0F172A"/>
+    <text x="15" y="21" fill="#06B6D4" class="font-mono" font-size="11" font-weight="bold">🕹️ SNAKE_GAME // GITHUB_CONTRIBUTION_GRAPH_MATRIX</text>
+    <text x="935" y="21" text-anchor="end" fill="#EC4899" class="font-mono" font-size="11" font-weight="bold">SCORE: 1,490 PTS ★</text>
+    <line x1="0" y1="32" x2="950" y2="32" stroke="#334155" stroke-width="1"/>
+
+    <!-- Contribution Grid Base -->
+    <g transform="translate(20, 45)">
+<g transform="translate(0, 0)"><rect x="0" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="18" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="0" width="14" height="14" rx="3" fill="#006D32"/><rect x="54" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="72" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="90" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="108" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="144" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="162" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="180" y="0" width="14" height="14" rx="3" fill="#26A641"/><rect x="198" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="216" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="234" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="252" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="270" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="288" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="306" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="324" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="342" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="360" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="378" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="396" y="0" width="14" height="14" rx="3" fill="#26A641"/><rect x="414" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="432" y="0" width="14" height="14" rx="3" fill="#26A641"/><rect x="450" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="468" y="0" width="14" height="14" rx="3" fill="#006D32"/><rect x="486" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="504" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="522" y="0" width="14" height="14" rx="3" fill="#26A641"/><rect x="540" y="0" width="14" height="14" rx="3" fill="#006D32"/><rect x="558" y="0" width="14" height="14" rx="3" fill="#006D32"/><rect x="576" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="594" y="0" width="14" height="14" rx="3" fill="#0E4429"/><rect x="612" y="0" width="14" height="14" rx="3" fill="#006D32"/><rect x="630" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="648" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="666" y="0" width="14" height="14" rx="3" fill="#26A641"/><rect x="684" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="702" y="0" width="14" height="14" rx="3" fill="#006D32"/><rect x="720" y="0" width="14" height="14" rx="3" fill="#006D32"/><rect x="738" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="756" y="0" width="14" height="14" rx="3" fill="#006D32"/><rect x="774" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="792" y="0" width="14" height="14" rx="3" fill="#26A641"/><rect x="810" y="0" width="14" height="14" rx="3" fill="#39D353"/><rect x="828" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="846" y="0" width="14" height="14" rx="3" fill="#26A641"/><rect x="864" y="0" width="14" height="14" rx="3" fill="#161B22"/><rect x="882" y="0" width="14" height="14" rx="3" fill="#39D353"/></g>
+<g transform="translate(0, 18)"><rect x="0" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="18" y="18" width="14" height="14" rx="3" fill="#39D353"/><rect x="36" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="54" y="18" width="14" height="14" rx="3" fill="#39D353"/><rect x="72" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="90" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="108" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="144" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="162" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="180" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="198" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="216" y="18" width="14" height="14" rx="3" fill="#26A641"/><rect x="234" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="252" y="18" width="14" height="14" rx="3" fill="#26A641"/><rect x="270" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="288" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="306" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="324" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="342" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="360" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="378" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="396" y="18" width="14" height="14" rx="3" fill="#39D353"/><rect x="414" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="432" y="18" width="14" height="14" rx="3" fill="#39D353"/><rect x="450" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="468" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="486" y="18" width="14" height="14" rx="3" fill="#26A641"/><rect x="504" y="18" width="14" height="14" rx="3" fill="#26A641"/><rect x="522" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="540" y="18" width="14" height="14" rx="3" fill="#39D353"/><rect x="558" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="576" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="594" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="612" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="630" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="648" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="666" y="18" width="14" height="14" rx="3" fill="#26A641"/><rect x="684" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="702" y="18" width="14" height="14" rx="3" fill="#161B22"/><rect x="720" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="738" y="18" width="14" height="14" rx="3" fill="#39D353"/><rect x="756" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="774" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="792" y="18" width="14" height="14" rx="3" fill="#26A641"/><rect x="810" y="18" width="14" height="14" rx="3" fill="#26A641"/><rect x="828" y="18" width="14" height="14" rx="3" fill="#26A641"/><rect x="846" y="18" width="14" height="14" rx="3" fill="#0E4429"/><rect x="864" y="18" width="14" height="14" rx="3" fill="#006D32"/><rect x="882" y="18" width="14" height="14" rx="3" fill="#0E4429"/></g>
+<g transform="translate(0, 36)"><rect x="0" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="18" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="36" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="54" y="36" width="14" height="14" rx="3" fill="#006D32"/><rect x="72" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="90" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="108" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="126" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="144" y="36" width="14" height="14" rx="3" fill="#006D32"/><rect x="162" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="180" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="198" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="216" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="234" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="252" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="270" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="288" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="306" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="324" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="342" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="360" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="378" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="396" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="414" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="432" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="450" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="468" y="36" width="14" height="14" rx="3" fill="#006D32"/><rect x="486" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="504" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="522" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="540" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="558" y="36" width="14" height="14" rx="3" fill="#006D32"/><rect x="576" y="36" width="14" height="14" rx="3" fill="#006D32"/><rect x="594" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="612" y="36" width="14" height="14" rx="3" fill="#006D32"/><rect x="630" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="648" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="666" y="36" width="14" height="14" rx="3" fill="#26A641"/><rect x="684" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="702" y="36" width="14" height="14" rx="3" fill="#006D32"/><rect x="720" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="738" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="756" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="774" y="36" width="14" height="14" rx="3" fill="#161B22"/><rect x="792" y="36" width="14" height="14" rx="3" fill="#006D32"/><rect x="810" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="828" y="36" width="14" height="14" rx="3" fill="#39D353"/><rect x="846" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="864" y="36" width="14" height="14" rx="3" fill="#0E4429"/><rect x="882" y="36" width="14" height="14" rx="3" fill="#006D32"/></g>
+<g transform="translate(0, 54)"><rect x="0" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="18" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="36" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="54" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="72" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="90" y="54" width="14" height="14" rx="3" fill="#006D32"/><rect x="108" y="54" width="14" height="14" rx="3" fill="#26A641"/><rect x="126" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="144" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="162" y="54" width="14" height="14" rx="3" fill="#006D32"/><rect x="180" y="54" width="14" height="14" rx="3" fill="#006D32"/><rect x="198" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="216" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="234" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="252" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="270" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="288" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="306" y="54" width="14" height="14" rx="3" fill="#26A641"/><rect x="324" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="342" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="360" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="378" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="396" y="54" width="14" height="14" rx="3" fill="#26A641"/><rect x="414" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="432" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="450" y="54" width="14" height="14" rx="3" fill="#006D32"/><rect x="468" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="486" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="504" y="54" width="14" height="14" rx="3" fill="#26A641"/><rect x="522" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="540" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="558" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="576" y="54" width="14" height="14" rx="3" fill="#006D32"/><rect x="594" y="54" width="14" height="14" rx="3" fill="#26A641"/><rect x="612" y="54" width="14" height="14" rx="3" fill="#006D32"/><rect x="630" y="54" width="14" height="14" rx="3" fill="#26A641"/><rect x="648" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="666" y="54" width="14" height="14" rx="3" fill="#26A641"/><rect x="684" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="702" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="720" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="738" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="756" y="54" width="14" height="14" rx="3" fill="#006D32"/><rect x="774" y="54" width="14" height="14" rx="3" fill="#161B22"/><rect x="792" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="810" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="828" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="846" y="54" width="14" height="14" rx="3" fill="#39D353"/><rect x="864" y="54" width="14" height="14" rx="3" fill="#0E4429"/><rect x="882" y="54" width="14" height="14" rx="3" fill="#161B22"/></g>
+<g transform="translate(0, 72)"><rect x="0" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="18" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="54" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="72" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="90" y="72" width="14" height="14" rx="3" fill="#006D32"/><rect x="108" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="126" y="72" width="14" height="14" rx="3" fill="#39D353"/><rect x="144" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="162" y="72" width="14" height="14" rx="3" fill="#006D32"/><rect x="180" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="198" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="216" y="72" width="14" height="14" rx="3" fill="#39D353"/><rect x="234" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="252" y="72" width="14" height="14" rx="3" fill="#39D353"/><rect x="270" y="72" width="14" height="14" rx="3" fill="#39D353"/><rect x="288" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="306" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="324" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="342" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="360" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="378" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="396" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="414" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="432" y="72" width="14" height="14" rx="3" fill="#006D32"/><rect x="450" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="468" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="486" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="504" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="522" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="540" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="558" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="576" y="72" width="14" height="14" rx="3" fill="#006D32"/><rect x="594" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="612" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="630" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="648" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="666" y="72" width="14" height="14" rx="3" fill="#39D353"/><rect x="684" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="702" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="720" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="738" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="756" y="72" width="14" height="14" rx="3" fill="#006D32"/><rect x="774" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="792" y="72" width="14" height="14" rx="3" fill="#0E4429"/><rect x="810" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="828" y="72" width="14" height="14" rx="3" fill="#26A641"/><rect x="846" y="72" width="14" height="14" rx="3" fill="#39D353"/><rect x="864" y="72" width="14" height="14" rx="3" fill="#161B22"/><rect x="882" y="72" width="14" height="14" rx="3" fill="#161B22"/></g>
+<g transform="translate(0, 90)"><rect x="0" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="18" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="54" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="72" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="90" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="108" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="126" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="144" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="162" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="180" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="198" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="216" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="234" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="252" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="270" y="90" width="14" height="14" rx="3" fill="#006D32"/><rect x="288" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="306" y="90" width="14" height="14" rx="3" fill="#006D32"/><rect x="324" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="342" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="360" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="378" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="396" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="414" y="90" width="14" height="14" rx="3" fill="#006D32"/><rect x="432" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="450" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="468" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="486" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="504" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="522" y="90" width="14" height="14" rx="3" fill="#006D32"/><rect x="540" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="558" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="576" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="594" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="612" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="630" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="648" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="666" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="684" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="702" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="720" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="738" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="756" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="774" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="792" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="810" y="90" width="14" height="14" rx="3" fill="#26A641"/><rect x="828" y="90" width="14" height="14" rx="3" fill="#161B22"/><rect x="846" y="90" width="14" height="14" rx="3" fill="#39D353"/><rect x="864" y="90" width="14" height="14" rx="3" fill="#0E4429"/><rect x="882" y="90" width="14" height="14" rx="3" fill="#39D353"/></g>
+<g transform="translate(0, 108)"><rect x="0" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="18" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="36" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="54" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="72" y="108" width="14" height="14" rx="3" fill="#26A641"/><rect x="90" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="108" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="126" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="144" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="162" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="180" y="108" width="14" height="14" rx="3" fill="#0E4429"/><rect x="198" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="216" y="108" width="14" height="14" rx="3" fill="#0E4429"/><rect x="234" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="252" y="108" width="14" height="14" rx="3" fill="#26A641"/><rect x="270" y="108" width="14" height="14" rx="3" fill="#0E4429"/><rect x="288" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="306" y="108" width="14" height="14" rx="3" fill="#26A641"/><rect x="324" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="342" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="360" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="378" y="108" width="14" height="14" rx="3" fill="#26A641"/><rect x="396" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="414" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="432" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="450" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="468" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="486" y="108" width="14" height="14" rx="3" fill="#0E4429"/><rect x="504" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="522" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="540" y="108" width="14" height="14" rx="3" fill="#0E4429"/><rect x="558" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="576" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="594" y="108" width="14" height="14" rx="3" fill="#0E4429"/><rect x="612" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="630" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="648" y="108" width="14" height="14" rx="3" fill="#0E4429"/><rect x="666" y="108" width="14" height="14" rx="3" fill="#26A641"/><rect x="684" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="702" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="720" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="738" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="756" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="774" y="108" width="14" height="14" rx="3" fill="#39D353"/><rect x="792" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="810" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="828" y="108" width="14" height="14" rx="3" fill="#0E4429"/><rect x="846" y="108" width="14" height="14" rx="3" fill="#006D32"/><rect x="864" y="108" width="14" height="14" rx="3" fill="#161B22"/><rect x="882" y="108" width="14" height="14" rx="3" fill="#161B22"/></g>
+      <!-- ANIMATED SNAKE OBJECTS -->
+      <!-- Food Target Dots -->
+      <circle cx="152" cy="25" r="5" fill="#EC4899" class="food-dot"/>
+      <circle cx="296" cy="79" r="5" fill="#F59E0B" class="food-dot"/>
+      <circle cx="512" cy="25" r="5" fill="#10B981" class="food-dot"/>
+      <circle cx="728" cy="97" r="5" fill="#EC4899" class="food-dot"/>
+      <circle cx="854" cy="43" r="5" fill="#38BDF8" class="food-dot"/>
+
+      <!-- Animated Snake Head -->
+      <rect class="snake-head" width="14" height="14" rx="3" fill="#06B6D4" stroke="#FFFFFF" stroke-width="1.5"/>
+      <!-- Animated Snake Body Trail -->
+      <rect class="snake-body1" width="14" height="14" rx="3" fill="#8B5CF6" opacity="0.9"/>
+      <rect class="snake-body2" width="14" height="14" rx="3" fill="#A855F7" opacity="0.75"/>
+    </g>
+  </g>
+
+  <!-- ==================== SECTION 5: PROJECTS.LIST GRID ==================== -->
+  <g transform="translate(25, 955)">
+    <text x="0" y="20" fill="#06B6D4" class="font-mono" font-size="13" font-weight="bold">PROJECTS.LIST // projects.sh --all</text>
 
     <!-- ROW 1 -->
     <g transform="translate(0, 32)">
-      <!-- Project 01 -->
+      <!-- Card 1 -->
       <g transform="translate(0, 0)">
         <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">01 — ai-testcase-generator</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">ai-testcase-generator</text>
         <circle cx="445" cy="13" r="3" fill="#10B981"/>
 
         <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">AI Test Case Generator</text>
-        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">AI platform generating structured test cases with Qase API</text>
-        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">integration &amp; Playwright test execution automation.</text>
+        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">AI system generating structured test cases with Qase</text>
+        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">integration and automated Playwright test execution.</text>
 
         <g transform="translate(15, 102)">
           <rect width="55" height="18" rx="3" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="0.8"/>
@@ -297,16 +403,16 @@
         </g>
       </g>
 
-      <!-- Project 02 -->
+      <!-- Card 2 -->
       <g transform="translate(490, 0)">
         <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">02 — automation-testing-framework</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">automation-testing-framework</text>
         <circle cx="445" cy="13" r="3" fill="#10B981"/>
 
         <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Automation Testing Framework</text>
-        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Modern web automation framework utilizing Selenium,</text>
-        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">Java, TestNG, Cucumber BDD &amp; REST API verification.</text>
+        <text x="15" y="66" fill="#94A3B8" class="font-sans" font-size="10.5">Modular enterprise testing framework using Selenium,</text>
+        <text x="15" y="80" fill="#94A3B8" class="font-sans" font-size="10.5">TestNG, Cucumber BDD &amp; REST API verification.</text>
 
         <g transform="translate(15, 102)">
           <rect width="55" height="18" rx="3" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="0.8"/>
@@ -319,11 +425,11 @@
 
     <!-- ROW 2 -->
     <g transform="translate(0, 180)">
-      <!-- Project 03 -->
+      <!-- Card 3 -->
       <g transform="translate(0, 0)">
         <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">03 — network-auditing-platform</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">network-auditing-platform</text>
         <circle cx="445" cy="13" r="3" fill="#10B981"/>
 
         <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Network Configuration Auditing Platform</text>
@@ -338,11 +444,11 @@
         </g>
       </g>
 
-      <!-- Project 04 -->
+      <!-- Card 4 -->
       <g transform="translate(490, 0)">
         <rect width="460" height="135" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 452 0 Q 460 0 460 8 L 460 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">04 — hospital-management-system</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">hospital-management-system</text>
         <circle cx="445" cy="13" r="3" fill="#10B981"/>
 
         <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Hospital Management System</text>
@@ -363,7 +469,7 @@
       <g transform="translate(0, 0)">
         <rect width="950" height="110" rx="8" fill="url(#card-dark)" stroke="#334155" stroke-width="1"/>
         <path d="M 0 8 Q 0 0 8 0 L 942 0 Q 950 0 950 8 L 950 26 L 0 26 Z" fill="#0F172A"/>
-        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">05 — developer-portfolio-website</text>
+        <text x="12" y="17" fill="#06B6D4" class="font-mono" font-size="10">developer-portfolio-website</text>
         <circle cx="935" cy="13" r="3" fill="#10B981"/>
 
         <text x="15" y="48" fill="#F8FAFC" class="font-sans" font-size="13" font-weight="bold">Personal Developer Portfolio Website</text>
@@ -383,9 +489,33 @@
     </g>
   </g>
 
-  <!-- FOOTER -->
-  <g transform="translate(25, 1560)">
-    <line x1="0" y1="0" x2="950" y2="0" stroke="#1E293B" stroke-width="1"/>
-    <text x="475" y="24" text-anchor="middle" fill="#94A3B8" class="font-mono" font-size="10">DEVELOPED BY SRI ADITYA DURGA RAM • 2026</text>
+  <!-- ==================== SECTION 6: SOCIAL MEDIA BUTTONS FOOTER ==================== -->
+  <g transform="translate(25, 1445)">
+    <g transform="translate(185, 15)">
+      <g transform="translate(0, 0)">
+        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#0A66C2" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#38BDF8" class="font-mono" font-size="9.5" font-weight="bold">💼 LINKEDIN</text>
+      </g>
+
+      <g transform="translate(125, 0)">
+        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#F8FAFC" class="font-mono" font-size="9.5" font-weight="bold">🐙 GITHUB</text>
+      </g>
+
+      <g transform="translate(250, 0)">
+        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#EF4444" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#F87171" class="font-mono" font-size="9.5" font-weight="bold">✉️ EMAIL</text>
+      </g>
+
+      <g transform="translate(375, 0)">
+        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#10B981" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#34D399" class="font-mono" font-size="9.5" font-weight="bold">🌐 PORTFOLIO</text>
+      </g>
+
+      <g transform="translate(500, 0)">
+        <rect width="110" height="28" rx="5" fill="#0F172A" stroke="#7C3AED" stroke-width="1"/>
+        <text x="55" y="18" text-anchor="middle" fill="#C084FC" class="font-mono" font-size="9.5" font-weight="bold">🤖 AI SUITE</text>
+      </g>
+    </g>
   </g>
 </svg>
