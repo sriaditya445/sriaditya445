@@ -1,0 +1,12 @@
+{
+  "name": "sriaditya445-profile",
+  "version": "1.0.0",
+  "description": "Generates an animated jet-over-contribution-grid SVG for sriaditya445 from real GitHub contribution data",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "generate": "node generate.mjs"
+  }
+}
